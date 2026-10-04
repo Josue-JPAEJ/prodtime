@@ -1,0 +1,645 @@
+'@Folder "Forms"
+'CalMetrosNaMaq
+Option Explicit
+'# Variaveis para a calculadora dos metros que estao embaixo das maquinas
+Dim tara As Double, pBruto As Double, pLiq As Double
+Dim tMetros As Long, qntCaixas As Integer, pFita As Double
+
+'#Variaveis para producao estimada
+Dim Sabado As Boolean, Domingo As Boolean, Feriado As Boolean
+Dim bDatInic As Boolean, bDatEnt As Boolean
+Dim DataInicial As Date, DataEntrega As Date
+Dim metrosCalcular As Long
+Dim qntFita As Integer, CM_MIN As Double, dDesperd As Double
+Dim HorasUteis As Long, Rel As Worksheet
+
+Dim mclsFormChanger As CFormChanger
+
+Private Sub UserForm_Activate()
+    Set mclsFormChanger = New CFormChanger
+    Set mclsFormChanger.Form = Me
+
+    mclsFormChanger.ShowTaskBarIcon = True
+
+End Sub
+
+Private Sub UserForm_Terminate()
+    Set mclsFormChanger = Nothing
+End Sub
+
+Private Sub ProducaoEstimada()
+    'On Error GoTo Erro
+    Dim lProdEstimada As Long, lSaldo As Long, m_h As Double
+    Dim IntervaloDeDias As Integer
+    Dim ContadorSabados As Integer, ContadorDomingos As Integer
+    Dim DateIni As Date, ContadorFeriados As Integer, dFeriado As String
+    Dim i As Integer
+
+    LimparVisor
+
+    If dDesperd = Empty Or HorasUteis = Empty Or DataEntrega = Empty Or DataInicial = Empty Or CM_MIN = Empty Then Exit Sub
+    IntervaloDeDias = (DataEntrega + 1) - (DataInicial)
+    ContadorDomingos = 0
+    ContadorSabados = 0
+    ContadorFeriados = 0
+    For DateIni = DataInicial To DataEntrega
+        If Weekday(DateIni) = 1 Then ContadorDomingos = ContadorDomingos + 1
+        If Weekday(DateIni) = 7 Then ContadorSabados = ContadorSabados + 1
+        For i = 0 To Me.lbFeriados.ListCount - 1
+            dFeriado = Left(Me.lbFeriados.list(i, 1), Len(Me.lbFeriados.list(i, 1)) - 4) & Year(DateIni)
+            If DateIni = dFeriado Then ContadorFeriados = ContadorFeriados + 1
+        Next
+    Next
+    If Feriado = False Then IntervaloDeDias = IntervaloDeDias - ContadorFeriados
+    If Sabado = False Then IntervaloDeDias = IntervaloDeDias - ContadorSabados
+    If Domingo = False Then IntervaloDeDias = IntervaloDeDias - ContadorDomingos
+    If bDatInic = False Then IntervaloDeDias = IntervaloDeDias - 1
+    If bDatEnt = False Then IntervaloDeDias = IntervaloDeDias - 1
+
+    m_h = (CM_MIN * 60) / 100
+    'pE=m_h*qntFitas*huteis*qntdias-desperdicio
+    lProdEstimada = m_h * qntFita * HorasUteis * IntervaloDeDias
+
+    'Visor Relatorio  #########################################
+    Me.chbFeriados.caption = ContadorFeriados & " - " & Me.chbFeriados.tag
+    Me.chbSab.caption = ContadorSabados & " - " & Me.chbSab.tag
+    Me.chbDom.caption = ContadorDomingos & " - " & Me.chbDom.tag
+    Me.tbTotalDias = IntervaloDeDias
+    Me.tbTotalHoras = HorasUteis * IntervaloDeDias
+    Me.tbTotalDesperdicio = (lProdEstimada * (dDesperd / 100))
+    '_________________________________________________________
+
+    lProdEstimada = lProdEstimada - (lProdEstimada * (dDesperd / 100))
+    Me.tbProdEstimada = lProdEstimada
+    If metrosCalcular = Empty Then Exit Sub
+    Me.tbSaldo = lProdEstimada - metrosCalcular
+    Me.caption = Me.tag & "   -   Login: " & Login
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "ProducaoEstimada")
+End Sub
+
+Private Sub LimparVisor()
+    'On Error GoTo Erro
+
+    Me.tbTotalDias = ""
+    Me.tbTotalHoras = ""
+    Me.tbTotalDesperdicio = ""
+    Me.chbSab.caption = Me.chbSab.tag
+    Me.chbDom.caption = Me.chbDom.tag
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "LimparVisor")
+End Sub
+
+Private Sub TotalMetros()
+    Dim tBruto As Double, tTara As Double, tLiq As Double
+    'On Error GoTo Erro
+
+    'Total PesoLiquido
+    If tara = Empty Or pBruto = Empty Then Exit Sub
+    pLiq = pBruto - tara
+    Me.tbPesoLiq = pLiq
+    Me.tbPesoLiq = Left(Me.tbPesoLiq, InStr(1, Me.tbPesoLiq, ",", vbBinaryCompare) + 3)
+    If InStr(1, Me.tbPesoLiq, ",", vbBinaryCompare) = 0 Then Me.tbPesoLiq = Me.tbPesoLiq & ",000"
+
+    'Total TotalMetros
+    If qntCaixas = Empty Or pFita = Empty Then Exit Sub
+    tBruto = pBruto * qntCaixas
+    tTara = tara * qntCaixas
+    tLiq = tBruto - tTara
+    tMetros = (tLiq * 1000) / pFita
+    Me.tbTotal = tMetros & "m"
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "TotalMetros")
+End Sub
+
+Private Sub cbCalcular2_Click()
+    ProducaoEstimada
+End Sub
+
+Private Sub cbCalcular1_Click()
+    TotalMetros
+End Sub
+
+Private Sub cbLimpar_Click()
+    'On Error GoTo Erro
+
+    Me.chbMarcarTodos = False
+    Call LimparFormularios(Me)
+    Me.caption = Me.tag & "   -   Login: " & Login
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "cbLimpar_Click")
+End Sub
+
+Private Sub chbDataEntrega_Click()
+    'On Error GoTo Erro
+
+    If Me.chbDataEntrega = True Then bDatEnt = True Else bDatEnt = False
+    ProducaoEstimada
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "chbDataEntrega_Click")
+End Sub
+
+Private Sub chbDataInicial_Click()
+    'On Error GoTo Erro
+
+    If Me.chbDataInicial = True Then bDatInic = True Else bDatInic = False
+    ProducaoEstimada
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "chbDataInicial_Click")
+End Sub
+
+Private Sub chbDom_Click()
+    'On Error GoTo Erro
+
+    If Me.chbDom = True Then Domingo = True Else Domingo = False
+    ProducaoEstimada
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "chbDom_Click")
+End Sub
+
+Private Sub chbFeriados_Click()
+    'On Error GoTo Erro
+
+    If Me.chbFeriados = True Then Feriado = True Else Feriado = False
+    ProducaoEstimada
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "chbFeriados_Click")
+
+End Sub
+
+Private Sub chbMarcarTodos_Click()
+    Dim caption As String, tag As String
+    'On Error GoTo Erro
+
+    caption = Me.chbMarcarTodos.caption
+    tag = Me.chbMarcarTodos.tag
+
+    If chbMarcarTodos = True Then
+
+        Me.chbSab = True
+        Me.chbDom = True
+        Me.chbFeriados = True
+        Me.chbDataInicial = True
+        Me.chbDataEntrega = True
+        Me.chbMarcarTodos.caption = Me.chbMarcarTodos.tag
+        Me.chbMarcarTodos.tag = caption
+    
+    Else
+
+        Me.chbSab = False
+        Me.chbDom = False
+        Me.chbFeriados = False
+        Me.chbDataInicial = False
+        Me.chbDataEntrega = False
+        Me.chbMarcarTodos.caption = Me.chbMarcarTodos.tag
+        Me.chbMarcarTodos.tag = caption
+    
+    End If
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "chbMarcarTodos")
+End Sub
+
+Private Sub chbSab_Click()
+    'On Error GoTo Erro
+
+    If Me.chbSab = True Then Sabado = True Else Sabado = False
+    ProducaoEstimada
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "chbSab_Click")
+End Sub
+
+Sub Compilacao_Exits()
+    itbCaixas_Exit
+    itbCm_Min_Exit
+    itbDataEntrega_Exit
+    itbDataInicial_Exit
+    itbDesp_Exit
+    itbHorasUteis_Exit
+    itbMetros_Exit
+    itbPesoFita_Exit
+    itbQntFitas_Exit
+    Me.caption = Me.tag & "   -   Login: " & Login
+End Sub
+
+Private Sub lbFeriados_Enter()
+    Me.lbFeriados.Height = 159.85
+End Sub
+
+Private Sub lbFeriados_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Me.lbFeriados.Height = 18
+End Sub
+
+Private Sub tbCaixas_Change()
+    VerificarNumerico Me.tbCaixas.object
+End Sub
+
+Private Sub tbCaixas_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    itbCaixas_Exit
+End Sub
+
+Private Sub itbCaixas_Exit()
+    'On Error GoTo Erro
+
+    If tbCaixas = "" Then Exit Sub
+    qntCaixas = Me.tbCaixas
+    TotalMetros
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "itbCaixas_Exit")
+End Sub
+
+Private Sub tbCm_Min_Change()
+    VerificarNumerico Me.tbCm_Min.object
+End Sub
+
+Private Sub tbCm_Min_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    itbCm_Min_Exit
+End Sub
+
+Private Sub itbCm_Min_Exit()
+    'On Error GoTo Erro
+
+    If Me.tbCm_Min = "" Then
+        CM_MIN = Empty
+        Exit Sub
+    Else
+        CM_MIN = Replace(Me.tbCm_Min, ".", ",")
+        ProducaoEstimada
+    End If
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "itbCm_Min_Exit")
+End Sub
+
+Private Sub tbDataEntrega_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    itbDataEntrega_Exit
+End Sub
+
+Private Sub itbDataEntrega_Exit()
+    'On Error GoTo Erro
+
+    If Me.tbDataEntrega = "" Then
+        DataEntrega = Empty
+        Me.tbTotalDias = ""
+        Exit Sub
+    ElseIf IsDate(Me.tbDataEntrega) = False Then
+        Me.tbDataEntrega = ""
+        DataEntrega = Empty
+        Me.tbTotalDias = ""
+        Exit Sub
+    ElseIf Not Me.tbDataEntrega = "" And IsDate(Me.tbDataEntrega) = True Then
+        DataEntrega = Me.tbDataEntrega
+        If DataInicial >= DataEntrega And Me.tbDataInicial <> "" Then Me.tbDataEntrega = ""
+    End If
+    ProducaoEstimada
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "itbDataEntrega_Exit")
+End Sub
+
+Private Sub tbDataInicial_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    itbDataInicial_Exit
+End Sub
+
+Private Sub itbDataInicial_Exit()
+    'On Error GoTo Erro
+
+    If Me.tbDataInicial = "" Then
+        DataInicial = Empty
+        Me.tbTotalDias = ""
+        Exit Sub
+    ElseIf IsDate(Me.tbDataInicial) = False Then
+        Me.tbDataInicial = ""
+        DataInicial = Empty
+        Me.tbTotalDias = ""
+        Exit Sub
+    ElseIf Not Me.tbDataInicial = "" And IsDate(Me.tbDataInicial) = True Then
+        DataInicial = Me.tbDataInicial
+        If DataInicial >= DataEntrega And Me.tbDataEntrega <> "" Then Me.tbDataInicial = ""
+    End If
+    ProducaoEstimada
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "itbDataInicial_Exit")
+End Sub
+
+Private Sub tbDesp_Change()
+    VerificarNumerico Me.tbDesp.object
+End Sub
+
+Private Sub tbDesp_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    itbDesp_Exit
+End Sub
+
+Private Sub itbDesp_Exit()
+    'On Error GoTo Erro
+
+    If Me.tbDesp = "" Then
+        dDesperd = Empty
+        Exit Sub
+    Else
+        dDesperd = Replace(Me.tbDesp, ".", ",")
+        ProducaoEstimada
+    End If
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "itbDesp_Exit")
+End Sub
+
+Private Sub tbHorasUteis_Change()
+    VerificarNumerico Me.tbHorasUteis.object
+End Sub
+
+Private Sub tbHorasUteis_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    itbHorasUteis_Exit
+End Sub
+
+Private Sub itbHorasUteis_Exit()
+    'On Error GoTo Erro
+
+    If Me.tbHorasUteis = "" Then
+        HorasUteis = Empty
+        Exit Sub
+    Else
+        HorasUteis = Me.tbHorasUteis
+        ProducaoEstimada
+    End If
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "itbHorasUteis_Exit")
+End Sub
+
+Private Sub tbMetros_Change()
+    VerificarNumerico Me.tbMetros.object
+End Sub
+
+Private Sub tbMetros_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    itbMetros_Exit
+End Sub
+
+Private Sub itbMetros_Exit()
+    'On Error GoTo Erro
+
+    If Me.tbMetros = "" Then
+        metrosCalcular = Empty
+        Me.tbSaldo = ""
+        Exit Sub
+    Else
+        metrosCalcular = Me.tbMetros
+        ProducaoEstimada
+    End If
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "itbMetros_Exit")
+End Sub
+
+Private Sub tbPesoBruto_Change()
+    VerificarNumerico Me.tbPesoBruto.object
+End Sub
+
+Private Sub tbPesoFita_Enter()
+    'On Error GoTo Erro
+
+    If Me.tbPesoFita = "" Then Exit Sub
+    Me.tbPesoFita = Left(Me.tbPesoFita, Len(Me.tbPesoFita) - 1)
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "tbPesoFita_Enter")
+End Sub
+
+Private Sub tbPesoFita_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    VerificarNumerico Me.tbPesoFita.object
+    itbPesoFita_Exit
+End Sub
+
+Private Sub itbPesoFita_Exit()
+    'On Error GoTo Erro
+
+    If Me.tbPesoFita = "" Then
+        pFita = Empty
+        Exit Sub
+    End If
+    If Right(Me.tbPesoFita.Text, 1) = "," Then
+        Me.tbPesoFita = Me.tbPesoFita & "00"
+    End If
+    If Me.tbPesoFita <> "" Then
+        If InStr(1, Me.tbPesoFita, ",", vbTextCompare) = 0 Then
+            Me.tbPesoFita = Me.tbPesoFita & ",00"
+        End If
+        pFita = Replace(Me.tbPesoFita, ".", ",")
+        Me.tbPesoFita = Me.tbPesoFita & "g"
+        TotalMetros
+    End If
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "itbPesoFita_Exit")
+End Sub
+
+Private Sub tbPesoLiq_Change()
+    VerificarNumerico Me.tbPesoLiq.object
+End Sub
+
+Private Sub tbQntFitas_Change()
+    VerificarNumerico Me.tbQntFitas.object
+End Sub
+
+Private Sub tbQntFitas_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    itbQntFitas_Exit
+End Sub
+
+Private Sub itbQntFitas_Exit()
+    'On Error GoTo Erro
+
+    If Me.tbQntFitas = "" Then
+        qntFita = Empty
+        Exit Sub
+    Else
+        qntFita = Me.tbQntFitas
+        ProducaoEstimada
+    End If
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "itbQntFitas_Exit")
+End Sub
+
+Private Sub tbSaldo_Change()
+    'On Error GoTo Erro
+
+    If Me.tbSaldo.value < 0 Then
+        Me.lbSaldo.BackColor = vbRed
+    Else
+        Me.lbSaldo.BackColor = vbGreen
+    End If
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "tbSaldo_Change")
+End Sub
+
+Private Sub tbtara_Change()
+    VerificarNumerico Me.tbtara.object
+End Sub
+
+Private Sub tbTara_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    'On Error GoTo Erro
+
+    If Me.tbtara = "" Then
+        Me.tbPesoLiq = ""
+        pLiq = Empty
+        tara = Empty
+        Exit Sub
+    End If
+    If Right(Me.tbtara.Text, 1) = "," Then
+        Me.tbtara = Me.tbtara & "000"
+    End If
+    If Me.tbtara <> "" Then
+        If InStr(1, Me.tbtara, ",", vbTextCompare) = 0 Then
+            Me.tbtara = Me.tbtara & ",000"
+        End If
+        tara = Replace(Me.tbtara, ".", ",")
+        TotalMetros
+    End If
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "tbTara_Exit")
+End Sub
+
+Private Sub tbPesoBruto_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    'On Error GoTo Erro
+
+    If Me.tbPesoBruto = "" Then
+        Me.tbPesoLiq = ""
+        pLiq = Empty
+        pBruto = Empty
+        Exit Sub
+    End If
+    If Right(Me.tbPesoBruto.Text, 1) = "," Then
+        Me.tbPesoBruto = Me.tbPesoBruto & "000"
+    End If
+    If Me.tbPesoBruto <> "" Then
+        If InStr(1, Me.tbPesoBruto, ",", vbTextCompare) = 0 Then
+            Me.tbPesoBruto = Me.tbPesoBruto & ",000"
+        End If
+        pBruto = Replace(Me.tbPesoBruto, ".", ",")
+        TotalMetros
+    End If
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "tbPesoBruto_Exit")
+End Sub
+
+Private Sub tbCaixas_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call Numeros(KeyAscii, Me.tbCaixas.object)
+End Sub
+
+Private Sub tbDataEntrega_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call DatasFormatacao(KeyAscii, Me.tbDataEntrega.object)
+End Sub
+
+Private Sub tbDesp_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call soNumeros(KeyAscii, Me.tbDesp.object)
+End Sub
+
+Private Sub tbDataInicial_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call DatasFormatacao(KeyAscii, Me.tbDataInicial.object)
+End Sub
+
+Private Sub tbHorasUteis_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call Numeros(KeyAscii, Me.tbHorasUteis.object)
+End Sub
+
+Private Sub tbMetros_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call Numeros(KeyAscii, Me.tbMetros.object)
+End Sub
+
+Private Sub tbQntFitas_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call Numeros(KeyAscii, Me.tbQntFitas.object)
+End Sub
+
+Private Sub tbPesoFita_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call soNumeros(KeyAscii, Me.tbPesoFita.object)
+End Sub
+
+Private Sub tbCm_Min_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call soNumeros(KeyAscii, Me.tbCm_Min.object)
+End Sub
+
+Private Sub tbPesoBruto_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call soNumeros(KeyAscii, Me.tbPesoBruto.object)
+End Sub
+
+Private Sub tbTara_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Call soNumeros(KeyAscii, Me.tbtara.object)
+End Sub
+
+Private Sub ListFeriados()
+    Dim i As Integer
+    'On Error GoTo Erro
+
+    With Me.lbFeriados
+        .Clear
+        i = 0
+        Do Until Rel.Cells(i + 2, 1) = ""
+            .AddItem
+            .list(i, 0) = Rel.Cells(i + 2, 1)
+            .list(i, 1) = Rel.Cells(i + 2, 2) & "/" & Year(VBA.DateValue(Now()))
+            .list(i, 2) = Rel.Cells(i + 2, 3)
+            i = i + 1
+        Loop
+    End With
+
+    Exit Sub
+Erro:
+    Call ContemErros(Me.Name, "ListFeriados")
+End Sub
+
+Private Sub iUserForm_Activate()
+
+    Me.tbDesp = 3
+    Me.tbHorasUteis = 16
+    Me.tbQntFitas = 1
+    Me.tbCm_Min = 28
+    ListFeriados
+    Me.caption = Me.tag & "   -   Login: " & Login
+End Sub
+
+Private Sub UserForm_Initialize()
+    If iUnload = True Then GoTo ExitSub
+
+    Set Rel = ThisWorkbook.Sheets("Relatorios")
+    If VerificarServidor = False Then GoTo ExitSub
+    iUserForm_Activate
+    Compilacao_Exits
+ExitSub:
+End Sub
+
