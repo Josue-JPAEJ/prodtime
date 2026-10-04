@@ -16,7 +16,7 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Escopo:** fórmula validada, unidades, precisão, arredondamento, contratos e testes unitários.
 - **Fora de escopo:** UI final e inferência de fórmula a partir de exemplos isolados.
 - **Critério de conclusão:** regras aprovadas e testes determinísticos passando, incluindo regressões cuja tolerância tenha sido definida.
-- **Etapa atual:** R1.1 — engenharia reversa e especificação matemática, com fórmula, unidades, coerções, regressões e comportamento legado de calendário documentados. Nenhum motor foi implementado.
+- **Etapas:** R1.1 — engenharia reversa e especificação matemática concluídas e documentadas. R1.2 — motor matemático puro de capacidade implementado com `BigDecimal`, política `HALF_EVEN`, validações de entrada e testes unitários, aguardando revisão/validação. O encerramento de R1 depende dessa validação e da decisão sobre o próximo subpasso necessário.
 - **Status:** em andamento.
 
 ## R2 — Calendário produtivo

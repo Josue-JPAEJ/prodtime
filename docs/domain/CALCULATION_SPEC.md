@@ -2,7 +2,7 @@
 
 # 1. Objetivo
 
-Reconstruir, de forma auditável, o comportamento matemático da calculadora legada e separar regras de negócio de coerções, restrições e possíveis defeitos do VBA. Esta especificação descreve o legado; decisões ainda necessárias para o novo ProdTime estão em `OPEN_QUESTIONS.md`.
+Reconstruir, de forma auditável, o comportamento matemático da calculadora legada e separar regras de negócio de coerções, restrições e possíveis defeitos do VBA. O documento distingue o legado do contrato aprovado para o novo ProdTime; decisões ainda pendentes estão em `OPEN_QUESTIONS.md`.
 
 # 2. Fonte primária
 
@@ -254,7 +254,7 @@ Campos obrigatórios são implícitos pelas saídas antecipadas, não por um con
 
 # 14. Regras que devem ser preservadas
 
-Com base no comportamento comprovado, o novo motor deve preservar semanticamente, sujeito à decisão explícita de precisão:
+Com base no comportamento comprovado, o novo motor preserva semanticamente, conforme a política decimal aprovada na seção 17:
 
 1. conversão de cm/min para m/h pelo fator `60/100`;
 2. multiplicação da velocidade por fitas simultâneas, horas por dia e dias produtivos;
@@ -264,31 +264,31 @@ Com base no comportamento comprovado, o novo motor deve preservar semanticamente
 6. total de horas igual a horas produtivas por dia vezes dias produtivos;
 7. conversão de peso líquido total em gramas e divisão pela massa linear para obter metros.
 
-Preservar essas relações não decide limites, representação decimal, arredondamento, defaults ou política de calendário.
+Essas relações não decidem defaults, limites operacionais máximos, apresentação ou política de calendário.
 
 # 15. Comportamentos que NÃO devem ser copiados sem decisão
 
 - subtrações duplicadas entre feriado, fim de semana e pontas;
 - recorrência textual simplista para todos os feriados;
 - limites e overflow de `Integer`/`Long`;
-- arredondamento intermediário acidental por atribuição a `Long`;
+- coerção acidental por atribuição a `Long` (as duas fronteiras compatíveis são agora deliberadas e usam `BigDecimal`);
 - dependência de localidade e da UI para conversão;
 - comparação numérica com `Empty`, que confunde zero e ausência;
 - aceitação implícita de entradas negativas ou percentuais fora de faixa;
-- horas produtivas restritas a inteiros;
+- restrição de horas produtivas a inteiros;
 - defaults históricos como se fossem requisitos atuais.
 
 # 16. Matriz de evidências
 
 | Regra | Status | Evidência | Confiança | Decisão necessária |
 |---|---|---|---|---|
-| `cm/min × 60 / 100 = m/h` | CONFIRMADA (legado) | atribuição a `m_h` | Alta | precisão no novo domínio |
+| `cm/min × 60 / 100 = m/h` | CONFIRMADA (legado) | atribuição a `m_h` | Alta | `BigDecimal`, sem arredondamento desnecessário (R1.2) |
 | velocidade é por fita | INFERIDA | `qntFita` é multiplicada depois | Alta | confirmar vocabulário de produto |
 | produção bruta multiplica velocidade, fitas, horas e dias | CONFIRMADA (legado) | atribuição inicial a `lProdEstimada` | Alta | limites de entrada |
 | desperdício incide na produção bruta | CONFIRMADA (legado) | duas expressões em `ProducaoEstimada` | Alta | precisão e exibição |
-| produção final é líquida | CONFIRMADA (legado) | subtração antes de `tbProdEstimada` | Alta | arredondamento |
-| saldo é líquida menos meta | CONFIRMADA (legado) | atribuição a `tbSaldo` | Alta | semântica da meta zero |
-| coerção a inteiro arredonda ao mais próximo e empates para par | CONFIRMADA (semântica VBA) | atribuições `Double → Long` | Alta | compatibilidade exata ou regra nova |
+| produção final é líquida | CONFIRMADA (legado) | subtração antes de `tbProdEstimada` | Alta | `HALF_EVEN` na saída líquida (R1.2) |
+| saldo é líquida menos meta | CONFIRMADA (legado) | atribuição a `tbSaldo` | Alta | meta zero é válida; ausência é `null` (R1.2) |
+| coerção a inteiro arredonda ao mais próximo e empates para par | CONFIRMADA (semântica VBA) | atribuições `Double → Long` | Alta | duas fronteiras deliberadas com `HALF_EVEN` (R1.2) |
 | período base inclui as duas pontas | CONFIRMADA (legado) | `+ 1` e loop inclusivo | Alta | política definitiva do R2 |
 | opções falsas excluem categoria/ponta | CONFIRMADA (legado) | condicionais após o loop | Alta | UX e regra definitiva do R2 |
 | colisões são subtraídas repetidamente | CONFIRMADA (mecânica legado) | contadores e subtrações independentes | Alta | corrigir no R2 |
@@ -296,11 +296,29 @@ Preservar essas relações não decide limites, representação decimal, arredon
 | feriados são recorrentes por mês/dia | CONFIRMADA (legado) | reconstrução com `Year(DateIni)` | Alta | modelo de feriados no R2 |
 | `pFita` é g/m | INFERIDA | fórmula, sufixo `g` e caso 38.500 m | Alta | confirmar rótulo/contrato |
 | defaults 3/16/1/28 | CONFIRMADA (legado) | `iUserForm_Activate` | Alta | manter ou substituir |
-| horas legadas são inteiras | CONFIRMADA (legado) | declaração `As Long` | Alta | aceitar frações no novo domínio |
+| horas legadas são inteiras | CONFIRMADA (legado) | declaração `As Long` | Alta | horas fracionárias aceitas (R1.2) |
 | validação rejeita todo número inválido | NÃO DETERMINADA | helpers externos ausentes | Baixa | definir contrato explícito |
 
 Não foi encontrada contradição entre as fórmulas do arquivo e os casos históricos. A documentação anterior que dizia que a fórmula/código não estava disponível ficou desatualizada e foi atualizada.
 
-# 17. Conclusão
+# 17. Contrato aprovado do motor de capacidade (R1.2)
 
-**Sim, as relações do núcleo matemático estão suficientemente conhecidas**: conversão, fatores de capacidade, ordem do desperdício, saldo e regressões estão determinados. Contudo, o início da implementação correta em R1.2 permanece bloqueado até a decisão explícita sobre precisão e compatibilidade de arredondamento, pois ela altera os resultados e o contrato numérico. O calendário também foi reconstruído, porém suas colisões e políticas definitivas ficam para R2. A unidade `pFita` e os limites de entrada ainda exigem confirmação/decisão antes de expor contratos finais de UI.
+Como **decisão do ProdTime**, o núcleo matemático usa `java.math.BigDecimal`, criado a partir de texto ou constantes exatas, sem conversões por `Double` ou `Float`. Não são reproduzidos os limites, overflow, `Empty` ou coerções implícitas do VBA.
+
+O contrato recebe velocidade em cm/min por fita, quantidade inteira de fitas, horas produtivas por dia em `BigDecimal`, quantidade inteira de dias produtivos, percentual de desperdício em `BigDecimal` e meta opcional em metros inteiros, representada por `BigDecimal` de escala não significativa. Horas fracionárias, como `7.5 h/dia`, são aceitas conscientemente. O motor não define defaults nem calcula calendário.
+
+A política explícita é `RoundingMode.HALF_EVEN`, aplicada em exatamente duas fronteiras:
+
+1. `metrosPorHoraPorFita = velocidadeCmMin × 60 / 100`, sem arredondamento desnecessário;
+2. `producaoBrutaDecimal = metrosPorHoraPorFita × quantidadeFitas × horasProdutivasPorDia × diasProdutivos`;
+3. `producaoBruta = producaoBrutaDecimal` arredondada para zero casas com `HALF_EVEN`;
+4. `desperdicioMetros = producaoBruta × percentualDesperdicio / 100`, preservado como decimal;
+5. `producaoLiquidaDecimal = producaoBruta − desperdicioMetros`;
+6. `producaoLiquida = producaoLiquidaDecimal` arredondada para zero casas com `HALF_EVEN`;
+7. quando houver meta, `saldo = producaoLiquida − metaMetros`; sem meta, o saldo é ausente.
+
+As entradas exigem velocidade, fitas, horas e dias estritamente positivos; desperdício no intervalo `0 <= percentual < 100`; e meta, quando presente, não negativa. A produção bruta, a produção líquida e o saldo são metros inteiros no contrato inicial. O desperdício permanece decimal.
+
+# 18. Conclusão
+
+**Sim, as relações do núcleo matemático estão suficientemente conhecidas e o contrato numérico de R1.2 está aprovado**: conversão, fatores de capacidade, ordem do desperdício, saldo, representação decimal, arredondamento e regressões estão determinados. O calendário foi reconstruído apenas como referência; suas colisões e políticas definitivas ficam para R2. A unidade `pFita` e os limites operacionais de entrada ainda exigem confirmação/decisão antes de expor contratos finais de UI.
