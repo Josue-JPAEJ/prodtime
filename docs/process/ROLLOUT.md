@@ -6,9 +6,9 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 
 - **Objetivo:** estabelecer um projeto Android executável e sua fundação documental.
 - **Escopo:** projeto Kotlin/Compose, API mínima 26, baseline Git e documentação operacional, de produto, arquitetura e processo.
-- **Evidências já validadas:** projeto criado; Kotlin; Compose; API mínima 26; Android SDK; ADB; aparelho físico reconhecido; build; execução de “Hello Android!”; Git; branches `main` e `develop`; baseline `cac1966`.
+- **Evidências validadas:** projeto Android criado; Kotlin; Jetpack Compose; Minimum SDK API 26; Android SDK configurado; Command-line Tools; Platform-Tools; Build-Tools compatíveis; ADB funcional; aparelho físico reconhecido; Gradle Sync; build bem-sucedido; aplicação padrão executada no aparelho físico; Git inicializado; branches `main` e `develop` criadas e publicadas; baseline `cac1966`; `AGENTS.md`; Skills; documentação de produto; arquitetura direcional; rollout; validações; referências; fundação documental integrada em `develop` pelo PR #2.
 - **Critério de conclusão:** fundação documental revisada e integrada sem alterar o baseline Android.
-- **Status:** em andamento — evidências técnicas existem, mas a fundação documental ainda precisa ser integrada.
+- **Status:** concluído.
 
 ## R1 — Motor matemático
 
