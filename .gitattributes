@@ -1,0 +1,13 @@
+# Normalize arquivos de texto entre plataformas.
+* text=auto eol=lf
+
+# Preserve formatos binários.
+*.jar binary
+*.png binary
+*.webp binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.keystore binary
+*.jks binary
