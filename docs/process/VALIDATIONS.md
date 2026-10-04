@@ -13,6 +13,16 @@ As seguintes evidências foram informadas e aceitas como baseline conhecido dest
 
 Essas evidências registram o baseline; não significam que foram repetidas durante toda mudança documental.
 
+## Encerramento do R0
+
+- **Etapa:** R0 — Bootstrap e baseline
+- **Branch:** `develop`
+- **Baseline Android:** `cac1966`
+- **Merge de integração:** `5a4ebd6`
+- **Pull Request:** #2 — `docs: establish ProdTime project foundation`
+- **Validações conhecidas:** SDK funcional; ADB funcional; aparelho físico reconhecido; build Android bem-sucedido; “Hello Android!” executado no aparelho; documentação criada e revisada; nenhum código Android alterado durante a fundação documental; `develop` sincronizada após o merge.
+- **Observação:** as evidências técnicas de SDK, ADB, aparelho físico, build e execução foram obtidas manualmente antes desta tarefa e não foram repetidas neste encerramento documental.
+
 ## Modelo para futuras validações
 
 ### Validação: título curto
