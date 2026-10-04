@@ -13,9 +13,11 @@ A automação reduziu a dependência direta de especialistas para cada estimativ
 ## Limitações conhecidas
 
 - A solução estava acoplada ao ERP legado em VBA.
-- A fórmula real e suas regras detalhadas ainda não estão documentadas neste repositório.
-- O código VBA não está presente e, portanto, não é reproduzido nem inferido aqui.
-- Os resultados históricos disponíveis são referências aproximadas, não uma especificação matemática completa.
+- A fonte histórica está preservada em `docs/legacy/vba/CalMetrosNaMaq.txt`.
+- Os principais procedimentos são `ProducaoEstimada` (capacidade, desperdício, calendário e saldo), `TotalMetros` (peso para metragem), `ListFeriados` (carga dos feriados) e `iUserForm_Activate` (defaults históricos).
+- Handlers de campos e checkboxes transferem entradas da UI, fazem validações básicas e disparam recálculos; helpers numéricos externos não estão contidos no arquivo.
+- A engenharia reversa e a separação entre regra e limitação técnica estão em `docs/domain/CALCULATION_SPEC.md`.
+- Coerções integrais, comparações com `Empty`, calendário sem deduplicação e dependência de UI/localidade são limitações do legado, não requisitos automáticos do ProdTime.
 
 ## Evolução para o ProdTime
 

@@ -1,0 +1,24 @@
+# Questões abertas do domínio
+
+Este arquivo contém apenas decisões reais do novo ProdTime. Fórmulas e comportamentos já respondidos pelo VBA estão especificados em `CALCULATION_SPEC.md`.
+
+## P0 — bloqueia implementação correta
+
+1. **Compatibilidade de arredondamento:** o novo ProdTime deve reproduzir exatamente as coerções `Double → Long` do VBA, inclusive arredondamento para par em empates e arredondamento intermediário da produção bruta, ou adotar uma regra decimal de domínio? Essa decisão deve fixar também o momento de arredondar e a tolerância de regressão.
+2. **Precisão e representação:** qual escala/representação interna deve ser usada para metros, percentuais, velocidade, peso e massa linear?
+
+## P1 — necessário antes da UI/calendário
+
+1. **Colisões de calendário:** no R2, um mesmo dia excluído por ser feriado, fim de semana e/ou ponta deve contar zero vezes apenas uma vez, corrigindo as subtrações múltiplas do legado?
+2. **Pontas e categorias:** qual precedência deve existir entre “incluir data inicial/final” e a exclusão de sábado, domingo ou feriado?
+3. **Feriados:** quais localidades/fontes serão suportadas, como feriados móveis serão modelados e duplicatas serão rejeitadas?
+4. **Contrato das unidades:** confirmar com o responsável de produto que o peso bruto e a tara são kg/caixa e que `pFita` é massa linear em g/m; definir os rótulos inequívocos da UI.
+5. **Limites e mensagens:** definir intervalos válidos para velocidade, fitas, horas, desperdício, pesos, massa linear, meta e datas, incluindo zero, negativos e percentual acima de 100%.
+
+## P2 — pode ser decidido posteriormente
+
+1. Horas produtivas por dia devem aceitar frações no novo aplicativo?
+2. Os defaults históricos — 3%, 16 h/dia, 1 fita e 28 cm/min — serão mantidos, alterados ou removidos?
+3. A apresentação deve mostrar metros fracionários para produção, desperdício, saldo e conversão de peso, ou somente valores inteiros?
+4. Deve existir limite operacional inferior ao limite técnico do tipo numérico para evitar estimativas irreais?
+5. Além do calendário fixo do MVP, jornadas variáveis ou parciais serão tratadas em evolução futura?

@@ -16,7 +16,8 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Escopo:** fórmula validada, unidades, precisão, arredondamento, contratos e testes unitários.
 - **Fora de escopo:** UI final e inferência de fórmula a partir de exemplos isolados.
 - **Critério de conclusão:** regras aprovadas e testes determinísticos passando, incluindo regressões cuja tolerância tenha sido definida.
-- **Status:** não iniciado.
+- **Etapa atual:** R1.1 — engenharia reversa e especificação matemática, com fórmula, unidades, coerções, regressões e comportamento legado de calendário documentados. Nenhum motor foi implementado.
+- **Status:** em andamento.
 
 ## R2 — Calendário produtivo
 
