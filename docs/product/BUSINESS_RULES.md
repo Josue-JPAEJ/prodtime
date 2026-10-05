@@ -1,6 +1,6 @@
 # Regras de negócio
 
-Este documento resume as regras conhecidas. A especificação auditável, as coerções do VBA e as questões abertas estão em `docs/domain/CALCULATION_SPEC.md` e `docs/domain/OPEN_QUESTIONS.md`.
+Este documento resume as regras conhecidas. As especificações auditáveis, as coerções do VBA e as questões abertas estão em `docs/domain/CALCULATION_SPEC.md`, `docs/domain/CALENDAR_SPEC.md` e `docs/domain/OPEN_QUESTIONS.md`.
 
 ## Fatos conhecidos
 
@@ -23,22 +23,27 @@ Este documento resume as regras conhecidas. A especificação auditável, as coe
 - Velocidade, quantidade de fitas, horas produtivas e dias produtivos devem ser maiores que zero; o desperdício deve ser maior ou igual a zero e menor que 100%.
 - A meta em metros é opcional e, quando informada, deve ser inteira e não negativa; o saldo também é opcional e só existe quando há meta.
 
+## Calendário produtivo
+
+- O calendário usa `startDate` e `endDate` explícitos e exige `startDate <= endDate`; intervalo invertido é inválido e uma única data é um intervalo válido.
+- O intervalo-base é inclusivo, e `includeStartDate` e `includeEndDate` controlam o pertencimento de cada ponta. Para uma data única, ambas as opções precisam estar ativas para que ela permaneça no intervalo considerado.
+- Sábados e domingos podem ser trabalhados conforme `includeSaturdays` e `includeSundays`.
+- Feriados são datas explícitas em `Set<LocalDate>` e sua possibilidade de trabalho é controlada por `workOnHolidays`; não há recorrência ou API externa implícita no MVP.
+- Pontas são removidas antes da classificação. Cada data restante é classificada uma única vez, sem dupla subtração por colisão entre fim de semana e feriado.
+- Zero dias produtivos é resultado válido do calendário, inclusive quando não sobra nenhuma data considerada.
+
 ## Decisões ainda não validadas
 
-- Corrigir colisões entre feriados, fins de semana e exclusões das pontas no calendário do R2.
 - Confirmar contratos de peso (`kg/caixa`) e massa linear (`g/m`) antes da UI.
 - Definir limites operacionais máximos, caso sejam necessários, e a regra de apresentação na UI.
-- Decidir se as horas produtivas podem variar entre dias.
-- Definir os defaults da UI e as regras específicas de datas.
+- Definir os defaults da UI.
 
 Hipóteses não podem ser convertidas em comportamento sem validação explícita.
 
 ## Regras pendentes de validação
 
-1. Definir a política do novo calendário para colisões, pontas e dias não produtivos.
-2. Definir feriados, jornadas parciais e intervalos sem dias produtivos.
-3. Definir contratos e validações de peso e massa linear, regras específicas de datas e mensagens de UI.
-4. Definir o critério determinístico das recomendações e seus limites.
+1. Definir contratos e validações de peso e massa linear e as mensagens de UI.
+2. Definir o critério determinístico das recomendações e seus limites.
 
 ## Regressões históricas confirmadas
 

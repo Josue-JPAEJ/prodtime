@@ -64,6 +64,20 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Limitação anterior:** a falha registrada no R1.2 era causada pelo Java 8 32-bit ativo no terminal. O ambiente foi corrigido para Microsoft OpenJDK 17 64-bit, resolvendo a limitação ambiental sem qualquer alteração de código.
 - **Resultado da etapa:** motor matemático validado e R1 encerrado; as questões restantes pertencem ao calendário, UI, peso/metragem ou evoluções futuras.
 
+## R2.1 — Especificação do calendário produtivo
+
+- **Data:** 2026-10-05
+- **Etapa:** R2.1
+- **Branch:** branch interna `work`, tendo `develop` como base de integração solicitada
+- **Fonte primária:** `docs/legacy/vba/CalMetrosNaMaq.txt`, com análise do intervalo inclusivo, contadores de sábado, domingo e feriado, opções das pontas e reconstrução textual de feriados.
+- **Fragilidades identificadas:** dupla ou tripla subtração da mesma data, possibilidade de total negativo, recorrência textual dependente de formato/localidade, dependência da UI e efeito cumulativo de duplicatas.
+- **Decisões aprovadas:** classificação booleana única por data; pontas removidas antes da classificação; intervalo de uma data permitido; sábados, domingos e trabalho em feriados configuráveis; feriados explícitos em `Set<LocalDate>`, sem recorrência ou API externa no MVP; zero dias produtivos aceito pelo calendário.
+- **Casos especificados:** critérios de aceitação A–M, incluindo colisões, pontas, data única, duplicata, intervalo invertido e intervalo sem dia produtivo.
+- **Implementação:** nenhuma implementação, teste ou UI foi criada; o R2.2 não foi iniciado.
+- **Proteção de escopo:** nenhuma alteração no `ProductionCapacityCalculator`, no motor R1, em Kotlin, Gradle, dependências ou fontes legadas.
+- **Validação manual:** não aplicável; alteração exclusivamente documental.
+- **Resultado:** contrato documental suficiente para iniciar a implementação do R2.2; R2 permanece em andamento.
+
 ## Modelo para futuras validações
 
 ### Validação: título curto
