@@ -6,6 +6,10 @@ Para responder quanto é possível produzir em determinado período, o sistema r
 
 Este documento resume as regras conhecidas. As especificações auditáveis, as coerções do VBA e as questões abertas estão em `docs/domain/CALCULATION_SPEC.md`, `docs/domain/CALENDAR_SPEC.md` e `docs/domain/OPEN_QUESTIONS.md`.
 
+## Modo B — Quando vou terminar?
+
+O fluxo de prazo recebe uma meta maior que zero em metros inteiros e uma data inicial conhecida. O término é a primeira data cuja capacidade líquida acumulada atinge ou supera a meta, respeitando calendário e feriados; a data final participa do cálculo. As regras e fronteiras de arredondamento permanecem exclusivamente no motor R1.
+
 ## Fatos conhecidos
 
 - O domínio é a estimativa de capacidade e prazo na produção de fitas têxteis.
