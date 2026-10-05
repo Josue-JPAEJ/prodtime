@@ -10,6 +10,10 @@ Este documento resume as regras conhecidas. As especificações auditáveis, as 
 
 O fluxo de prazo recebe uma meta maior que zero em metros inteiros e uma data inicial conhecida. O término é a primeira data cuja capacidade líquida acumulada atinge ou supera a meta, respeitando calendário e feriados; a data final participa do cálculo. As regras e fronteiras de arredondamento permanecem exclusivamente no motor R1.
 
+## Viabilidade e mínimo de fitas
+
+O sistema compara a produção líquida estimada no período com uma meta e informa atendimento, excedente ou déficit, quantidade mínima de fitas simultâneas e fitas adicionais necessárias. A recomendação é determinística, reutiliza os motores de estimativa, calendário, feriados e capacidade e não representa otimização de PCP.
+
 ## Fatos conhecidos
 
 - O domínio é a estimativa de capacidade e prazo na produção de fitas têxteis.
@@ -54,7 +58,6 @@ Hipóteses não podem ser convertidas em comportamento sem validação explícit
 ## Regras pendentes de validação
 
 1. Definir contratos e validações de peso e massa linear e as mensagens de UI.
-2. Definir o critério determinístico das recomendações e seus limites.
 
 ## Regressões históricas confirmadas
 
