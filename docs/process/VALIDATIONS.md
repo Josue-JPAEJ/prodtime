@@ -153,3 +153,24 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Validação manual:** passos, dispositivo/ambiente e resultado, ou “não aplicável”
 - **Riscos:** riscos residuais conhecidos
 - **Observações:** contexto necessário para reprodução
+
+## R3.4 — Validação local e encerramento do Modo A
+
+- **Ambiente:** Windows 11 amd64; Microsoft OpenJDK 17.0.20.1 LTS 64-bit; Gradle 8.13; Kotlin 2.0.21.
+- **Comando:** `.\gradlew.bat testDebugUnitTest`
+- **Resultado:** `BUILD SUCCESSFUL in 24s`; `22 actionable tasks: 5 executed, 17 up-to-date`.
+- **Git:** branch `develop` sincronizada com `origin/develop`, com working tree clean.
+- **Gate:** aprovado. `HolidayResolver`, `ProductiveCalendarCalculator` e `ProductionCapacityCalculator` estão integrados sem fórmula duplicada; dias produtivos são derivados; o Modo A não recebe meta; zero dias retorna 0 m; regressões de três e duas fitas, feriados anuais e específicos e horas fracionárias estão cobertos.
+- **Conclusão:** R3 aprovado e encerrado.
+
+## R4.1–R4.3 — Contrato, cálculo e testes do Modo B
+
+- **Data:** 2026-10-05.
+- **Etapa:** R4.1, R4.2 e R4.3.
+- **Arquitetura:** `ProductionDeadlineInput`, `ProductionDeadlineResult` e `ProductionDeadlineCalculator` compõem diretamente `HolidayResolver`, `ProductiveCalendarCalculator` e `ProductionCapacityCalculator`, sem fórmula ou regra de calendário paralela.
+- **Cobertura:** 18 testes ponta a ponta D1–D18 para minimalidade da conclusão, calendários, feriados, arredondamento, metas e parâmetros inválidos, horizonte técnico, rastreabilidade e regressões de três e duas fitas.
+- **Comando Gradle Cloud:** `./gradlew testDebugUnitTest` não iniciou porque o wrapper não possui permissão de execução (`Permission denied`); `bash ./gradlew testDebugUnitTest` tentou baixar o Gradle 8.13, mas o proxy retornou `HTTP/1.1 403 Forbidden`.
+- **Validação focada equivalente:** todas as fontes e testes Kotlin puros do domínio foram compilados com Kotlin 2.0.21 disponível no cache e executados com JUnit 4.13.2.
+- **Resultado focado:** `OK (73 tests)`, incluindo os 18 testes do prazo e os 55 testes anteriores.
+- **Limitação:** a suíte Gradle do R4.3 aguarda validação local em ambiente apto a executar o wrapper. A limitação ambiental não foi mascarada.
+- **Proteção de escopo:** motores existentes intactos; sem UI, persistência, dependência, recomendações ou implementação do R5.

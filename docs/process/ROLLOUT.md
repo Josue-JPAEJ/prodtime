@@ -32,15 +32,16 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** entregar o primeiro fluxo funcional do MVP.
 - **Escopo:** entradas e resultados do Modo A integrados ao domínio.
 - **Critério de conclusão:** fluxo validado, resultados rastreáveis e estados inválidos tratados.
-- **Etapas:** R3.1 — contrato do Modo A especificado. R3.2 — integração pura de domínio implementada. R3.3 — testes ponta a ponta do domínio implementados, aguardando validação local caso a suíte Gradle não possa ser executada no ambiente Cloud.
-- **Status:** em andamento.
+- **Etapas:** R3.1 — contrato concluído. R3.2 — integração concluída. R3.3 — testes implementados. R3.4 — validação Gradle local e encerramento concluídos.
+- **Status:** concluído.
 
 ## R4 — Quando vou terminar?
 
 - **Objetivo:** entregar o segundo fluxo funcional do MVP.
 - **Escopo:** quantidade alvo, data inicial, condições produtivas e data estimada.
 - **Critério de conclusão:** fluxo validado com calendário e casos de borda.
-- **Status:** não iniciado.
+- **Etapas:** R4.1 — contrato do Modo B especificado. R4.2 — cálculo de prazo implementado. R4.3 — testes ponta a ponta implementados, aguardando validação local se o Gradle Cloud estiver indisponível.
+- **Status:** em andamento.
 
 ## R5 — Viabilidade e recomendações
 
