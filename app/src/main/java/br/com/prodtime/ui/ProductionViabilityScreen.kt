@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -68,7 +69,7 @@ fun ProductionViabilityScreen(holidayDefinitions: List<HolidayDefinition>, onBac
                 .padding(horizontal = 20.dp, vertical = 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            TextButton(onClick = onBack) { Text("‹ Voltar") }
+            TextButton(onClick = onBack) { Text("Voltar") }
             Text("Verificar uma meta", style = MaterialTheme.typography.headlineSmall)
             Text(
                 "Compare a capacidade do período com a quantidade desejada.",
@@ -133,7 +134,7 @@ fun ProductionViabilityScreen(holidayDefinitions: List<HolidayDefinition>, onBac
                         }
                     }
                 },
-                modifier = Modifier.fillMaxWidth().height(52.dp),
+                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
             ) { Text("Verificar meta") }
 
             result?.let { ViabilityResultCard(it) }

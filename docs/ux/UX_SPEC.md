@@ -55,9 +55,13 @@ Datas usam `dd/MM/yyyy`. Números usam locale `pt-BR`, agrupamento de milhares e
 
 Os componentes usam `MaterialTheme.colorScheme` e `MaterialTheme.typography`. Nenhuma cor de conteúdo é fixa fora dos tokens existentes, permitindo adaptação natural aos temas claro, escuro e dinâmico.
 
+O tema dinâmico permanece habilitado em Android 12 ou superior e acompanha o modo claro ou escuro do sistema. Em versões anteriores, o aplicativo usa as paletas clara e escura locais. A inspeção estática confirmou o uso dos tokens; contraste e aparência continuam pendentes de validação física.
+
 ## 13. Acessibilidade base
 
 Campos têm rótulos e unidades visíveis, switches têm texto explícito, ações usam áreas de toque Material e mensagens não dependem apenas de cor. O conteúdo é rolável para telas menores e para uso com teclado aberto.
+
+O indicador de avanço dos cards da Home é somente decorativo e não participa da árvore semântica. Rótulo e estado de cada switch são agrupados, e os seletores “Anual” e “Data específica” expõem semanticamente a seleção. As ações principais possuem altura mínima, em vez de altura fixa, para acomodar fonte ampliada.
 
 ## 14. Feriados — estado atual
 

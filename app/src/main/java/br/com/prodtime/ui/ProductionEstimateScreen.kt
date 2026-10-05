@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -70,7 +71,7 @@ fun ProductionEstimateScreen(holidayDefinitions: List<HolidayDefinition>, onBack
                 .padding(horizontal = 20.dp, vertical = 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            TextButton(onClick = onBack) { Text("‹ Voltar") }
+            TextButton(onClick = onBack) { Text("Voltar") }
             Text("Quanto consigo produzir?", style = MaterialTheme.typography.headlineSmall)
             Text(
                 "Informe o período e as condições de produção.",
@@ -144,7 +145,7 @@ fun ProductionEstimateScreen(holidayDefinitions: List<HolidayDefinition>, onBack
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(52.dp),
+                    .heightIn(min = 48.dp),
             ) { Text("Calcular produção") }
 
             result?.let { estimate ->

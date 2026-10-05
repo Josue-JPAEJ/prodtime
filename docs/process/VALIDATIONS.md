@@ -255,3 +255,35 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Validação física:** não executada nesta etapa; permanece reservada ao R6.8.
 - **Comandos Cloud desta tarefa:** `./gradlew testDebugUnitTest` não iniciou porque o wrapper não possui permissão de execução (`Permission denied`). `bash ./gradlew testDebugUnitTest` tentou baixar o Gradle 8.13, mas o proxy retornou `HTTP/1.1 403 Forbidden`. `gradle testDebugUnitTest assembleDebug`, com Gradle 8.14.4 disponível, falhou na configuração porque o Android SDK não está configurado (`ANDROID_HOME` ou `sdk.dir`).
 - **Limitação Cloud:** a suíte e o APK desta alteração precisam ser confirmados em ambiente com a distribuição do wrapper e Android SDK; a falha ambiental não foi tratada como aprovação.
+
+## R7.4 — Validação local final e encerramento
+
+- **Ambiente:** validação local real após a integração do PR de R7.
+- **Testes:** `.\gradlew.bat testDebugUnitTest` — `BUILD SUCCESSFUL in 34s`; `22 actionable tasks: 5 executed, 17 up-to-date`.
+- **Build Android:** `.\gradlew.bat assembleDebug` — `BUILD SUCCESSFUL in 7s`; `34 actionable tasks: 3 executed, 31 up-to-date`.
+- **Git:** `develop` sincronizada com `origin/develop`; working tree clean.
+- **Gate:** matriz de regressão existente; casos históricos de duas e três fitas, prazo integrado, viabilidade, calendário, feriados e apresentação mapeados; lacuna de parsing de inteiro positivo coberta; suíte local e APK debug aprovados.
+- **Conclusão:** R7 concluído.
+- **Validação física:** nenhuma nova validação física foi executada; a pendência de R6.8 permanece.
+
+## R8.1–R8.4 — Revisão estática e automatizada
+
+### VALIDADO AUTOMATICAMENTE
+
+- **Data:** 2026-10-05.
+- **Etapa:** R8.1, R8.2, R8.3 e R8.4.
+- **Revisão estática:** auditados componentes clicáveis, textos e erros, layouts roláveis, campos, ações IME, conversão UTC do DatePicker, tokens de tema, cards de resultado e seleção do tipo de feriado.
+- **Correções:** indicador decorativo da Home removido da árvore semântica; rótulo e estado de switches agrupados; seleção anual/específica exposta semanticamente; linhas de resumo flexibilizadas; ações principais passaram de altura fixa para altura mínima; IME Next/Done passou a mover ou liberar o foco; caracteres decorativos foram removidos do texto de “Voltar”.
+- **Contratos preservados:** entrada decimal por vírgula ou ponto e conversão direta para `BigDecimal`; datas internas em `LocalDate`, conversão do DatePicker em UTC e apresentação `dd/MM/yyyy`; nenhuma regra de domínio foi alterada.
+- **Temas:** telas usam `MaterialTheme.colorScheme` e `MaterialTheme.typography`; tema dinâmico permanece ativo no Android 12 ou superior e as paletas locais são usadas nas versões anteriores.
+- **Checklist:** evidências e pendências consolidadas em `docs/ux/ACCESSIBILITY_CHECKLIST.md`.
+- **Comandos Cloud:** `./gradlew testDebugUnitTest` não iniciou porque o wrapper não possui permissão de execução (`Permission denied`). `bash ./gradlew testDebugUnitTest` tentou baixar o Gradle 8.13, mas o proxy retornou `HTTP/1.1 403 Forbidden`. `gradle testDebugUnitTest assembleDebug`, com Gradle 8.14.4 disponível, falhou porque o Android SDK não está configurado (`ANDROID_HOME` ou `sdk.dir`).
+- **Limitação Cloud:** testes e montagem desta alteração permanecem pendentes em ambiente com Gradle 8.13 e Android SDK; os resultados locais de R7.4 não são apresentados como validação do código de R8.
+- **Resultado:** R8.1–R8.4 implementados e revisados; R8 permanece em andamento.
+
+### PENDENTE DE VALIDAÇÃO FÍSICA
+
+- **Etapas:** R6.8 e R8.5.
+- **Dispositivo:** Samsung temporariamente indisponível nesta etapa.
+- **Itens:** R6.5 e R6.6A em aparelho; teclado real; rolagem com teclado; fonte ampliada; tema claro; tema escuro; contraste visual; Back; touch targets; feriados; viabilidade; e descarte após encerramento do processo.
+- **Conclusão:** nenhuma validação física nova é alegada; R6 e R8 permanecem em andamento, e R9 não foi iniciado.

@@ -73,7 +73,8 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** preparar qualidade de uso do MVP.
 - **Escopo:** semântica, contraste, fonte ampliada, teclado, modos claro/escuro e revisão visual.
 - **Critério de conclusão:** checklist de acessibilidade e validação manual registrados.
-- **Status:** não iniciado.
+- **Etapas:** R8.1 — auditoria estática de acessibilidade implementada. R8.2 — responsividade e tipografia revisadas. R8.3 — teclado, campos e foco revisados. R8.4 — temas claro/escuro e semântica revisados. R8.5 — validação física final pendente junto com o R6.8.
+- **Status:** em andamento.
 
 ## R9 — Artigo SBC
 
