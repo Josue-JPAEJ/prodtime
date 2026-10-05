@@ -95,6 +95,29 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Limitações ambientais:** permissão ausente no `gradlew` e bloqueio HTTP 403 do proxy ao download da distribuição Gradle.
 - **Proteção de escopo:** `ProductionCapacityCalculator` e seu teste permaneceram intactos; nenhuma UI, configuração Gradle, dependência, regra de prazo ou integração R1/R2 foi criada. R2 permanece em andamento e R3 não foi iniciado.
 
+## R2.2V — Validação local do calendário
+
+- **Ambiente:** Windows 11 amd64; Microsoft OpenJDK 17.0.20.1 LTS 64-bit; Gradle 8.13; Kotlin 2.0.21.
+- **Comando:** `.\gradlew.bat testDebugUnitTest`
+- **Resultado:** `BUILD SUCCESSFUL in 1m 11s`; `22 actionable tasks: 5 executed, 17 up-to-date`.
+- **Git:** branch `develop` sincronizada com `origin/develop`, com working tree clean.
+- **Evidência:** execução realizada no ambiente local real após o merge do R2.2; nenhuma alteração de código foi necessária para a validação.
+- **Conclusão:** R2.2 está validado localmente. A limitação anterior do ambiente Cloud não representa falha do motor; a validação focada no Cloud já havia aprovado 29 testes, sendo 21 do calendário e 8 do motor R1.
+
+## R2.3 — Modelo e resolução de feriados
+
+- **Data:** 2026-10-05
+- **Etapa:** R2.3A/B/C
+- **Branch:** branch interna `work`, tendo `develop` como base de integração solicitada
+- **Arquitetura:** `HolidayDefinition`, `AnnualHoliday`, `SpecificDateHoliday` e `HolidayResolver` em Kotlin puro, sem alteração do contrato ou da regra interna de `ProductiveCalendarCalculator`.
+- **Contrato:** nomes não vazios; datas estruturadas por `MonthDay` ou `LocalDate`; intervalo inclusivo e invertido inválido; recorrência anual resolvida para todos os anos atravessados; 29/02 somente em anos bissextos; saída deduplicada como `Set<LocalDate>`.
+- **Cobertura:** casos H1–H12, validação de nomes e teste direto `HolidayResolver → Set<LocalDate> → ProductiveCalendarCalculator`.
+- **Comandos Cloud:** `./gradlew testDebugUnitTest` não iniciou porque o wrapper não possui permissão de execução; `bash ./gradlew testDebugUnitTest` tentou obter o Gradle 8.13, mas o proxy retornou `HTTP/1.1 403 Forbidden`.
+- **Validação focada equivalente:** as fontes Kotlin puras foram compiladas diretamente com o compilador Kotlin 2.0.21 disponível no cache, e um executor determinístico validou H1–H12 e o fluxo `HolidayResolver → ProductiveCalendarCalculator`.
+- **Resultado Cloud:** `OK: H1-H12 e integração Resolver -> Calendar`. A suíte criada contém 14 novos testes; somada aos 29 testes anteriores, a suíte Gradle passa a ter 43 testes, cuja execução completa aguarda ambiente local.
+- **Validação manual:** não aplicável ao núcleo Kotlin puro; a suíte Gradle local permanece requerida para o R2.4.
+- **Proteção de escopo:** sem UI, persistência, API externa, dependência, alteração do motor R1 ou início do R3.
+
 ## Modelo para futuras validações
 
 ### Validação: título curto

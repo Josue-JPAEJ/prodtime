@@ -92,6 +92,8 @@ Assim, domingo que também seja feriado continua sendo uma única data não prod
 
 O núcleo não infere recorrência anual, não interpreta nomes ou textos, não depende de formatação ou localidade e não consulta API externa no MVP. Com `workOnHolidays = true`, pertencer a `holidays` deixa de ser, isoladamente, motivo de exclusão; as regras de sábado e domingo continuam válidas.
 
+Definições cadastráveis são resolvidas externamente conforme `HOLIDAY_SPEC.md`, pelo fluxo `HolidayDefinition → HolidayResolver → Set<LocalDate> → ProductiveCalendarCalculator`. Portanto, uma definição anual pode originar datas concretas antes da chamada, enquanto o calendário continua sem recorrência implícita e sem conhecer nomes ou cadastros.
+
 # 9. Pontas do intervalo
 
 O intervalo-base contém `startDate` e `endDate`. As opções das pontas definem pertencimento, antes de qualquer classificação produtiva:

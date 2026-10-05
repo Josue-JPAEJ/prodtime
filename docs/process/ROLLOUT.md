@@ -24,7 +24,7 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** representar e calcular tempo produtivo.
 - **Escopo:** período, dias úteis, sábados, domingos e feriados segundo regras validadas.
 - **Critério de conclusão:** bordas de datas e calendários cobertas por testes unitários.
-- **Etapas:** R2.1 — especificação do calendário produtivo concluída e documentada. R2.2 — calendário puro implementado com testes unitários, aguardando validação local.
+- **Etapas:** R2.1 — especificação do calendário produtivo concluída. R2.2 — motor puro do calendário implementado e validado localmente. R2.3 — modelo e resolução de feriados implementados com testes, aguardando validação local. R2.4 — validação local e encerramento do R2 previstos.
 - **Status:** em andamento.
 
 ## R3 — Quanto consigo produzir?
