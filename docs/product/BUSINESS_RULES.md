@@ -43,7 +43,7 @@ O sistema compara a produção líquida estimada no período com uma meta e info
 - Feriados são datas explícitas em `Set<LocalDate>` e sua possibilidade de trabalho é controlada por `workOnHolidays`; não há recorrência ou API externa implícita no MVP.
 - Feriados não são informados por quantidade: definições cadastráveis são anuais recorrentes (`MonthDay`) ou de data específica (`LocalDate`).
 - A recorrência é resolvida antes do calendário em `LocalDate` concretas; definições que coincidam na mesma data produzem um único efeito.
-- UI e persistência do cadastro de feriados ainda não foram implementadas nem definidas.
+- A UI permite cadastrar e remover feriados em uma coleção compartilhada pelos três fluxos durante a sessão. A persistência é evolução futura, fora do MVP acadêmico; os cadastros são descartados quando o processo termina.
 - Pontas são removidas antes da classificação. Cada data restante é classificada uma única vez, sem dupla subtração por colisão entre fim de semana e feriado.
 - Zero dias produtivos é resultado válido do calendário, inclusive quando não sobra nenhuma data considerada.
 

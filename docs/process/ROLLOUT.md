@@ -57,7 +57,7 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** consolidar uma experiência simples, específica e rápida.
 - **Escopo:** fluxo guiado, hierarquia, feedback, responsividade e prevenção de erros.
 - **Critério de conclusão:** jornada principal validada manualmente em dispositivo apropriado.
-- **Etapas:** R6.1 e R6.2 — implementados e validados localmente. R6.3 — implementado e validado no aparelho físico. R6.4 — implementado e validado funcionalmente no aparelho; rótulo “Produção” e responsividade refinados nesta tarefa. R6.5 — UI de viabilidade implementada, aguardando validação local e física. R6.6A — estado compartilhado e gestão de feriados em memória implementados; persistência reservada ao R6.6B. R6.7 — pendente, com apenas os refinamentos explicitamente descritos nesta tarefa. R6.8 — pendente.
+- **Etapas:** R6.1 e R6.2 — implementados e validados localmente. R6.3 — implementado e validado no aparelho físico. R6.4 — implementado e validado funcionalmente no aparelho; rótulo “Produção” e responsividade refinados. R6.5 — UI de viabilidade implementada e validada por build/test local; validação física pendente. R6.6A — estado compartilhado e gestão de feriados em memória implementados e validados por build/test local; validação física pendente. R6.6B — encerrado por decisão de escopo: persistência é evolução futura, fora do MVP acadêmico. R6.7 — revisão de integração e UX concluída, sem refatoração ampla; gate automatizado registrado em `VALIDATIONS.md`. R6.8 — pendente para validação física final.
 - **Status:** em andamento.
 
 ## R7 — Testes/regressão VBA
@@ -65,7 +65,8 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** ampliar confiança e comparar o domínio com referências históricas.
 - **Escopo:** regressões dos casos VBA, datas, inválidos e fronteiras.
 - **Critério de conclusão:** tolerâncias justificadas e suíte focada reproduzível.
-- **Status:** não iniciado.
+- **Evidência:** matriz rastreável em `docs/testing/REGRESSION_MATRIX.md`; casos históricos, calendário, feriados, três fluxos integrados e apresentação mapeados para testes reais; lacuna de parsing de inteiro positivo adicionada.
+- **Status:** concluído.
 
 ## R8 — Polimento e acessibilidade
 

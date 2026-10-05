@@ -44,11 +44,11 @@ O conjunto resolvido é entregue diretamente a `ProductiveCalendarInput.holidays
 
 # 10. Persistência futura
 
-A persistência das definições não foi definida nesta etapa. Não há banco, arquivo, repositório, DTO ou identificador no modelo do R2.3.
+Por decisão do R6.6B, a persistência das definições é evolução futura, fora do MVP acadêmico. O cadastro atual é compartilhado pelos três fluxos durante a sessão e descartado quando o processo da aplicação é encerrado. Não há banco, arquivo, repositório, DTO, identificador persistente nem nova dependência.
 
-# 11. UI futura
+# 11. UI atual
 
-A futura UX deverá permitir informar o nome, escolher entre repetição anual e data específica e fornecer, respectivamente, dia/mês ou dia/mês/ano. Nenhuma tela, navegação, ViewModel ou formulário é implementado nesta etapa.
+A UX permite informar o nome obrigatório, escolher entre repetição anual e data específica e fornecer, respectivamente, dia/mês ou dia/mês/ano. A lista em memória permite inclusão e remoção e informa discretamente que os feriados ficam disponíveis durante a sessão.
 
 # 12. Casos H1–H12
 
@@ -69,8 +69,7 @@ A futura UX deverá permitir informar o nome, escolher entre repetição anual e
 
 # 13. Decisões adiadas
 
-- mecanismo de persistência;
-- operações e regras de CRUD;
+- persistência permanente das definições;
 - importação de calendários;
 - feriados nacionais automáticos;
 - localidade;

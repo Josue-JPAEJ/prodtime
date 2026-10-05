@@ -60,6 +60,8 @@ O ProdTime é o Projeto Integrador final de Análise e Desenvolvimento de Sistem
 
 ## Visão futura, não requisito atual
 
+A persistência dos feriados cadastrados é uma evolução futura, fora do MVP acadêmico. No MVP atual, as definições são compartilhadas pelos três fluxos somente durante a sessão e são descartadas quando o processo da aplicação é encerrado.
+
 1. Integração com o novo ERP Web.
 2. Integração com PCP para consultar máquinas disponíveis, quantidade de fitas por máquina, ocupações e liberações previstas.
 3. Capacidade variável calculada por intervalos. Por exemplo: duas fitas entre 03/11 e 07/11; mais uma a partir de 08/11; e outra máquina com duas fitas a partir de 10/11.

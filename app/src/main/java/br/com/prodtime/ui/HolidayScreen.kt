@@ -52,7 +52,7 @@ fun HolidayScreen(
             TextButton(onClick = onBack) { Text("‹ Voltar") }
             Text("Feriados", style = MaterialTheme.typography.headlineSmall)
             Text(
-                "Cadastre feriados usados nos cálculos durante esta sessão.",
+                "Os feriados cadastrados ficam disponíveis durante esta sessão.",
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
