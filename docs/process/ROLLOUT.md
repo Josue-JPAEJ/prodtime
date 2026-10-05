@@ -49,15 +49,16 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Escopo:** recomendações baseadas exclusivamente em regras e premissas validadas.
 - **Fora de escopo:** IA, otimização de PCP ou promessa automática de atendimento.
 - **Critério de conclusão:** critérios documentados, explicáveis e testados.
-- **Etapas:** R5.1 — contrato de viabilidade especificado. R5.2 — recomendação implementada. R5.3 — testes implementados, aguardando validação local se o Gradle Cloud estiver indisponível.
-- **Status:** em andamento.
+- **Etapas:** R5.1 — contrato concluído. R5.2 — implementação concluída. R5.3 — testes concluídos. R5.4 — validação Gradle local e encerramento concluídos.
+- **Status:** concluído.
 
 ## R6 — UX mobile guiada
 
 - **Objetivo:** consolidar uma experiência simples, específica e rápida.
 - **Escopo:** fluxo guiado, hierarquia, feedback, responsividade e prevenção de erros.
 - **Critério de conclusão:** jornada principal validada manualmente em dispositivo apropriado.
-- **Status:** não iniciado.
+- **Etapas:** R6.1 — arquitetura e jornada de UX definidas. R6.2 — Home e navegação implementadas. R6.3 — UI funcional do fluxo “Quanto consigo produzir?” implementada. R6.4 — UI funcional do fluxo “Quando vou terminar?” implementada. R6.1–R6.4 aguardam validação local de build e execução em aparelho. R6.5 — UI de viabilidade pendente. R6.6 — gestão de feriados pendente. R6.7 — validações, feedback e integração final da UX pendentes. R6.8 — validação manual em aparelho físico pendente.
+- **Status:** em andamento.
 
 ## R7 — Testes/regressão VBA
 

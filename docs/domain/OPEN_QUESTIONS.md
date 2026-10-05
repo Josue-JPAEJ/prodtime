@@ -17,14 +17,16 @@ Este arquivo separa decisões já tomadas de questões ainda abertas do novo Pro
 - UX, mensagens e defaults do cadastro;
 - importação, feriados nacionais automáticos, localidade e integração com ERP.
 
-## P1 — necessário antes da UI
+## P1 — questões do recurso secundário e limites operacionais
 
-1. **Contrato das unidades:** confirmar com o responsável de produto que o peso bruto e a tara são kg/caixa e que `pFita` é massa linear em g/m; definir os rótulos inequívocos da UI.
+1. **Contrato das unidades:** confirmar com o responsável de produto que o peso bruto e a tara são kg/caixa e que `pFita` é massa linear em g/m; definir os rótulos inequívocos da UI. Essa questão permanece adiada porque a conversão por peso não integra os dois fluxos principais atuais.
 2. **Limites e mensagens:** definir, se necessários, limites operacionais máximos para o motor de capacidade; definir intervalos válidos para pesos e massa linear e as mensagens da UI. Os limites inferiores de velocidade, fitas, horas, dias, desperdício e meta já pertencem ao contrato aprovado do R1.2; a validade estrutural do intervalo de calendário pertence ao contrato do R2.1.
 
 ## P2 — pode ser decidido posteriormente
 
-1. Os defaults históricos — 3%, 16 h/dia, 1 fita e 28 cm/min — serão mantidos, alterados ou removidos?
-2. A apresentação deve mostrar metros fracionários para produção, desperdício, saldo e conversão de peso, ou somente valores inteiros?
+1. **Decidida no R6:** os defaults históricos 28 cm/min, 1 fita, 16 h/dia e 3% são defaults editáveis exclusivos da apresentação; não alteram os contratos nem criam defaults no domínio.
+2. **Decidida no R6:** a apresentação usa formato `pt-BR`; produção integral é exibida em metros sem casas decimais e valores realmente decimais preservam as casas relevantes.
 3. Deve existir limite operacional inferior ao limite técnico do tipo numérico para evitar estimativas irreais?
 4. **Encerrada no escopo do MVP do R5:** a recomendação determinística compara a estimativa no período com a meta e busca o mínimo de fitas pelos motores existentes. Limites operacionais reais permanecem abertos; `Int.MAX_VALUE` é somente uma guarda técnica.
+
+A persistência e o CRUD de feriados permanecem abertos até o R6.6.
