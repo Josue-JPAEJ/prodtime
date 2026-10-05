@@ -118,6 +118,28 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Validação manual:** não aplicável ao núcleo Kotlin puro; a suíte Gradle local permanece requerida para o R2.4.
 - **Proteção de escopo:** sem UI, persistência, API externa, dependência, alteração do motor R1 ou início do R3.
 
+## R2.4 — Validação local e encerramento do calendário
+
+- **Ambiente:** Windows 11 amd64; Microsoft OpenJDK 17.0.20.1 LTS 64-bit; Gradle 8.13; Kotlin 2.0.21.
+- **Comando:** `.\gradlew.bat testDebugUnitTest`
+- **Resultado:** `BUILD SUCCESSFUL in 25s`; `22 actionable tasks: 5 executed, 17 up-to-date`.
+- **Git:** branch `develop` sincronizada com `origin/develop`, com working tree clean.
+- **Evidência:** o R2.3 foi validado pela suíte Gradle local real; nenhuma alteração foi necessária para obter a aprovação.
+- **Gate final:** aprovado. O calendário usa `LocalDate`, rejeita intervalo invertido, aceita uma data, aplica pontas antes da classificação única, não faz subtrações cumulativas, configura sábados e domingos e recebe `Set<LocalDate>`. Feriados anuais usam `MonthDay`, específicos usam `LocalDate`, 29/02 respeita anos bissextos e duplicatas convergem para uma data. R2.2 e R2.3 possuem validação Gradle local e nenhuma questão aberta bloqueia o calendário fixo do MVP.
+- **Conclusão:** o R2 atingiu seu critério de conclusão e está encerrado.
+
+## R3.1–R3.3 — Contrato, integração e testes do Modo A
+
+- **Data:** 2026-10-05.
+- **Etapa:** R3.1, R3.2 e R3.3.
+- **Arquitetura:** `ProductionEstimateInput`, `ProductionEstimateResult` e `ProductionEstimateCalculator` compõem diretamente `HolidayResolver`, `ProductiveCalendarCalculator` e `ProductionCapacityCalculator`, sem camada abstrata, Android ou duplicação de fórmula.
+- **Cobertura:** 12 testes ponta a ponta E1–E12, incluindo regressões de três e duas fitas, políticas de feriado e pontas, zero dias produtivos, feriados anual/específico/deduplicado, intervalo invertido, horas fracionárias e rastreabilidade.
+- **Comando Gradle Cloud:** `./gradlew testDebugUnitTest` não iniciou porque o wrapper não possui permissão de execução (`Permission denied`).
+- **Validação focada equivalente:** todas as fontes e testes Kotlin puros de domínio foram compilados com Kotlin 2.0.21 disponível no cache e executados com JUnit 4.13.2.
+- **Resultado focado:** `OK (55 tests)`, incluindo os 12 testes do fluxo e os 43 testes anteriores de capacidade, calendário e feriados.
+- **Limitação:** a suíte Gradle do R3.3 aguarda validação local em ambiente apto a executar o wrapper. A limitação é ambiental e não foi mascarada.
+- **Proteção de escopo:** motores existentes intactos; sem UI, persistência, dependência, meta no Modo A ou implementação do R4.
+
 ## Modelo para futuras validações
 
 ### Validação: título curto

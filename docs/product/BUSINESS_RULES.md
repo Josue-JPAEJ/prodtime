@@ -1,5 +1,9 @@
 # Regras de negócio
 
+## Modo A — Quanto consigo produzir?
+
+Para responder quanto é possível produzir em determinado período, o sistema resolve as definições de feriados, calcula os dias produtivos conforme as políticas do calendário e calcula a capacidade do período. A saída principal é a produção líquida estimada em metros; meta e prazo não participam deste modo.
+
 Este documento resume as regras conhecidas. As especificações auditáveis, as coerções do VBA e as questões abertas estão em `docs/domain/CALCULATION_SPEC.md`, `docs/domain/CALENDAR_SPEC.md` e `docs/domain/OPEN_QUESTIONS.md`.
 
 ## Fatos conhecidos
