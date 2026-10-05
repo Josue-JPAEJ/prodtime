@@ -78,6 +78,23 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Validação manual:** não aplicável; alteração exclusivamente documental.
 - **Resultado:** contrato documental suficiente para iniciar a implementação do R2.2; R2 permanece em andamento.
 
+## R2.2 — Implementação do calendário produtivo
+
+- **Data:** 2026-10-05
+- **Etapa:** R2.2
+- **Branch:** branch interna `work`, tendo `develop` como base de integração solicitada
+- **Arquitetura:** modelos de entrada e resultado e calculadora Kotlin pura em `br.com.prodtime.domain`, sem Android, Compose, UI, integração com R1 ou nova camada arquitetural.
+- **Contrato:** intervalo, políticas das pontas, sábado, domingo e feriado em `ProductiveCalendarInput`; totais, listas cronológicas e contagens informativas em `ProductiveCalendarResult`.
+- **Datas e feriados:** `LocalDate` de ponta a ponta e feriados explícitos em `Set<LocalDate>`, com deduplicação natural, sem parsing, recorrência ou API externa.
+- **Pontas:** o início e o fim são filtrados antes da classificação; quando representam a mesma data, ela permanece somente se ambas as opções de inclusão forem verdadeiras.
+- **Classificação:** cada data considerada recebe uma única decisão produtiva pela conjunção da permissão do dia da semana com a permissão de feriado; contagens informativas não são subtraídas do total.
+- **Cobertura:** 21 testes do calendário cobrem os casos A–Q, incluindo os quatro subcasos de data única e uma verificação adicional das invariantes das listas; os 8 testes existentes do motor R1 também foram executados na validação focada.
+- **Comandos/testes:** `./gradlew testDebugUnitTest` não iniciou porque o wrapper não possui permissão de execução; `bash ./gradlew testDebugUnitTest` não baixou o Gradle 8.13 porque o proxy retornou HTTP 403. Como validação equivalente focada, as fontes Kotlin puras e seus testes foram compilados diretamente com o compilador Kotlin 2.0.21 presente no cache e executados com JUnit 4.13.2 local.
+- **Resultado:** a validação focada aprovou 29 testes JUnit, sendo 21 do calendário e 8 do motor R1. A tarefa Gradle completa permanece pendente de execução em ambiente local com wrapper executável e distribuição disponível.
+- **Validação manual:** não aplicável ao núcleo Kotlin puro.
+- **Limitações ambientais:** permissão ausente no `gradlew` e bloqueio HTTP 403 do proxy ao download da distribuição Gradle.
+- **Proteção de escopo:** `ProductionCapacityCalculator` e seu teste permaneceram intactos; nenhuma UI, configuração Gradle, dependência, regra de prazo ou integração R1/R2 foi criada. R2 permanece em andamento e R3 não foi iniciado.
+
 ## Modelo para futuras validações
 
 ### Validação: título curto
