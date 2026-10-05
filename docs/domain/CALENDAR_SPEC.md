@@ -151,3 +151,13 @@ Se R2 retornar `productiveDays = 0`, a futura camada de integração deverá tra
 # 14. Conclusão
 
 **Sim.** A especificação está suficiente para implementar o R2.2: entradas, validade do intervalo, pertencimento das pontas, precedência das regras, classificação booleana por data, feriados explícitos, invariantes, resultado esperado e casos A–M estão definidos. As decisões adiadas não bloqueiam o calendário fixo do MVP.
+
+# 15. Implementação R2.2
+
+O núcleo puro foi implementado em `br.com.prodtime.domain` pelas classes `ProductiveCalendarInput`, `ProductiveCalendarResult` e pelo objeto `ProductiveCalendarCalculator`. O contrato usa `LocalDate` de ponta a ponta e recebe feriados como `Set<LocalDate>`, sem texto, timezone, recorrência ou dependência Android.
+
+A calculadora valida o intervalo, gera suas datas em ordem cronológica, aplica as regras das pontas e cria uma única classificação booleana para cada data considerada. Essa classificação registra sábado, domingo, feriado e a decisão produtiva final, obtida pela conjunção entre a permissão do dia da semana e a permissão de feriado; não há subtração de contadores.
+
+O resultado deriva da mesma coleção classificada as listas cronológicas produtiva e não produtiva, seus totais e as contagens informativas. Com isso, permanecem preservadas a unicidade das datas, a partição completa e mutuamente exclusiva das datas consideradas, os limites `0 <= productiveDays <= consideredDays` e a exclusão das pontas de todas as métricas.
+
+Os testes unitários do R2.2 cobrem explicitamente os casos A–Q: dias úteis e fins de semana, colisões com feriados, políticas de trabalho, exclusão das pontas, intervalo de uma data, deduplicação, intervalo invertido, zero dias produtivos, intervalo com múltiplas datas e feriado fora do intervalo.
