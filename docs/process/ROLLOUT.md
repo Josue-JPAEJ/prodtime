@@ -24,15 +24,16 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** representar e calcular tempo produtivo.
 - **Escopo:** período, dias úteis, sábados, domingos e feriados segundo regras validadas.
 - **Critério de conclusão:** bordas de datas e calendários cobertas por testes unitários.
-- **Etapas:** R2.1 — especificação do calendário produtivo concluída. R2.2 — motor puro do calendário implementado e validado localmente. R2.3 — modelo e resolução de feriados implementados com testes, aguardando validação local. R2.4 — validação local e encerramento do R2 previstos.
-- **Status:** em andamento.
+- **Etapas:** R2.1 — especificação do calendário produtivo concluída. R2.2 — motor puro do calendário implementado e validado localmente. R2.3 — modelo e resolução de feriados implementados e validados localmente. R2.4 — gate final revisado, validação registrada e encerramento concluído.
+- **Status:** concluído.
 
 ## R3 — Quanto consigo produzir?
 
 - **Objetivo:** entregar o primeiro fluxo funcional do MVP.
 - **Escopo:** entradas e resultados do Modo A integrados ao domínio.
 - **Critério de conclusão:** fluxo validado, resultados rastreáveis e estados inválidos tratados.
-- **Status:** não iniciado.
+- **Etapas:** R3.1 — contrato do Modo A especificado. R3.2 — integração pura de domínio implementada. R3.3 — testes ponta a ponta do domínio implementados, aguardando validação local caso a suíte Gradle não possa ser executada no ambiente Cloud.
+- **Status:** em andamento.
 
 ## R4 — Quando vou terminar?
 
