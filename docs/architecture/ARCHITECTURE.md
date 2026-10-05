@@ -2,9 +2,9 @@
 
 ## Estado atual
 
-O repositório contém o bootstrap Android nativo com Kotlin e Jetpack Compose e a tela padrão “Hello Android!”. Ainda não existem motor de cálculo, domínio funcional, navegação do produto ou arquitetura de apresentação específica do ProdTime.
+O aplicativo Android nativo usa Kotlin e Jetpack Compose. A UI oferece Home, os três fluxos de cálculo e gestão de feriados; a navegação é coordenada por estado Compose. O domínio Kotlin puro contém os motores de capacidade, calendário, resolução de feriados, estimativa, prazo e viabilidade, sem dependência de Android. As definições de feriado são mantidas em uma coleção compartilhada somente durante a sessão.
 
-## Direção pretendida
+## Estrutura atual
 
 ```text
 Compose / UI
@@ -28,3 +28,7 @@ motor de cálculo puro
 - Unidades, precisão, arredondamento e calendário devem ter contratos explícitos antes da implementação.
 - Packages, classes, ViewModels, repositories ou outras camadas serão criados somente quando necessários para uma entrega concreta.
 - A estrutura deve crescer incrementalmente; este documento não afirma a existência de componentes ainda não implementados.
+
+## Persistência de feriados
+
+Por decisão do R6.6B, persistência é evolução futura, fora do MVP acadêmico. Não existe repository, banco, arquivo nem dependência de armazenamento; encerrar o processo descarta a coleção. Essa decisão não altera os contratos matemáticos ou de calendário.

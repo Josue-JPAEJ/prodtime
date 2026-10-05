@@ -18,6 +18,11 @@ class PresentationFormattersTest {
     }
 
     @Test
+    fun `aceita inteiro positivo`() {
+        assertEquals(3, parsePositiveIntInput("3"))
+    }
+
+    @Test
     fun `rejeita inteiro invalido`() {
         assertNull(parsePositiveIntInput("1,5"))
         assertNull(parsePositiveIntInput("0"))

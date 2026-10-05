@@ -235,3 +235,23 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Escopo:** terceira jornada de viabilidade, estado compartilhado e gestão de feriados em memória, sem persistência.
 - **Comandos Cloud:** `bash ./gradlew testDebugUnitTest assembleDebug` não obteve o Gradle 8.13 porque o proxy retornou `HTTP/1.1 403 Forbidden`; `gradle testDebugUnitTest assembleDebug`, com Gradle 8.14.4 instalado, falhou na configuração por ausência de Android SDK (`ANDROID_HOME`/`sdk.dir`).
 - **Pendência:** executar `./gradlew testDebugUnitTest` e `./gradlew assembleDebug` em ambiente local com Android SDK e validar R6.5/R6.6A no aparelho.
+
+## R6.5/R6.6A — Validação local após o hotfix
+
+- **Data:** 2026-10-05.
+- **Ambiente:** execução local real após o hotfix `fix: import TextButton in home screen` integrado à `develop`.
+- **Testes:** `.\gradlew.bat testDebugUnitTest` — `BUILD SUCCESSFUL in 1m 11s`; `22 actionable tasks: 6 executed, 16 up-to-date`.
+- **Build Android:** `.\gradlew.bat assembleDebug` — `BUILD SUCCESSFUL in 11s`; `34 actionable tasks: 4 executed, 30 up-to-date`.
+- **Git:** `develop` sincronizada com `origin/develop`; working tree clean.
+- **Conclusão:** R6.5 e R6.6A compilam e passam na suíte local.
+- **Validação física:** pendente por indisponibilidade temporária do aparelho; R6.5 e R6.6A não foram visualmente validados.
+
+## R6.6B/R6.7/R7 — Escopo, integração e regressões
+
+- **Data:** 2026-10-05.
+- **R6.6B:** persistência de feriados encerrada como evolução futura, fora do MVP acadêmico. O estado permanece em memória durante a sessão, sem banco, arquivo, repository ou dependência adicional.
+- **R6.7:** revisados navegação e Back, estado compartilhado, contagem e CRUD de feriados, campos, unidades, defaults, validações, mensagens, resultados, formatação, zero dias produtivos e uso de tokens Material. A observação de sessão na tela de feriados foi alinhada ao texto aprovado; não houve refatoração ampla nem alteração do domínio.
+- **R7:** rastreabilidade consolidada em `docs/testing/REGRESSION_MATRIX.md`; foi adicionada somente a lacuna de apresentação para inteiro positivo. Casos históricos, prazo integrado, viabilidade, calendário, feriados e integração compartilhada já tinham cobertura suficiente e não foram duplicados.
+- **Validação física:** não executada nesta etapa; permanece reservada ao R6.8.
+- **Comandos Cloud desta tarefa:** `./gradlew testDebugUnitTest` não iniciou porque o wrapper não possui permissão de execução (`Permission denied`). `bash ./gradlew testDebugUnitTest` tentou baixar o Gradle 8.13, mas o proxy retornou `HTTP/1.1 403 Forbidden`. `gradle testDebugUnitTest assembleDebug`, com Gradle 8.14.4 disponível, falhou na configuração porque o Android SDK não está configurado (`ANDROID_HOME` ou `sdk.dir`).
+- **Limitação Cloud:** a suíte e o APK desta alteração precisam ser confirmados em ambiente com a distribuição do wrapper e Android SDK; a falha ambiental não foi tratada como aprovação.

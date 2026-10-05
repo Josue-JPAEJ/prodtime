@@ -61,13 +61,14 @@ Campos têm rótulos e unidades visíveis, switches têm texto explícito, açõ
 
 ## 14. Feriados — estado atual
 
-`ProdTimeApp` mantém uma coleção compartilhada de `HolidayDefinition` durante a sessão. Os três fluxos exibem a contagem real e usam a mesma coleção nos inputs de domínio. A gestão em memória permite listar, adicionar e remover feriados anuais (`MonthDay`) e específicos (`LocalDate`). Não existem feriados fictícios, lista nacional, API ou persistência; ao encerrar o processo, os cadastros são descartados. Persistência fica explicitamente reservada ao R6.6B.
+`ProdTimeApp` mantém uma coleção compartilhada de `HolidayDefinition` durante a sessão. Os três fluxos exibem a contagem real e usam a mesma coleção nos inputs de domínio. A gestão em memória permite listar, adicionar e remover feriados anuais (`MonthDay`) e específicos (`LocalDate`). Não existem feriados fictícios, lista nacional, API ou persistência; ao encerrar o processo, os cadastros são descartados. A tela informa que os feriados cadastrados ficam disponíveis durante a sessão. Por decisão do R6.6B, persistência é evolução futura, fora do MVP acadêmico.
 
 ## 15. Evoluções R6.5–R6.8
 
-- R6.5: UI de viabilidade implementada, aguardando validação local e física.
-- R6.6A: estado compartilhado e gestão em memória implementados; persistência reservada ao R6.6B.
-- R6.7: validações, feedback e integração final da UX.
+- R6.5: UI de viabilidade implementada e validada por build/test local; validação física pendente.
+- R6.6A: estado compartilhado e gestão em memória implementados e validados por build/test local; validação física pendente.
+- R6.6B: persistência encerrada como evolução futura, fora do MVP acadêmico.
+- R6.7: integração, textos, validações e estados de resultado revisados; concluído por testes/build, com revisão física final reservada ao R6.8.
 - R6.8: validação manual em aparelho físico, incluindo teclado, responsividade, tema e acessibilidade.
 
 Peso, tara e massa linear continuam adiados porque o recurso secundário não integra a jornada principal atual.

@@ -14,7 +14,7 @@ Este arquivo separa decisões já tomadas de questões ainda abertas do novo Pro
 ## Cadastro de feriados
 
 - **Resolvido no R6.6A:** UX e CRUD simples em memória para feriados anuais e de data específica durante a sessão;
-- mecanismo de persistência permanece aberto para o R6.6B;
+- **Resolvido no R6.6B:** a persistência ficou fora do MVP acadêmico; o cadastro existe somente durante a sessão e armazenamento permanente é evolução futura;
 - importação, feriados nacionais automáticos, localidade e integração com ERP.
 
 ## P1 — questões do recurso secundário e limites operacionais
@@ -29,4 +29,4 @@ Este arquivo separa decisões já tomadas de questões ainda abertas do novo Pro
 3. Deve existir limite operacional inferior ao limite técnico do tipo numérico para evitar estimativas irreais?
 4. **Encerrada no escopo do MVP do R5:** a recomendação determinística compara a estimativa no período com a meta e busca o mínimo de fitas pelos motores existentes. Limites operacionais reais permanecem abertos; `Int.MAX_VALUE` é somente uma guarda técnica.
 
-A persistência de feriados permanece aberta para o R6.6B; o CRUD em memória foi resolvido no R6.6A.
+A persistência de feriados não é questão bloqueadora: o R6.6B a encerrou como evolução futura, fora do MVP acadêmico. O CRUD em memória foi resolvido no R6.6A.
