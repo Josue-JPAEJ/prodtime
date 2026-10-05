@@ -35,4 +35,15 @@ class PresentationFormattersTest {
     fun `formata data brasileira`() {
         assertEquals("01/10/2026", formatDate(LocalDate.of(2026, 10, 1)))
     }
+
+    @Test
+    fun `apresenta deficit sem sinal negativo`() {
+        assertEquals(DifferencePresentation("Déficit", BigDecimal("1154")), presentDifference(BigDecimal("-1154")))
+    }
+
+    @Test
+    fun `apresenta excedente e diferenca zero`() {
+        assertEquals(DifferencePresentation("Excedente", BigDecimal("3270")), presentDifference(BigDecimal("3270")))
+        assertEquals(DifferencePresentation("Diferença", BigDecimal.ZERO), presentDifference(BigDecimal.ZERO))
+    }
 }

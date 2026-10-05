@@ -2,22 +2,22 @@
 
 ## 1. Objetivo
 
-Entregar uma experiência mobile simples e guiada para responder quanto é possível produzir em um período e quando uma quantidade será concluída, sem transportar a complexidade de um formulário industrial legado para o telefone.
+Entregar uma experiência mobile simples e guiada para estimar produção, prazo e viabilidade de uma meta, sem transportar a complexidade de um formulário industrial legado para o telefone.
 
 ## 2. Princípios
 
-- Priorizar as duas perguntas centrais do produto e reduzir a carga cognitiva.
+- Priorizar as três perguntas centrais do produto e reduzir a carga cognitiva.
 - Expor unidades e premissas relevantes sem duplicar regras do domínio na apresentação.
 - Usar componentes Material 3, layout rolável e os tokens do tema nos modos claro e escuro.
 - Validar entradas com mensagens compreensíveis e manter os motores de domínio como autoridade final.
 
 ## 3. Jornada principal
 
-A aplicação inicia na Home. Cada ação abre um fluxo independente; a ação visual e o botão Back do Android retornam à Home. A navegação é um estado interno com três destinos (`Home`, `ProductionEstimate` e `ProductionDeadline`), sem biblioteca adicional.
+A aplicação inicia na Home. Cada ação abre um fluxo independente; a ação visual e o botão Back do Android retornam à Home. A navegação usa estado interno, sem biblioteca adicional, para os três fluxos e a gestão de feriados.
 
 ## 4. Home
 
-A Home apresenta o nome ProdTime, o propósito “Planeje capacidade e prazo de produção.” e somente as duas ações disponíveis: “Quanto consigo produzir?” e “Quando vou terminar?”. Viabilidade não aparece enquanto o R6.5 não for implementado.
+A Home apresenta “Quanto consigo produzir?”, “Quando vou terminar?” e “Verificar uma meta”. O acesso secundário “Configurar feriados” não compete visualmente com os três fluxos principais.
 
 ## 5. Quanto consigo produzir?
 
@@ -25,7 +25,11 @@ O fluxo coleta período, políticas de calendário, velocidade, fitas, horas pro
 
 ## 6. Quando vou terminar?
 
-O fluxo coleta meta inteira em metros, data inicial, políticas de calendário e condições produtivas. A ação “Calcular prazo” constrói `ProductionDeadlineInput` e delega o cálculo a `ProductionDeadlineCalculator`. O resultado destaca a data de conclusão e resume meta, dias produtivos, produção estimada e saldo.
+O fluxo coleta meta inteira em metros, data inicial, políticas de calendário e condições produtivas. A ação “Calcular prazo” constrói `ProductionDeadlineInput` e delega o cálculo a `ProductionDeadlineCalculator`. O resultado destaca a data de conclusão e resume meta, dias produtivos, “Produção” e saldo. “Produção” é o rótulo aprovado para preservar legibilidade em telas estreitas.
+
+## 6.1. Verificar uma meta
+
+O fluxo compara a capacidade de um período com uma meta inteira positiva e chama `ProductionViabilityAdvisor`. O card informa textualmente “Meta atendida” ou “Meta não atendida”, produção, meta, mínimo necessário e fitas adicionais. Diferença positiva aparece como “Excedente” com sinal `+`; diferença negativa aparece como “Déficit” em módulo, sem sinal negativo; zero aparece como “Diferença — 0 m”. Sem dias produtivos, mínimo e adicional são “Não aplicável”.
 
 ## 7. Calendário
 
@@ -57,12 +61,12 @@ Campos têm rótulos e unidades visíveis, switches têm texto explícito, açõ
 
 ## 14. Feriados — estado atual
 
-Os fluxos informam “Feriados cadastrados: 0” e enviam uma coleção vazia de `HolidayDefinition`. Não existem feriados fictícios, lista nacional, API, persistência ou cadastro nesta etapa. A gestão fica reservada ao R6.6.
+`ProdTimeApp` mantém uma coleção compartilhada de `HolidayDefinition` durante a sessão. Os três fluxos exibem a contagem real e usam a mesma coleção nos inputs de domínio. A gestão em memória permite listar, adicionar e remover feriados anuais (`MonthDay`) e específicos (`LocalDate`). Não existem feriados fictícios, lista nacional, API ou persistência; ao encerrar o processo, os cadastros são descartados. Persistência fica explicitamente reservada ao R6.6B.
 
 ## 15. Evoluções R6.5–R6.8
 
-- R6.5: UI de viabilidade.
-- R6.6: gestão de feriados.
+- R6.5: UI de viabilidade implementada, aguardando validação local e física.
+- R6.6A: estado compartilhado e gestão em memória implementados; persistência reservada ao R6.6B.
 - R6.7: validações, feedback e integração final da UX.
 - R6.8: validação manual em aparelho físico, incluindo teclado, responsividade, tema e acessibilidade.
 

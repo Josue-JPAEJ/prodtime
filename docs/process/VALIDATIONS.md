@@ -216,3 +216,22 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Comandos Cloud:** `bash ./gradlew testDebugUnitTest assembleDebug` tentou baixar o Gradle 8.13, mas o proxy retornou `HTTP/1.1 403 Forbidden`; `gradle testDebugUnitTest assembleDebug`, com Gradle 8.14.4 instalado, não configurou as tarefas porque não existe Android SDK (`ANDROID_HOME`/`sdk.dir`) no ambiente.
 - **Validação manual:** não executada; não há dispositivo ou emulador Android configurado neste ambiente.
 - **Pendência:** executar `./gradlew testDebugUnitTest` e `./gradlew assembleDebug` em ambiente local com Android SDK e validar os fluxos em aparelho antes de encerrar o R6.
+
+## R6.4V — Validação local e física dos fluxos mobile
+
+- **Data:** 2026-10-05.
+- **Ambiente local:** Windows 11 amd64; Microsoft OpenJDK 17.0.20.1 LTS 64-bit; Gradle 8.13; Kotlin 2.0.21.
+- **Testes:** `.\gradlew.bat testDebugUnitTest` — `BUILD SUCCESSFUL in 1m 23s`; `22 actionable tasks: 7 executed, 15 up-to-date`.
+- **Build Android:** `.\gradlew.bat assembleDebug` — `BUILD SUCCESSFUL in 19s`; `34 actionable tasks: 5 executed, 29 up-to-date`.
+- **Git:** `develop` sincronizada com `origin/develop`; working tree clean.
+- **Dispositivo:** Samsung SM-A066M; ADB `R9XYC04PKLH    device`; `adb install -r app-debug.apk` retornou `Success`; `br.com.prodtime/.MainActivity` iniciou com sucesso via ADB.
+- **Modo A aprovado:** 01/10/2026 a 27/10/2026; 25 cm/min; 3 fitas; 16 h/dia; 3% de desperdício; sem sábados, domingos ou feriados. Resultado: 13.270 m líquidos, 19 dias produtivos, 13.680 m brutos e 410,4 m de desperdício.
+- **Modo B aprovado funcionalmente:** meta de 10.000 m a partir de 05/10/2026; 25 cm/min; 3 fitas; 16 h/dia; 3% de desperdício; sem sábados, domingos ou feriados. Resultado: conclusão em 23/10/2026, 15 dias produtivos, produção de 10.476 m e saldo de +476 m.
+- **Achado visual:** o rótulo “Produção estimada na conclusão” prejudicava o valor em tela estreita. Decisão aplicada: “Produção”; `SummaryRow` ajustado para reservar espaço flexível ao rótulo e manter o valor alinhado e íntegro.
+
+## R6.5/R6.6A — Implementação no ambiente Cloud
+
+- **Data:** 2026-10-05.
+- **Escopo:** terceira jornada de viabilidade, estado compartilhado e gestão de feriados em memória, sem persistência.
+- **Comandos Cloud:** `bash ./gradlew testDebugUnitTest assembleDebug` não obteve o Gradle 8.13 porque o proxy retornou `HTTP/1.1 403 Forbidden`; `gradle testDebugUnitTest assembleDebug`, com Gradle 8.14.4 instalado, falhou na configuração por ausência de Android SDK (`ANDROID_HOME`/`sdk.dir`).
+- **Pendência:** executar `./gradlew testDebugUnitTest` e `./gradlew assembleDebug` em ambiente local com Android SDK e validar R6.5/R6.6A no aparelho.

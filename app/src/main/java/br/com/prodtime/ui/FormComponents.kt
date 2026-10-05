@@ -5,8 +5,10 @@ package br.com.prodtime.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
@@ -29,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import java.time.Instant
 import java.time.LocalDate
@@ -83,12 +86,17 @@ internal fun PolicySwitch(label: String, checked: Boolean, onCheckedChange: (Boo
 }
 
 @Composable
-internal fun DateField(label: String, date: LocalDate, onDateChange: (LocalDate) -> Unit) {
+internal fun DateField(
+    label: String,
+    date: LocalDate,
+    displayValue: (LocalDate) -> String = ::formatDate,
+    onDateChange: (LocalDate) -> Unit,
+) {
     var showPicker by remember { mutableStateOf(false) }
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(label, style = MaterialTheme.typography.labelLarge)
         OutlinedButton(onClick = { showPicker = true }, modifier = Modifier.fillMaxWidth()) {
-            Text(formatDate(date))
+            Text(displayValue(date))
         }
     }
 
@@ -119,10 +127,19 @@ internal fun DateField(label: String, date: LocalDate, onDateChange: (LocalDate)
 internal fun SummaryRow(label: String, value: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.Top,
     ) {
-        Text(label, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        Text(value, style = MaterialTheme.typography.bodyLarge)
+        Text(
+            label,
+            modifier = Modifier.weight(1f),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Spacer(Modifier.width(16.dp))
+        Text(
+            value,
+            style = MaterialTheme.typography.bodyLarge,
+            textAlign = TextAlign.End,
+        )
     }
 }
 
@@ -130,6 +147,7 @@ internal fun SummaryRow(label: String, value: String) {
 internal fun ResultCard(
     headline: String,
     primaryValue: String,
+    primaryLabel: String? = null,
     message: String? = null,
     content: @Composable () -> Unit,
 ) {
@@ -142,6 +160,9 @@ internal fun ResultCard(
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(headline, style = MaterialTheme.typography.titleMedium)
+            primaryLabel?.let {
+                Text(it, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
             Text(primaryValue, style = MaterialTheme.typography.headlineMedium)
             message?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
             content()
