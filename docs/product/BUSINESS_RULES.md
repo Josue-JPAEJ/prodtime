@@ -51,7 +51,7 @@ O sistema compara a produção líquida estimada no período com uma meta e info
 
 - Confirmar contratos de peso (`kg/caixa`) e massa linear (`g/m`) antes da UI.
 - Definir limites operacionais máximos, caso sejam necessários, e a regra de apresentação na UI.
-- Definir os defaults da UI.
+- Os valores 28 cm/min, 1 fita, 16 h/dia e 3% adotados no R6 são somente conveniência editável da UI e não são defaults do domínio.
 
 Hipóteses não podem ser convertidas em comportamento sem validação explícita.
 

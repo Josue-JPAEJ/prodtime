@@ -196,3 +196,23 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Resultado focado:** `OK (91 tests)`, incluindo os 18 testes de viabilidade e os 73 testes anteriores.
 - **Limitação:** a suíte Gradle do R5.3 aguarda validação local em ambiente apto a executar o wrapper. A limitação ambiental não foi mascarada.
 - **Proteção de escopo:** motores existentes intactos; sem UI, persistência, PCP, IA, dependência ou início do R6.
+
+## R5.4 — Validação local e encerramento das recomendações
+
+- **Ambiente:** Windows 11 amd64; Microsoft OpenJDK 17.0.20.1 LTS 64-bit; Gradle 8.13; Kotlin 2.0.21.
+- **Comando:** `.\gradlew.bat testDebugUnitTest`
+- **Resultado:** `BUILD SUCCESSFUL in 17s`; `22 actionable tasks: 22 up-to-date`.
+- **Git:** `develop` sincronizada com `origin/develop`, com working tree clean.
+- **Gate final:** aprovado. `ProductionViabilityAdvisor` integra os motores reais; a diferença preserva o sinal; o mínimo de fitas é determinístico por busca exponencial e binária; zero dias produtivos é tratado; `Int.MAX_VALUE` é somente guarda técnica; não existe fórmula produtiva paralela; V1–V18 estão cobertos.
+- **Conclusão:** R5 aprovado e encerrado.
+
+## R6.1–R6.4 — Núcleo da UX mobile
+
+- **Data:** 2026-10-05.
+- **Etapa:** R6.1, R6.2, R6.3 e R6.4.
+- **Arquitetura:** navegação interna por estado Compose, Home e dois formulários roláveis; sem Navigation Compose, ViewModel, persistência ou dependência nova.
+- **Integração:** os fluxos constroem os inputs e chamam diretamente `ProductionEstimateCalculator` e `ProductionDeadlineCalculator`; feriados são uma coleção vazia nesta etapa.
+- **Cobertura nova:** parsing decimal com vírgula/ponto, inteiro inválido, formatação de metros e data em testes JVM.
+- **Comandos Cloud:** `bash ./gradlew testDebugUnitTest assembleDebug` tentou baixar o Gradle 8.13, mas o proxy retornou `HTTP/1.1 403 Forbidden`; `gradle testDebugUnitTest assembleDebug`, com Gradle 8.14.4 instalado, não configurou as tarefas porque não existe Android SDK (`ANDROID_HOME`/`sdk.dir`) no ambiente.
+- **Validação manual:** não executada; não há dispositivo ou emulador Android configurado neste ambiente.
+- **Pendência:** executar `./gradlew testDebugUnitTest` e `./gradlew assembleDebug` em ambiente local com Android SDK e validar os fluxos em aparelho antes de encerrar o R6.
