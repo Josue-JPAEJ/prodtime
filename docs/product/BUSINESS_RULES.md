@@ -17,24 +17,28 @@ Este documento resume as regras conhecidas. A especificação auditável, as coe
 - O saldo legado é a produção líquida menos a quantidade alvo em metros.
 - O total de horas é horas produtivas por dia vezes dias contabilizados.
 - A calculadora de peso converte o peso líquido total de kg para g e o divide pela massa linear da fita para obter metros.
+- O motor de capacidade usa `BigDecimal`, sem `Double` ou `Float`, e não possui defaults embutidos.
+- A produção bruta e a produção líquida são as duas fronteiras de arredondamento, ambas com `RoundingMode.HALF_EVEN`; o desperdício é calculado sobre a produção bruta já arredondada.
+- Horas produtivas fracionárias são aceitas.
+- Velocidade, quantidade de fitas, horas produtivas e dias produtivos devem ser maiores que zero; o desperdício deve ser maior ou igual a zero e menor que 100%.
+- A meta em metros é opcional e, quando informada, deve ser inteira e não negativa; o saldo também é opcional e só existe quando há meta.
 
 ## Decisões ainda não validadas
 
-- Preservar exatamente ou substituir conscientemente o arredondamento e as coerções integrais do VBA.
 - Corrigir colisões entre feriados, fins de semana e exclusões das pontas no calendário do R2.
 - Confirmar contratos de peso (`kg/caixa`) e massa linear (`g/m`) antes da UI.
-- Definir limites de entrada, precisão interna e regra de apresentação.
-- Decidir se horas úteis podem ser fracionárias ou variar entre dias.
+- Definir limites operacionais máximos, caso sejam necessários, e a regra de apresentação na UI.
+- Decidir se as horas produtivas podem variar entre dias.
+- Definir os defaults da UI e as regras específicas de datas.
 
 Hipóteses não podem ser convertidas em comportamento sem validação explícita.
 
 ## Regras pendentes de validação
 
-1. Definir precisão, arredondamento e tolerância de regressão.
-2. Definir a política do novo calendário para colisões, pontas e dias não produtivos.
-3. Definir feriados, jornadas parciais e intervalos sem dias produtivos.
-4. Definir validações e mensagens para zero, negativos, datas invertidas e percentuais fora do limite.
-5. Definir o critério determinístico das recomendações e seus limites.
+1. Definir a política do novo calendário para colisões, pontas e dias não produtivos.
+2. Definir feriados, jornadas parciais e intervalos sem dias produtivos.
+3. Definir contratos e validações de peso e massa linear, regras específicas de datas e mensagens de UI.
+4. Definir o critério determinístico das recomendações e seus limites.
 
 ## Regressões históricas confirmadas
 

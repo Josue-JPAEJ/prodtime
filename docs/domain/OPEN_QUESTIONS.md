@@ -8,7 +8,7 @@ Este arquivo contém apenas decisões reais do novo ProdTime. Fórmulas e compor
 2. **Pontas e categorias:** qual precedência deve existir entre “incluir data inicial/final” e a exclusão de sábado, domingo ou feriado?
 3. **Feriados:** quais localidades/fontes serão suportadas, como feriados móveis serão modelados e duplicatas serão rejeitadas?
 4. **Contrato das unidades:** confirmar com o responsável de produto que o peso bruto e a tara são kg/caixa e que `pFita` é massa linear em g/m; definir os rótulos inequívocos da UI.
-5. **Limites e mensagens:** definir intervalos válidos para velocidade, fitas, horas, desperdício, pesos, massa linear, meta e datas, incluindo zero, negativos e percentual acima de 100%.
+5. **Limites e mensagens:** definir, se necessários, limites operacionais máximos para o motor de capacidade; definir intervalos válidos para pesos, massa linear e datas e as mensagens da UI. Os limites inferiores de velocidade, fitas, horas, dias, desperdício e meta já pertencem ao contrato aprovado do R1.2.
 
 ## P2 — pode ser decidido posteriormente
 
