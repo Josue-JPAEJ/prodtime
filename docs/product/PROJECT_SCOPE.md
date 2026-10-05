@@ -31,7 +31,9 @@ Resultados previstos: tempo produtivo necessário, dias produtivos e data estima
 
 ### Recomendações determinísticas
 
-O MVP poderá apresentar possibilidades simples para atender produção ou prazo, derivadas apenas de regras validadas. Exemplos conceituais incluem aumentar a quantidade de fitas nas mesmas condições ou indicar outra data de conclusão. Essa capacidade é futura dentro do MVP e ainda não está implementada.
+O MVP apresenta uma análise determinística de viabilidade para uma meta de produção em determinado período. A partir das mesmas regras validadas de capacidade e calendário, informa se a configuração atual atende à meta, qual o déficit ou excedente, a quantidade mínima de fitas necessária e quantas fitas adicionais seriam necessárias.
+
+Essa funcionalidade não representa PCP, otimização automática, IA ou promessa operacional de atendimento.
 
 ## Fora do MVP atual
 
