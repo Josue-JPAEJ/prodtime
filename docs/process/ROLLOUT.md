@@ -40,8 +40,8 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** entregar o segundo fluxo funcional do MVP.
 - **Escopo:** quantidade alvo, data inicial, condições produtivas e data estimada.
 - **Critério de conclusão:** fluxo validado com calendário e casos de borda.
-- **Etapas:** R4.1 — contrato do Modo B especificado. R4.2 — cálculo de prazo implementado. R4.3 — testes ponta a ponta implementados, aguardando validação local se o Gradle Cloud estiver indisponível.
-- **Status:** em andamento.
+- **Etapas:** R4.1 — contrato do Modo B especificado. R4.2 — cálculo de prazo implementado. R4.3 — testes ponta a ponta implementados. R4.4 — validação Gradle local e encerramento concluídos.
+- **Status:** concluído.
 
 ## R5 — Viabilidade e recomendações
 
@@ -49,7 +49,8 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Escopo:** recomendações baseadas exclusivamente em regras e premissas validadas.
 - **Fora de escopo:** IA, otimização de PCP ou promessa automática de atendimento.
 - **Critério de conclusão:** critérios documentados, explicáveis e testados.
-- **Status:** não iniciado.
+- **Etapas:** R5.1 — contrato de viabilidade especificado. R5.2 — recomendação implementada. R5.3 — testes implementados, aguardando validação local se o Gradle Cloud estiver indisponível.
+- **Status:** em andamento.
 
 ## R6 — UX mobile guiada
 

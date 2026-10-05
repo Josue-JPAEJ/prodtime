@@ -174,3 +174,25 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Resultado focado:** `OK (73 tests)`, incluindo os 18 testes do prazo e os 55 testes anteriores.
 - **Limitação:** a suíte Gradle do R4.3 aguarda validação local em ambiente apto a executar o wrapper. A limitação ambiental não foi mascarada.
 - **Proteção de escopo:** motores existentes intactos; sem UI, persistência, dependência, recomendações ou implementação do R5.
+
+## R4.4 — Validação local e encerramento do Modo B
+
+- **Ambiente:** Windows 11 amd64; Microsoft OpenJDK 17.0.20.1 LTS 64-bit; Gradle 8.13; Kotlin 2.0.21.
+- **Comando:** `.\gradlew.bat testDebugUnitTest`
+- **Resultado:** `BUILD SUCCESSFUL in 46s`; `22 actionable tasks: 5 executed, 17 up-to-date`.
+- **Git:** branch `develop` sincronizada com `origin/develop`, com working tree clean.
+- **Gate:** aprovado. A meta é positiva e inteira; o Modo B não recebe data final; a conclusão é a primeira data suficiente; calendário, feriados e capacidade são reutilizados sem fórmula paralela; `HALF_EVEN` permanece no R1; o horizonte técnico impede loop infinito; D1–D18 estão cobertos.
+- **Conclusão:** R4 validado e encerrado.
+
+## R5.1–R5.3 — Especificação, implementação e testes de viabilidade
+
+- **Data:** 2026-10-05.
+- **Etapa:** R5.1, R5.2 e R5.3.
+- **Branch:** branch interna `work`, tendo `develop` como base de integração solicitada.
+- **Arquitetura:** `ProductionViabilityInput`, `ProductionViabilityResult` e `ProductionViabilityAdvisor` compõem os motores existentes de estimativa e capacidade, sem fórmula paralela, Android ou nova camada arquitetural.
+- **Cobertura:** 18 testes V1–V18 para atendimento, diferença com sinal, mínimo e adicional de fitas, calendário e feriados, zero dias produtivos, entradas inválidas, minimalidade, horas fracionárias, limite técnico e rastreabilidade.
+- **Comando Gradle Cloud:** `./gradlew testDebugUnitTest` não iniciou porque o wrapper não possui permissão de execução (`Permission denied`); `bash ./gradlew testDebugUnitTest` tentou baixar o Gradle 8.13, mas o proxy retornou `HTTP/1.1 403 Forbidden`.
+- **Validação focada equivalente:** todas as fontes e testes Kotlin puros do domínio foram compilados diretamente com Kotlin 2.0.21 disponível no cache e executados com JUnit 4.13.2.
+- **Resultado focado:** `OK (91 tests)`, incluindo os 18 testes de viabilidade e os 73 testes anteriores.
+- **Limitação:** a suíte Gradle do R5.3 aguarda validação local em ambiente apto a executar o wrapper. A limitação ambiental não foi mascarada.
+- **Proteção de escopo:** motores existentes intactos; sem UI, persistência, PCP, IA, dependência ou início do R6.

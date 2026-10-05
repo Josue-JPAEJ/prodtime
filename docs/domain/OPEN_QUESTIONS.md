@@ -27,4 +27,4 @@ Este arquivo separa decisões já tomadas de questões ainda abertas do novo Pro
 1. Os defaults históricos — 3%, 16 h/dia, 1 fita e 28 cm/min — serão mantidos, alterados ou removidos?
 2. A apresentação deve mostrar metros fracionários para produção, desperdício, saldo e conversão de peso, ou somente valores inteiros?
 3. Deve existir limite operacional inferior ao limite técnico do tipo numérico para evitar estimativas irreais?
-4. Quais critérios determinísticos, premissas e limites devem orientar recomendações futuras?
+4. **Encerrada no escopo do MVP do R5:** a recomendação determinística compara a estimativa no período com a meta e busca o mínimo de fitas pelos motores existentes. Limites operacionais reais permanecem abertos; `Int.MAX_VALUE` é somente uma guarda técnica.
