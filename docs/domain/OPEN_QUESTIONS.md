@@ -11,10 +11,10 @@ Este arquivo separa decisões já tomadas de questões ainda abertas do novo Pro
 - Não haverá API externa de feriados no MVP.
 - Jornadas variáveis ou parciais ficam para evolução futura; o R2 calcula dias produtivos.
 
-## Questões futuras do cadastro de feriados
+## Cadastro de feriados
 
-- mecanismo de persistência e operações de CRUD;
-- UX, mensagens e defaults do cadastro;
+- **Resolvido no R6.6A:** UX e CRUD simples em memória para feriados anuais e de data específica durante a sessão;
+- mecanismo de persistência permanece aberto para o R6.6B;
 - importação, feriados nacionais automáticos, localidade e integração com ERP.
 
 ## P1 — questões do recurso secundário e limites operacionais
@@ -29,4 +29,4 @@ Este arquivo separa decisões já tomadas de questões ainda abertas do novo Pro
 3. Deve existir limite operacional inferior ao limite técnico do tipo numérico para evitar estimativas irreais?
 4. **Encerrada no escopo do MVP do R5:** a recomendação determinística compara a estimativa no período com a meta e busca o mínimo de fitas pelos motores existentes. Limites operacionais reais permanecem abertos; `Int.MAX_VALUE` é somente uma guarda técnica.
 
-A persistência e o CRUD de feriados permanecem abertos até o R6.6.
+A persistência de feriados permanece aberta para o R6.6B; o CRUD em memória foi resolvido no R6.6A.

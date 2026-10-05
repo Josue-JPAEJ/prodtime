@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -25,12 +27,15 @@ import br.com.prodtime.ui.theme.ProdTimeTheme
 fun HomeScreen(
     onProductionEstimate: () -> Unit,
     onProductionDeadline: () -> Unit,
+    onProductionViability: () -> Unit,
+    onHolidays: () -> Unit,
 ) {
     Scaffold { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = 24.dp, vertical = 32.dp),
             verticalArrangement = Arrangement.Center,
         ) {
@@ -53,6 +58,14 @@ fun HomeScreen(
                 description = "Informe uma quantidade e estime a data de conclusão.",
                 onClick = onProductionDeadline,
             )
+            Spacer(Modifier.height(16.dp))
+            HomeActionCard(
+                title = "Verificar uma meta",
+                description = "Descubra se a produção atende à meta e quantas fitas são necessárias.",
+                onClick = onProductionViability,
+            )
+            Spacer(Modifier.height(24.dp))
+            TextButton(onClick = onHolidays) { Text("Configurar feriados") }
         }
     }
 }
@@ -87,6 +100,11 @@ private fun HomeActionCard(title: String, description: String, onClick: () -> Un
 @Composable
 private fun HomeScreenPreview() {
     ProdTimeTheme(dynamicColor = false) {
-        HomeScreen(onProductionEstimate = {}, onProductionDeadline = {})
+        HomeScreen(
+            onProductionEstimate = {},
+            onProductionDeadline = {},
+            onProductionViability = {},
+            onHolidays = {},
+        )
     }
 }

@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import br.com.prodtime.domain.ProductionDeadlineCalculator
 import br.com.prodtime.domain.ProductionDeadlineInput
 import br.com.prodtime.domain.ProductionDeadlineResult
+import br.com.prodtime.domain.HolidayDefinition
 import java.math.BigDecimal
 import java.time.LocalDate
 
@@ -45,7 +46,7 @@ private data class DeadlineDisplay(
 )
 
 @Composable
-fun ProductionDeadlineScreen(onBack: () -> Unit) {
+fun ProductionDeadlineScreen(holidayDefinitions: List<HolidayDefinition>, onBack: () -> Unit) {
     val today = LocalDate.now()
     var startEpochDay by rememberSaveable { mutableStateOf(today.toEpochDay()) }
     var includeStart by rememberSaveable { mutableStateOf(true) }
@@ -89,7 +90,7 @@ fun ProductionDeadlineScreen(onBack: () -> Unit) {
             PolicySwitch("Trabalhar aos sábados", includeSaturdays) { includeSaturdays = it }
             PolicySwitch("Trabalhar aos domingos", includeSundays) { includeSundays = it }
             PolicySwitch("Trabalhar em feriados", workOnHolidays) { workOnHolidays = it }
-            Text("Feriados cadastrados: 0", color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text("Feriados cadastrados: ${holidayDefinitions.size}", color = MaterialTheme.colorScheme.onSurfaceVariant)
 
             SectionTitle("PRODUÇÃO")
             NumericField(speed, { speed = it }, "Velocidade", "cm/min", errors.speed)
@@ -130,7 +131,7 @@ fun ProductionDeadlineScreen(onBack: () -> Unit) {
                                     includeSaturdays = includeSaturdays,
                                     includeSundays = includeSundays,
                                     workOnHolidays = workOnHolidays,
-                                    holidayDefinitions = emptyList(),
+                                    holidayDefinitions = holidayDefinitions,
                                     speedCmPerMinute = requireNotNull(parsedSpeed),
                                     tapeCount = requireNotNull(parsedTapes),
                                     productiveHoursPerDay = requireNotNull(parsedHours),
@@ -171,7 +172,7 @@ private fun DeadlineResultCard(display: DeadlineDisplay) {
     ) {
         SummaryRow("Meta", formatMeters(display.targetMeters))
         SummaryRow("Dias produtivos", result.requiredProductiveDays.toString())
-        SummaryRow("Produção estimada na conclusão", formatMeters(result.capacity.netProductionMeters))
+        SummaryRow("Produção", formatMeters(result.capacity.netProductionMeters))
         SummaryRow("Saldo", formattedBalance)
     }
 }

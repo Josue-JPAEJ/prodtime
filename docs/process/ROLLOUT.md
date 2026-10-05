@@ -57,7 +57,7 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** consolidar uma experiência simples, específica e rápida.
 - **Escopo:** fluxo guiado, hierarquia, feedback, responsividade e prevenção de erros.
 - **Critério de conclusão:** jornada principal validada manualmente em dispositivo apropriado.
-- **Etapas:** R6.1 — arquitetura e jornada de UX definidas. R6.2 — Home e navegação implementadas. R6.3 — UI funcional do fluxo “Quanto consigo produzir?” implementada. R6.4 — UI funcional do fluxo “Quando vou terminar?” implementada. R6.1–R6.4 aguardam validação local de build e execução em aparelho. R6.5 — UI de viabilidade pendente. R6.6 — gestão de feriados pendente. R6.7 — validações, feedback e integração final da UX pendentes. R6.8 — validação manual em aparelho físico pendente.
+- **Etapas:** R6.1 e R6.2 — implementados e validados localmente. R6.3 — implementado e validado no aparelho físico. R6.4 — implementado e validado funcionalmente no aparelho; rótulo “Produção” e responsividade refinados nesta tarefa. R6.5 — UI de viabilidade implementada, aguardando validação local e física. R6.6A — estado compartilhado e gestão de feriados em memória implementados; persistência reservada ao R6.6B. R6.7 — pendente, com apenas os refinamentos explicitamente descritos nesta tarefa. R6.8 — pendente.
 - **Status:** em andamento.
 
 ## R7 — Testes/regressão VBA
