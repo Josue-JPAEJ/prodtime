@@ -29,6 +29,9 @@ Este documento resume as regras conhecidas. As especificações auditáveis, as 
 - O intervalo-base é inclusivo, e `includeStartDate` e `includeEndDate` controlam o pertencimento de cada ponta. Para uma data única, ambas as opções precisam estar ativas para que ela permaneça no intervalo considerado.
 - Sábados e domingos podem ser trabalhados conforme `includeSaturdays` e `includeSundays`.
 - Feriados são datas explícitas em `Set<LocalDate>` e sua possibilidade de trabalho é controlada por `workOnHolidays`; não há recorrência ou API externa implícita no MVP.
+- Feriados não são informados por quantidade: definições cadastráveis são anuais recorrentes (`MonthDay`) ou de data específica (`LocalDate`).
+- A recorrência é resolvida antes do calendário em `LocalDate` concretas; definições que coincidam na mesma data produzem um único efeito.
+- UI e persistência do cadastro de feriados ainda não foram implementadas nem definidas.
 - Pontas são removidas antes da classificação. Cada data restante é classificada uma única vez, sem dupla subtração por colisão entre fim de semana e feriado.
 - Zero dias produtivos é resultado válido do calendário, inclusive quando não sobra nenhuma data considerada.
 

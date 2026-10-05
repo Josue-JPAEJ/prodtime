@@ -2,14 +2,20 @@
 
 Este arquivo separa decisões já tomadas de questões ainda abertas do novo ProdTime. Fórmulas e comportamentos respondidos pelo VBA estão especificados em `CALCULATION_SPEC.md`; o contrato aprovado do calendário está em `CALENDAR_SPEC.md`.
 
-## Decisões tomadas no R2.1 — calendário produtivo
+## Decisões tomadas no R2 — calendário produtivo e feriados
 
 - Cada data considerada é avaliada uma única vez e recebe uma única classificação final; colisões não produzem subtrações cumulativas.
 - As pontas excluídas são removidas antes da classificação por dia da semana ou feriado.
 - Feriados são datas explícitas em `Set<LocalDate>`; o conjunto deduplica entradas repetidas.
-- Não existe recorrência anual implícita no núcleo. Feriados móveis são suportados pelo fornecimento de sua data exata.
+- Não existe recorrência anual implícita no calendário. `HolidayResolver` transforma definições anuais ou específicas em datas exatas antes do cálculo; 29/02 anual ocorre somente em anos bissextos.
 - Não haverá API externa de feriados no MVP.
 - Jornadas variáveis ou parciais ficam para evolução futura; o R2 calcula dias produtivos.
+
+## Questões futuras do cadastro de feriados
+
+- mecanismo de persistência e operações de CRUD;
+- UX, mensagens e defaults do cadastro;
+- importação, feriados nacionais automáticos, localidade e integração com ERP.
 
 ## P1 — necessário antes da UI
 
@@ -21,3 +27,4 @@ Este arquivo separa decisões já tomadas de questões ainda abertas do novo Pro
 1. Os defaults históricos — 3%, 16 h/dia, 1 fita e 28 cm/min — serão mantidos, alterados ou removidos?
 2. A apresentação deve mostrar metros fracionários para produção, desperdício, saldo e conversão de peso, ou somente valores inteiros?
 3. Deve existir limite operacional inferior ao limite técnico do tipo numérico para evitar estimativas irreais?
+4. Quais critérios determinísticos, premissas e limites devem orientar recomendações futuras?
