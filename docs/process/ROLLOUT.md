@@ -81,7 +81,7 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** documentar problema, método, solução e resultados no contexto acadêmico.
 - **Escopo:** texto e referências no formato acadêmico requerido.
 - **Critério de conclusão:** artigo revisado e aderente ao modelo aplicável.
-- **Etapas:** R9.0 — base de evidências e plano do artigo concluídos. R9.1 — validação bibliográfica e requisitos de entrega concluídos. R9.2 — primeira versão completa e checklist de releitura concluídos, registrados em `docs/academic/ARTICLE_DRAFT.md` e `ARTICLE_DRAFT_REVIEW.md`. R9.3 — revisão técnica/acadêmica pendente. R9.4 — formatação final e PDF pendente.
+- **Etapas:** R9.0 — base de evidências e plano do artigo concluídos. R9.1 — validação bibliográfica e requisitos de entrega concluídos. R9.2 — primeira versão completa e checklist de releitura concluídos, registrados em `docs/academic/ARTICLE_DRAFT.md` e `ARTICLE_DRAFT_REVIEW.md`. R9.3 — revisão técnica/acadêmica integral e auditoria de conteúdo concluídas, registradas em `ARTICLE_DRAFT_REVIEW.md` e `ARTICLE_CONTENT_AUDIT.md`; conteúdo pronto para formatação. R9.4 — formatação final e PDF pendente.
 - **Status:** em andamento.
 
 ## R10 — Vídeo/README/portfólio

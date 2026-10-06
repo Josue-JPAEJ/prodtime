@@ -1,6 +1,6 @@
 # Revisão da primeira versão
 
-Checklist da releitura de redação em R9.2. As verificações abaixo não substituem a revisão técnica/acadêmica R9.3, que permanece pendente. A primeira versão está em `ARTICLE_DRAFT.md`.
+Registro da releitura de redação em R9.2 e da revisão técnica/acadêmica R9.3. O texto revisado está em `ARTICLE_DRAFT.md`; a auditoria consolidada está em `ARTICLE_CONTENT_AUDIT.md`. Os itens da redação inicial são mantidos como histórico, com a revisão atual registrada ao final.
 
 ## 1. Estrutura
 
@@ -54,7 +54,7 @@ Checklist da releitura de redação em R9.2. As verificações abaixo não subst
 - [x] Desenvolvimento aplicado descrito sem rótulo metodológico formal não comprovado.
 - [x] Resumo autônomo e tradução fiel; conclusão restrita às evidências expostas.
 - [x] Buscas de termos sensíveis e de alegações indevidas sobre 118 testes realizadas.
-- [ ] Revisão técnica/acadêmica R9.3 por leitura integral do texto e avaliação da argumentação.
+- [x] Revisão técnica/acadêmica R9.3 por leitura integral do texto e avaliação da argumentação.
 
 ## 7. Figuras pendentes
 
@@ -77,11 +77,27 @@ Essas pendências não bloqueiam a revisão da primeira versão e não autorizam
 
 ## 9. Ajustes para R9.3
 
-- [ ] Revisar tecnicamente fórmulas, calendário, prazo e recomendação contra as especificações vigentes.
-- [ ] Avaliar clareza da contribuição e limites dos casos de validação.
-- [ ] Refinar concisão, transições, terminologia e equivalência entre Resumo e Abstract.
-- [ ] Conferir citações e referências dentro dos limites bibliográficos de R9.1.
-- [ ] Revisar a seleção das figuras e evitar duplicação entre texto e Tabela 2.
-- [ ] Preparar ajustes de extensão após confirmação institucional, sem inventar requisito de páginas.
+- [x] Revisar tecnicamente fórmulas, calendário, prazo e recomendação contra as especificações vigentes.
+- [x] Avaliar clareza da contribuição e limites dos casos de validação.
+- [x] Refinar concisão, transições, terminologia e equivalência entre Resumo e Abstract.
+- [x] Conferir citações e referências dentro dos limites bibliográficos de R9.1.
+- [x] Revisar a seleção das figuras e evitar duplicação entre texto e Tabela 2.
+- [ ] Aplicar ajustes de extensão após confirmação institucional em R9.4, sem inventar requisito de páginas.
 
-**Gate R9.2:** primeira versão pronta para revisão R9.3. **R9.3 não iniciada; R9.4 pendente; R9 em andamento; R10 e R11 não iniciados.**
+## Revisão técnica/acadêmica R9.3
+
+- **Base:** `develop`, commit `0618d76b432e77808edd9f609a0ae08ffb5f6a23`, com R9.2 integrado pelo PR #24; branch interna `work`, alinhada por fast-forward sem troca de branch.
+- **Erro técnico encontrado:** “A data final participa do cálculo” era ambígua no fluxo de prazo. A leitura de `ProductionDeadlineInput` e `PRODUCTION_DEADLINE_SPEC.md` confirmou que não há data final como entrada. A redação explicita meta, início, condições e calendário, busca progressiva pela primeira data suficiente e conclusão como resultado. O cálculo acumulado reutiliza o motor de capacidade e respeita horizonte técnico finito.
+- **Conferência técnica:** fórmulas e duas fronteiras `HALF_EVEN`, desperdício sobre a bruta arredondada, calendário, feriados, composição dos seis componentes, viabilidade e UI conferidos. Nenhum comportamento foi alterado.
+- **Achado documental adicional:** `OPEN_QUESTIONS.md` resume fitas como menores que 1.000, mas `InputValidation.kt` define limite exclusivo de 1.000.000, coerente com `BUSINESS_RULES.md` e o registro físico. O artigo mantém descrição geral de limites, sem reproduzir o valor divergente. A harmonização dessa documentação de domínio fica fora desta revisão acadêmica e não bloqueia seu conteúdo.
+- **Meta-linguagem removida:** nota de versão, códigos Rn, rollout, gate e nomes de arquivos internos retirados do artigo. Evidências e execução são narradas academicamente, sem diário de desenvolvimento.
+- **Fundamentação:** parágrafos sintetizados e ressalvas essenciais concentradas ao final da seção; quatro referências usadas somente no alcance dos metadados e resumos editoriais, sem atribuir implementação dos algoritmos, equivalência de processos ou validação direta do ProdTime.
+- **Números:** regressões, prazo, viabilidade e feriados confrontados com `ARTICLE_EVIDENCE.md` e a matriz; aritmética decimal e contagem de dias conferidas como auditoria, sem nova execução de testes do aplicativo.
+- **Testes:** 118 métodos `@Test` permanecem contagem estática. `BUILD SUCCESSFUL` é separado dessa contagem; registros com tarefas atualizadas não são tratados como reexecução de todos os métodos. Nenhum Gradle foi executado em R9.3.
+- **Repetições:** texto e Tabela 2 reorganizados para distinguir interpretação e síntese; modelo do aparelho citado uma única vez; removidas repetições de ressalvas bibliográficas e termos internos.
+- **Resumo/Abstract:** revisados após o corpo, com equivalência de problema, objetivo, método, solução, evidências, contribuição e limitações. Kotlin substituído nas palavras-chave por termos do problema; Keywords correspondentes.
+- **Referências:** entradas em ordem alfabética Hodge, Karacapilidis, Laoboonlur e Serafini; autores, títulos, periódicos, volumes, números, páginas, anos e DOIs preservados.
+- **Figuras:** mantidos três marcadores, em ordem, para tela inicial, estimativa e viabilidade. Nenhum screenshot criado.
+- **Pendências restantes:** dados institucionais, figuras reais, número de páginas, aplicação do template SBC, formatação e PDF pertencem a R9.4. R9.4 não foi iniciada.
+
+**Gate de conteúdo:** pronto para R9.4. **R9.3 concluída; R9 em andamento; R9.4 pendente; R10 e R11 não iniciados.** Esse gate não confirma criação de PR ou merge, que dependem de evidência própria.
