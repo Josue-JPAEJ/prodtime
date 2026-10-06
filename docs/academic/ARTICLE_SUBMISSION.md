@@ -1,6 +1,8 @@
 # Preparação para submissão do artigo
 
-## Estado documental
+**Estado atual R9.4B:** quatro capturas reais integradas e primeira diagramação SBC compilada. [Abrir preview](submission/prodtime_sbc_preview.pdf): **11 páginas, 357.298 bytes**, abaixo de 5 MB. Pronto para revisão humana; R9.4 permanece em andamento. O registro inicial abaixo foi preservado como histórico; as pendências atuais estão na atualização ao final.
+
+## Registro inicial R9.4A — histórico
 
 Fonte textual consolidada: [ARTICLE_FINAL.md](ARTICLE_FINAL.md). R9.4 está **em andamento**, com autoria e texto consolidados, mas sem integração das capturas nem aplicação do template. O nome do arquivo identifica a fonte destinada à versão final; não certifica um artigo diagramado ou pronto para envio. O rascunho e os registros anteriores foram preservados.
 
@@ -39,3 +41,22 @@ Não foi gerado PDF ou Word: faltam as imagens reais e o template aplicável par
 - [ ] Gerar e revisar visualmente o PDF; conferir tamanho de até 5 MB e requisitos institucionais.
 
 **Gate R9.4: NÃO — base textual preparada, entrega acadêmica final ainda pendente.** R9 permanece em andamento; R10 e R11 não iniciados. Nenhum Gradle, teste Android ou nova validação física foi executado.
+
+## Atualização R9.4B — figuras e primeira diagramação SBC
+
+- Base `develop` em `87dc982ce2dd2de1767632940b6150c76846b124`, com PR #26 integrado.
+- ZIP `prodtime_article_figures.zip` recebido: quatro JPGs e `README_FIGURAS.md` copiados em `figures/`, com os nomes fornecidos e bytes idênticos aos originais. Capturas de 720 × 1600 px conferidas visualmente: tela inicial, 13.270 m/19 dias/13.680 m/410,4 m/período, prazo 23/10/2026/meta 10.000 m/15 dias/10.476 m/+476 m, e viabilidade 8.846 m/meta 10.000 m/déficit 1.154 m/mínimo 3/adicional 1. Nenhum valor ou conteúdo visual alterado.
+- Os quatro marcadores de `ARTICLE_FINAL.md` foram substituídos por links reais; todas as legendas e o restante do artigo foram preservados, conforme comparação documental. As imagens foram centralizadas na fonte LaTeX com proporção preservada e sem recorte.
+- Fonte `submission/main.tex`, quatro referências no próprio ambiente bibliográfico, recursos necessários `sbc-template.sty` e `caption2.sty`, README de proveniência e script de recompilação. Template tradicional obtido de `uefs/sbc-template-latex`, commit `0748264951381dfed3e3fea6a39287a64098fb82`, sem alterações funcionais dos estilos. O modelo institucional exato continua sujeito à confirmação.
+- Compilação reproduzida com `sh docs/academic/submission/build.sh` (duas passagens pdfLaTeX). Preview em `submission/prodtime_sbc_preview.pdf`: **11 páginas A4; 357.298 bytes; 357,298 KB; 0,357298 MB**, unidades decimais; menor que 5 MB. Sem números visíveis de página, conforme o modelo.
+- Inspeção visual de todas as onze páginas: título/autoria, Resumo/Abstract, fórmulas, duas tabelas, quatro figuras/legendas e referências presentes; sem corte introduzido pela diagramação, deformação, imagens fora da área útil ou sobreposição. As capturas originais mostram formulários rolados e foram mantidas integralmente, sem tentar recriar trechos não capturados.
+- Log final sem `Overfull`, glifos ausentes ou referências indefinidas. Permanecem nove avisos `Underfull hbox` de justificação e um `Underfull vbox` (badness 1237); conferidos visualmente, sem perda de conteúdo ou defeito que impeça revisão. Margens, fontes e espaçamentos não foram deformados para eliminá-los.
+- **Atenção editorial:** a orientação de até dez linhas por Resumo/Abstract no exemplo tradicional SBC é excedida neste preview; ambos estão completos na primeira página. Não foi reduzido o texto nesta etapa. A adequação deverá ser decidida na revisão humana. Conferir também legibilidade em impressão.
+
+### Pendências atuais
+
+- Revisão humana do PDF, incluindo extensão, Resumo/Abstract, legibilidade e posicionamento de figuras/tabelas.
+- Confirmação do limite de páginas e eventuais particularidades do modelo exigido pela Gran; não há limite arbitrário adotado.
+- Ajustes aprovados após essa avaliação e geração da versão institucional definitiva.
+
+**Gate do preview R9.4B: SIM — pronto para revisão humana.** Isso não encerra R9.4 nem R9. R10/R11 continuam não iniciados; nenhuma nova execução Gradle, teste do aplicativo ou validação física foi realizada.
