@@ -20,8 +20,8 @@ sh docs/academic/submission/build.sh
 
 O script executa duas passagens de pdfLaTeX em diretório temporário e copia somente o PDF para o repositório. Para conferir páginas/tamanho, usar `pdfinfo docs/academic/submission/prodtime_sbc_preview.pdf`. O arquivo é um preview para revisão humana, não a entrega institucional definitiva. Metadados de data/identificador podem variar em recompilações.
 
-## Revisão necessária
+## Estado editorial R9.4C
 
-O exemplo SBC orienta Resumo e Abstract com até dez linhas cada; ambos excedem essa orientação neste preview, mas ficam inteiros na primeira página. O texto foi preservado conforme a tarefa, sem redução artificial. Uma adequação editorial deverá ser decidida na revisão humana, junto do limite institucional de páginas ainda não confirmado. A legibilidade das capturas, especialmente em impressão, também deve ser confirmada pelo autor.
+Após aprovação humana da estrutura e das figuras em R9.4B, Resumo e Abstract foram condensados em R9.4C e ocupam dez linhas cada na primeira página. A unidade de Desperdício na Tabela 1 foi corrigida para `\%` na fonte LaTeX. O modelo, as imagens e o restante do artigo permanecem preservados.
 
-R9.4 continua em andamento até revisão humana e confirmação institucional. R10/R11 não iniciados.
+R9.4 concluído editorialmente; R9 concluído quanto ao conteúdo e artigo produzido. O limite institucional de páginas continua sem confirmação; poderá exigir adequação futura. Estado e evidências atuais em `../ARTICLE_SUBMISSION.md`. R10/R11 não iniciados.
