@@ -59,7 +59,7 @@ Datas usam `dd/MM/yyyy`. Números usam locale `pt-BR`, agrupamento de milhares e
 
 Os componentes usam `MaterialTheme.colorScheme` e `MaterialTheme.typography`. Nenhuma cor de conteúdo é fixa fora dos tokens existentes, permitindo adaptação natural aos temas claro, escuro e dinâmico.
 
-O tema dinâmico permanece habilitado em Android 12 ou superior e acompanha o modo claro ou escuro do sistema. Em versões anteriores, o aplicativo usa as paletas clara e escura locais. A inspeção estática confirmou o uso dos tokens; contraste e aparência continuam pendentes de validação física.
+O tema dinâmico permanece habilitado em Android 12 ou superior e acompanha o modo claro ou escuro do sistema. Em versões anteriores, o aplicativo usa as paletas clara e escura locais. A inspeção estática confirmou o uso dos tokens; as evidências físicas registradas encerraram a revisão de aparência nos modos claro e escuro.
 
 ## 13. Acessibilidade base
 
@@ -77,8 +77,8 @@ O indicador de avanço dos cards da Home é somente decorativo e não participa 
 - R6.6A: estado compartilhado e gestão em memória implementados, validados por build/test local e confirmados na rodada física 1.
 - R6.6B: persistência encerrada como evolução futura, fora do MVP acadêmico.
 - R6.7: integração, textos, validações e estados de resultado revisados; concluído por testes/build, com revisão física final reservada ao R6.8.
-- R6.8: rodada física 1 executada; refinamentos de foco, feedback dos cards, cópia e calendário implementados; nova rodada física pendente.
-- R8.6: sanitização de entradas, limites operacionais e limpeza individual de erros implementados; o gate físico final foi reduzido a esses comportamentos.
+- R6.8: concluído após as rodadas físicas de navegação, foco, feedback dos cards, cópia, calendário, responsividade e tratamento de erros.
+- R8.6: sanitização de entradas, limites operacionais e limpeza individual de erros aprovados local e fisicamente.
 
 ## 16. Identidade e acabamento
 

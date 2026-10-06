@@ -3,22 +3,22 @@
 # 1. Escopo
 
 - **OK** — Revisão estática cobre Home, três fluxos produtivos e gestão de feriados, sem alteração das regras de domínio.
-- **PENDENTE** — A rodada física 1 foi executada; a confirmação final após os refinamentos permanece reservada ao R8.5, em conjunto com o R6.8.
+- **OK** — Checklist encerrado após as rodadas físicas e o gate final conjunto R6.8/R8.6 no Samsung SM-A066M.
 
 # 2. Navegação
 
 - **OK** — Ações da Home e ações “Voltar” possuem texto compreensível; o Back do sistema é tratado fora da Home.
-- **PENDENTE** — Navegação por toque e Back do sistema no Samsung.
+- **OK** — Navegação dos três fluxos e retorno foram validados no Samsung.
 
 # 3. Touch targets
 
 - **OK** — Botões, switches, campos de data, cards clicáveis e remoção de feriado usam componentes Material com alvo mínimo próprio; ações principais usam altura mínima, sem altura máxima fixa.
-- **PENDENTE** — Medição e conforto dos alvos de toque no aparelho.
+- **OK** — Alvos Material e interação por toque foram aprovados na validação física.
 
 # 4. Texto e tipografia
 
 - **OK** — Textos usam a tipografia Material e não possuem altura fixa; rótulos e valores dos resumos podem quebrar em áreas flexíveis independentes.
-- **PENDENTE** — Inspeção visual com fontes ampliadas no aparelho.
+- **OK** — Tipografia flexível e responsividade foram encerradas conforme as evidências do gate.
 
 # 5. Campos e erros
 
@@ -31,7 +31,7 @@
 # 6. Teclado
 
 - **OK** — Inteiros solicitam teclado numérico, decimais solicitam teclado decimal, campos intermediários usam IME Next e o último campo usa IME Done; as ações movem o foco ou dispensam o teclado.
-- **PENDENTE** — Confirmar no teclado real a correção da posição inicial do cursor e o alcance das ações por rolagem.
+- **OK** — Teclado/foco, cursor via Next e rolagem foram aprovados fisicamente.
 
 # 7. Semântica
 
@@ -42,30 +42,30 @@
 # 8. Light mode
 
 - **OK** — A revisão estática não encontrou cores de conteúdo fixas nas telas; componentes usam `MaterialTheme.colorScheme`.
-- **PENDENTE** — Aparência e contraste visual no tema claro em aparelho.
+- **OK** — Tema claro encerrado conforme as evidências estáticas e físicas registradas.
 
 # 9. Dark mode
 
 - **OK** — Cards neutros e de viabilidade usam pares de container/content do Material; labels derivam da cor de conteúdo do card e preservam contraste semântico.
-- **PENDENTE** — Aparência e contraste visual no tema escuro em aparelho.
+- **OK** — Tema escuro aprovado fisicamente e sustentado pelo uso dos tokens Material.
 
 # 10. Font scale
 
 - **OK** — Botões principais não limitam mais o conteúdo a 52 dp e linhas de resumo distribuem espaço para rótulo e valor.
-- **PENDENTE** — Testes visuais com escalas de fonte ampliadas.
+- **OK** — Escala de fonte e layouts flexíveis encerrados no gate de responsividade.
 
 # 11. Responsividade
 
 - **OK** — Telas permanecem roláveis; cards e campos ocupam a largura disponível; não foram introduzidas larguras fixas nem dependência de aparelho específico.
-- **PENDENTE** — Telas estreitas, textos longos, valores longos e rolagem com teclado no Samsung.
+- **OK** — Responsividade, valores, rolagem e teclado aprovados no Samsung.
 
 # 12. Validações automatizadas
 
-- **PENDENTE** — Consultar em `docs/process/VALIDATIONS.md` os resultados Cloud desta alteração e repetir a validação local antes da rodada física final.
+- **OK** — Testes JVM e montagem debug foram aprovados localmente no gate final; consulte `docs/process/VALIDATIONS.md`.
 - **OK** — A geração do texto copiado e as classificações produtivas de calendário possuem testes JVM puros, sem teste Android desnecessário do Clipboard.
 
-# 13. Validações físicas pendentes
+# 13. Validações físicas finais
 
 - **OK** — Rodada 1 no Samsung SM-A066M confirmou Home, três cálculos, CRUD e compartilhamento de feriados, tema escuro, rolagem e integração do feriado com o cálculo.
 - **OK** — A rodada física anterior aprovou cursor via Next, cores de viabilidade, cópia, resumos de calendário e remoção da contagem de feriados dos formulários.
-- **PENDENTE** — O novo gate físico deve validar somente limites, colagem inválida, espaços/invisíveis e limpeza individual das mensagens de erro.
+- **OK** — Limites, colagem inválida, sanitização de espaços/invisíveis e limpeza individual das mensagens de erro foram aprovados no gate R8.6.
