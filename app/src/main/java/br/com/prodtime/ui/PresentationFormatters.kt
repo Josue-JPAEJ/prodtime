@@ -12,7 +12,9 @@ private val brazilianDateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", b
 private val removableNumericCharacters = setOf('\u200B', '\u200C', '\u200D', '\u2060', '\uFEFF')
 
 fun sanitizeNumericInput(value: String): String = value.filterNot { character ->
-    character.isWhitespace() || character.isSpaceChar() || character in removableNumericCharacters
+    character.isWhitespace() ||
+        Character.isSpaceChar(character) ||
+        character in removableNumericCharacters
 }
 
 fun parseDecimalInput(value: String): BigDecimal? = sanitizeNumericInput(value)
