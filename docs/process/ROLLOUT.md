@@ -89,7 +89,7 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** apresentar o projeto com honestidade e clareza.
 - **Escopo:** demonstração, documentação de uso, material de portfólio e acabamento de identidade (ícone personalizado, nome/versão, descrição curta, finalidade acadêmica e eventual seção “Sobre”).
 - **Critério de conclusão:** materiais coerentes com funcionalidades realmente entregues.
-- **Etapas:** R10.1 — identidade implementada e validada por suíte JVM/build debug; launcher/Sobre e teste instrumentado pendentes de validação local/física. R10.2 — README final não iniciado. R10.3 — vídeo não iniciado. R10.4 — portfólio não iniciado.
+- **Etapas:** R10.1 — concluído e integrado pelo PR #29, com suíte JVM/build debug e aprovação local/física da identidade informada pelo usuário em R10.2; execução do teste instrumentado não registrada. R10.2 — concluído: README final com funcionalidades, capturas reais, arquitetura, regras, validações, execução, limitações e contexto acadêmico; links relativos e escopo documental conferidos. R10.3 — vídeo pendente (não iniciado). R10.4 — portfólio pendente (não iniciado).
 - **Status:** em andamento.
 
 ## R11 — Release v1.0.0
