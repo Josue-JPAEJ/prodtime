@@ -25,6 +25,8 @@
 - **OK** — Campos têm rótulo visível, unidade ou erro textual próximo e estado de erro do Material; erros gerais e de período também são textuais e não dependem somente de cor.
 - **OK** — Entradas decimais continuam aceitando vírgula e ponto e são convertidas diretamente para `BigDecimal`.
 - **OK** — Ao receber foco pelo IME Next, o campo posiciona a seleção no fim; durante a edição, a seleção manual não é sobrescrita.
+- **OK** — Colagem remove somente espaços Unicode e caracteres invisíveis de formatação; texto alfabético permanece visível e inválido.
+- **OK** — A mensagem de um campo já invalidado é removida assim que esse campo é editado, sem ocultar erros dos demais.
 
 # 6. Teclado
 
@@ -65,4 +67,5 @@
 # 13. Validações físicas pendentes
 
 - **OK** — Rodada 1 no Samsung SM-A066M confirmou Home, três cálculos, CRUD e compartilhamento de feriados, tema escuro, rolagem e integração do feriado com o cálculo.
-- **PENDENTE** — R6.8 e R8.5 permanecem abertos até nova rodada no Samsung para validar cursor, cópia, cores semânticas, resumos de calendário e remoção da contagem nos formulários.
+- **OK** — A rodada física anterior aprovou cursor via Next, cores de viabilidade, cópia, resumos de calendário e remoção da contagem de feriados dos formulários.
+- **PENDENTE** — O novo gate físico deve validar somente limites, colagem inválida, espaços/invisíveis e limpeza individual das mensagens de erro.

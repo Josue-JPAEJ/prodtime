@@ -303,3 +303,21 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Resultado:** validação física parcialmente aprovada; o gate final permanece aberto até nova rodada após os refinamentos.
 - **Rollout:** R6 em andamento; R6.8 com rodada 1 validada e rodada final pendente; R7 concluído; R8 em andamento; R8.5 com rodada 1 validada e rodada final pendente; R9 não iniciado.
 - **Validação Cloud dos refinamentos:** `./gradlew testDebugUnitTest` não iniciou porque o wrapper não possui permissão de execução; `bash ./gradlew testDebugUnitTest` não obteve o Gradle 8.13 porque o proxy retornou `HTTP/1.1 403 Forbidden`; `gradle testDebugUnitTest assembleDebug`, com Gradle 8.14.4 disponível, falhou na configuração pela ausência de Android SDK (`ANDROID_HOME` ou `sdk.dir`). A suíte e o APK permanecem pendentes de confirmação local antes da rodada física final.
+
+## R6.8/R8.5 — validação física dos refinamentos anteriores
+
+- **Dispositivo:** Samsung SM-A066M.
+- **Aprovado:** cursor posicionado no fim ao avançar por Next; distinção visual e textual de meta atendida/não atendida; cópia de resultados; resumo de calendário; remoção de “Feriados cadastrados” das telas de cálculo; três fluxos, calendário, feriados, CRUD em memória e resultados históricos.
+- **Novo achado:** texto colado em “Velocidade” deixou espaços/caracteres invisíveis residuais, mantendo a mensagem e o cálculo bloqueado mesmo após substituição visual do conteúdo.
+- **Gate remanescente:** validar somente limites operacionais, colagem inválida, remoção de whitespace/invisíveis e limpeza individual de erro.
+
+## R8.6 — robustez de inputs e limites operacionais
+
+- **Data:** 2026-10-06.
+- **Implementação:** sanitização pura e compartilhada antes do parsing e no `NumericField`; validadores compartilhados para meta, fitas, horas, velocidade e desperdício; limpeza do erro do campo editado.
+- **Cobertura:** testes JVM para espaços, tab, quebra de linha, NBSP, narrow NBSP, zero-width space, ZWNJ, ZWJ, word joiner, BOM, vírgula decimal, preservação de texto inválido e fronteiras operacionais.
+- **Proteção:** motores matemáticos, `HALF_EVEN`, calendário, `HolidayResolver` e regras de viabilidade não foram alterados.
+- **Identidade:** nome ProdTime preservado; launcher de template confirmado; acabamento de ícone e eventual seção “Sobre” reservado ao R10.
+- **Clipboard:** a BOM Compose declarada é `2024.09.00`; a migração para `LocalClipboard` introduziria uma chamada suspensa e não pôde ser compilada neste ambiente sem Android SDK. Para evitar risco no fluxo fisicamente aprovado, `LocalClipboardManager` foi mantido e seu warning de depreciação continua não bloqueador, sem `suppress`.
+- **Cloud:** `./gradlew testDebugUnitTest` e `./gradlew assembleDebug` não iniciaram porque o wrapper não possui permissão de execução; as variantes com `bash ./gradlew` tentaram baixar o Gradle 8.13, mas o proxy retornou `HTTP/1.1 403 Forbidden`. A tentativa equivalente `gradle testDebugUnitTest assembleDebug` com o Gradle instalado falhou antes das tarefas porque não há Android SDK (`ANDROID_HOME`/`sdk.dir`).
+- **Validação local/física:** pendente; R6 e R8 permanecem em andamento e R9 não foi iniciado.

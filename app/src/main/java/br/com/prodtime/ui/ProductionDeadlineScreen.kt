@@ -81,7 +81,10 @@ fun ProductionDeadlineScreen(holidayDefinitions: List<HolidayDefinition>, onBack
             )
 
             SectionTitle("META")
-            NumericField(target, { target = it }, "Quantidade desejada", "m", errors.target, integer = true)
+            NumericField(target, { updated ->
+                    target = updated
+                    errors = errors.copy(target = null)
+                }, "Quantidade desejada", "m", errors.target, integer = true)
 
             SectionTitle("INÍCIO")
             DateField("Data inicial", startDate) { startEpochDay = it.toEpochDay() }
@@ -92,12 +95,24 @@ fun ProductionDeadlineScreen(holidayDefinitions: List<HolidayDefinition>, onBack
             PolicySwitch("Trabalhar aos domingos", includeSundays) { includeSundays = it }
             PolicySwitch("Trabalhar em feriados", workOnHolidays) { workOnHolidays = it }
             SectionTitle("PRODUÇÃO")
-            NumericField(speed, { speed = it }, "Velocidade", "cm/min", errors.speed)
-            NumericField(tapes, { tapes = it }, "Quantidade de fitas", "fitas", errors.tapes, integer = true)
-            NumericField(hours, { hours = it }, "Horas produtivas por dia", "h/dia", errors.hours)
+            NumericField(speed, { updated ->
+                    speed = updated
+                    errors = errors.copy(speed = null)
+                }, "Velocidade", "cm/min", errors.speed)
+            NumericField(tapes, { updated ->
+                    tapes = updated
+                    errors = errors.copy(tapes = null)
+                }, "Quantidade de fitas", "fitas", errors.tapes, integer = true)
+            NumericField(hours, { updated ->
+                    hours = updated
+                    errors = errors.copy(hours = null)
+                }, "Horas produtivas por dia", "h/dia", errors.hours)
             NumericField(
                 waste,
-                { waste = it },
+                { updated ->
+                    waste = updated
+                    errors = errors.copy(waste = null)
+                },
                 "Desperdício",
                 "%",
                 errors.waste,
@@ -113,11 +128,11 @@ fun ProductionDeadlineScreen(holidayDefinitions: List<HolidayDefinition>, onBack
                     val parsedHours = parseDecimalInput(hours)
                     val parsedWaste = parseDecimalInput(waste)
                     errors = DeadlineErrors(
-                        target = targetError(parsedTarget),
-                        speed = positiveDecimalErrorForDeadline(parsedSpeed, "Informe uma velocidade maior que zero."),
-                        tapes = if (parsedTapes == null) "Informe uma quantidade inteira maior que zero." else null,
-                        hours = positiveDecimalErrorForDeadline(parsedHours, "Informe horas maiores que zero."),
-                        waste = wasteErrorForDeadline(parsedWaste),
+                        target = targetInputError(parsedTarget),
+                        speed = speedInputError(parsedSpeed),
+                        tapes = tapeCountInputError(parsedTapes),
+                        hours = productiveHoursInputError(parsedHours),
+                        waste = wasteInputError(parsedWaste),
                     )
                     generalError = null
                     display = null
@@ -180,21 +195,4 @@ private fun DeadlineResultCard(display: DeadlineDisplay) {
     ) {
         rows.forEach { (label, value) -> SummaryRow(label, value) }
     }
-}
-
-private fun targetError(value: BigDecimal?): String? = when {
-    value == null -> "Informe uma quantidade válida."
-    value <= BigDecimal.ZERO -> "A quantidade deve ser maior que zero."
-    value.stripTrailingZeros().scale() > 0 -> "A quantidade deve ser informada em metros inteiros."
-    else -> null
-}
-
-private fun positiveDecimalErrorForDeadline(value: BigDecimal?, message: String): String? =
-    if (value == null || value <= BigDecimal.ZERO) message else null
-
-private fun wasteErrorForDeadline(value: BigDecimal?): String? = when {
-    value == null -> "Informe um percentual válido."
-    value < BigDecimal.ZERO -> "O desperdício não pode ser negativo."
-    value >= BigDecimal.valueOf(100) -> "O desperdício deve ser menor que 100%."
-    else -> null
 }

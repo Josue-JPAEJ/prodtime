@@ -90,12 +90,24 @@ fun ProductionEstimateScreen(holidayDefinitions: List<HolidayDefinition>, onBack
             PolicySwitch("Trabalhar aos domingos", includeSundays) { includeSundays = it }
             PolicySwitch("Trabalhar em feriados", workOnHolidays) { workOnHolidays = it }
             SectionTitle("PRODUÇÃO")
-            NumericField(speed, { speed = it }, "Velocidade", "cm/min", errors.speed)
-            NumericField(tapes, { tapes = it }, "Quantidade de fitas", "fitas", errors.tapes, integer = true)
-            NumericField(hours, { hours = it }, "Horas produtivas por dia", "h/dia", errors.hours)
+            NumericField(speed, { updated ->
+                    speed = updated
+                    errors = errors.copy(speed = null)
+                }, "Velocidade", "cm/min", errors.speed)
+            NumericField(tapes, { updated ->
+                    tapes = updated
+                    errors = errors.copy(tapes = null)
+                }, "Quantidade de fitas", "fitas", errors.tapes, integer = true)
+            NumericField(hours, { updated ->
+                    hours = updated
+                    errors = errors.copy(hours = null)
+                }, "Horas produtivas por dia", "h/dia", errors.hours)
             NumericField(
                 waste,
-                { waste = it },
+                { updated ->
+                    waste = updated
+                    errors = errors.copy(waste = null)
+                },
                 "Desperdício",
                 "%",
                 errors.waste,
@@ -111,10 +123,10 @@ fun ProductionEstimateScreen(holidayDefinitions: List<HolidayDefinition>, onBack
                     val parsedWaste = parseDecimalInput(waste)
                     errors = EstimateErrors(
                         period = if (endDate < startDate) "A data final não pode ser anterior à inicial." else null,
-                        speed = positiveDecimalError(parsedSpeed, "Informe uma velocidade maior que zero."),
-                        tapes = if (parsedTapes == null) "Informe uma quantidade inteira maior que zero." else null,
-                        hours = positiveDecimalError(parsedHours, "Informe horas maiores que zero."),
-                        waste = wasteError(parsedWaste),
+                        speed = speedInputError(parsedSpeed),
+                        tapes = tapeCountInputError(parsedTapes),
+                        hours = productiveHoursInputError(parsedHours),
+                        waste = wasteInputError(parsedWaste),
                     )
                     generalError = null
                     result = null
@@ -176,14 +188,4 @@ private fun EstimateResultCard(result: ProductionEstimateResult, startDate: Loca
     ) {
         rows.forEach { (label, value) -> SummaryRow(label, value) }
     }
-}
-
-private fun positiveDecimalError(value: BigDecimal?, message: String): String? =
-    if (value == null || value <= BigDecimal.ZERO) message else null
-
-private fun wasteError(value: BigDecimal?): String? = when {
-    value == null -> "Informe um percentual válido."
-    value < BigDecimal.ZERO -> "O desperdício não pode ser negativo."
-    value >= BigDecimal.valueOf(100) -> "O desperdício deve ser menor que 100%."
-    else -> null
 }
