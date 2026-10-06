@@ -21,19 +21,21 @@ A Home apresenta “Quanto consigo produzir?”, “Quando vou terminar?” e �
 
 ## 5. Quanto consigo produzir?
 
-O fluxo coleta período, políticas de calendário, velocidade, fitas, horas produtivas e desperdício. A ação “Calcular produção” constrói `ProductionEstimateInput` e delega o cálculo a `ProductionEstimateCalculator`. O resultado destaca produção líquida e resume dias produtivos, produção bruta, desperdício e período. Zero dias produtivos é um resultado válido e recebe explicação própria.
+O fluxo coleta período, políticas de calendário, velocidade, fitas, horas produtivas e desperdício. A ação “Calcular produção” constrói `ProductionEstimateInput` e delega o cálculo a `ProductionEstimateCalculator`. O resultado destaca produção líquida e resume dias produtivos, categorias de calendário efetivamente incluídas, produção bruta, desperdício e período. Zero dias produtivos é um resultado válido e recebe explicação própria.
 
 ## 6. Quando vou terminar?
 
-O fluxo coleta meta inteira em metros, data inicial, políticas de calendário e condições produtivas. A ação “Calcular prazo” constrói `ProductionDeadlineInput` e delega o cálculo a `ProductionDeadlineCalculator`. O resultado destaca a data de conclusão e resume meta, dias produtivos, “Produção” e saldo. “Produção” é o rótulo aprovado para preservar legibilidade em telas estreitas.
+O fluxo coleta meta inteira em metros, data inicial, políticas de calendário e condições produtivas. A ação “Calcular prazo” constrói `ProductionDeadlineInput` e delega o cálculo a `ProductionDeadlineCalculator`. O resultado destaca a data de conclusão e resume meta, dias produtivos, categorias de calendário efetivamente incluídas, “Produção” e saldo. “Produção” é o rótulo aprovado para preservar legibilidade em telas estreitas.
 
 ## 6.1. Verificar uma meta
 
-O fluxo compara a capacidade de um período com uma meta inteira positiva e chama `ProductionViabilityAdvisor`. O card informa textualmente “Meta atendida” ou “Meta não atendida”, produção, meta, mínimo necessário e fitas adicionais. Diferença positiva aparece como “Excedente” com sinal `+`; diferença negativa aparece como “Déficit” em módulo, sem sinal negativo; zero aparece como “Diferença — 0 m”. Sem dias produtivos, mínimo e adicional são “Não aplicável”.
+O fluxo compara a capacidade de um período com uma meta inteira positiva e chama `ProductionViabilityAdvisor`. O card informa textualmente “Meta atendida” ou “Meta não atendida”, dias produtivos, categorias de calendário efetivamente incluídas, produção, meta, mínimo necessário e fitas adicionais. O estado atendido usa `tertiaryContainer`/`onTertiaryContainer`; o não atendido usa `errorContainer`/`onErrorContainer`, sem depender somente da cor. Diferença positiva aparece como “Excedente” com sinal `+`; diferença negativa aparece como “Déficit” em módulo, sem sinal negativo; zero aparece como “Diferença — 0 m”. Sem dias produtivos, mínimo e adicional são “Não aplicável”.
 
 ## 7. Calendário
 
 Datas permanecem como `LocalDate`. A seleção usa o DatePicker do Material 3 e converte epoch millis em UTC para evitar deslocamento de dia. As políticas de inclusão das pontas, sábados, domingos e feriados são editáveis conforme cada fluxo.
+
+Os cards contam feriados, sábados e domingos a partir das datas produtivas do resultado e exibem somente categorias com contagem positiva. Uma data que seja simultaneamente feriado e sábado ou domingo participa das duas classificações, sem que as contagens sejam somadas para reconstruir o total produtivo.
 
 ## 8. Defaults de UI
 
@@ -49,7 +51,7 @@ Campos vazios, decimais inválidos, inteiros não positivos, período invertido,
 
 ## 11. Resultados
 
-Datas usam `dd/MM/yyyy`. Números usam locale `pt-BR`, agrupamento de milhares e preservação das casas decimais relevantes. Resultados integrais são exibidos sem casas decimais. Saldo positivo recebe `+`; zero não recebe sinal.
+Datas usam `dd/MM/yyyy`. Números usam locale `pt-BR`, agrupamento de milhares e preservação das casas decimais relevantes. Resultados integrais são exibidos sem casas decimais. Saldo positivo recebe `+`; zero não recebe sinal. Cada card oferece “Copiar resultado” e copia em texto simples exatamente as informações apresentadas, incluindo os resumos de calendário visíveis, com confirmação breve após a ação.
 
 ## 12. Light/Dark
 
@@ -65,14 +67,14 @@ O indicador de avanço dos cards da Home é somente decorativo e não participa 
 
 ## 14. Feriados — estado atual
 
-`ProdTimeApp` mantém uma coleção compartilhada de `HolidayDefinition` durante a sessão. Os três fluxos exibem a contagem real e usam a mesma coleção nos inputs de domínio. A gestão em memória permite listar, adicionar e remover feriados anuais (`MonthDay`) e específicos (`LocalDate`). Não existem feriados fictícios, lista nacional, API ou persistência; ao encerrar o processo, os cadastros são descartados. A tela informa que os feriados cadastrados ficam disponíveis durante a sessão. Por decisão do R6.6B, persistência é evolução futura, fora do MVP acadêmico.
+`ProdTimeApp` mantém uma coleção compartilhada de `HolidayDefinition` durante a sessão. Os três fluxos usam a mesma coleção nos inputs de domínio; a quantidade cadastrada é exibida somente na tela de gestão de feriados, onde é relevante. A gestão em memória permite listar, adicionar e remover feriados anuais (`MonthDay`) e específicos (`LocalDate`). Não existem feriados fictícios, lista nacional, API ou persistência; ao encerrar o processo, os cadastros são descartados. A tela informa que os feriados cadastrados ficam disponíveis durante a sessão. Por decisão do R6.6B, persistência é evolução futura, fora do MVP acadêmico.
 
 ## 15. Evoluções R6.5–R6.8
 
-- R6.5: UI de viabilidade implementada e validada por build/test local; validação física pendente.
-- R6.6A: estado compartilhado e gestão em memória implementados e validados por build/test local; validação física pendente.
+- R6.5: UI de viabilidade implementada, validada por build/test local e confirmada na rodada física 1.
+- R6.6A: estado compartilhado e gestão em memória implementados, validados por build/test local e confirmados na rodada física 1.
 - R6.6B: persistência encerrada como evolução futura, fora do MVP acadêmico.
 - R6.7: integração, textos, validações e estados de resultado revisados; concluído por testes/build, com revisão física final reservada ao R6.8.
-- R6.8: validação manual em aparelho físico, incluindo teclado, responsividade, tema e acessibilidade.
+- R6.8: rodada física 1 executada; refinamentos de foco, feedback dos cards, cópia e calendário implementados; nova rodada física pendente.
 
 Peso, tara e massa linear continuam adiados porque o recurso secundário não integra a jornada principal atual.

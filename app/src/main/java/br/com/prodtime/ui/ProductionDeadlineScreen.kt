@@ -91,8 +91,6 @@ fun ProductionDeadlineScreen(holidayDefinitions: List<HolidayDefinition>, onBack
             PolicySwitch("Trabalhar aos sábados", includeSaturdays) { includeSaturdays = it }
             PolicySwitch("Trabalhar aos domingos", includeSundays) { includeSundays = it }
             PolicySwitch("Trabalhar em feriados", workOnHolidays) { workOnHolidays = it }
-            Text("Feriados cadastrados: ${holidayDefinitions.size}", color = MaterialTheme.colorScheme.onSurfaceVariant)
-
             SectionTitle("PRODUÇÃO")
             NumericField(speed, { speed = it }, "Velocidade", "cm/min", errors.speed)
             NumericField(tapes, { tapes = it }, "Quantidade de fitas", "fitas", errors.tapes, integer = true)
@@ -167,14 +165,20 @@ private fun DeadlineResultCard(display: DeadlineDisplay) {
         balance > BigDecimal.ZERO -> "+${formatMeters(balance)}"
         else -> formatMeters(balance)
     }
+    val calendarRows = calendarIncludedDays(result.calendar, result.resolvedHolidays)
+    val rows = buildList {
+        add("Meta" to formatMeters(display.targetMeters))
+        add("Dias produtivos" to result.requiredProductiveDays.toString())
+        calendarRows.forEach { add(it.label to it.count.toString()) }
+        add("Produção" to formatMeters(result.capacity.netProductionMeters))
+        add("Saldo" to formattedBalance)
+    }
     ResultCard(
         headline = "Conclusão estimada",
         primaryValue = formatDate(result.completionDate),
+        copyText = resultCopyText("Conclusão estimada", formatDate(result.completionDate), rows),
     ) {
-        SummaryRow("Meta", formatMeters(display.targetMeters))
-        SummaryRow("Dias produtivos", result.requiredProductiveDays.toString())
-        SummaryRow("Produção", formatMeters(result.capacity.netProductionMeters))
-        SummaryRow("Saldo", formattedBalance)
+        rows.forEach { (label, value) -> SummaryRow(label, value) }
     }
 }
 

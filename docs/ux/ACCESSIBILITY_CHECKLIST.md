@@ -3,7 +3,7 @@
 # 1. Escopo
 
 - **OK** — Revisão estática cobre Home, três fluxos produtivos e gestão de feriados, sem alteração das regras de domínio.
-- **PENDENTE** — Confirmação final em aparelho físico está reservada ao R8.5, em conjunto com o R6.8.
+- **PENDENTE** — A rodada física 1 foi executada; a confirmação final após os refinamentos permanece reservada ao R8.5, em conjunto com o R6.8.
 
 # 2. Navegação
 
@@ -24,16 +24,18 @@
 
 - **OK** — Campos têm rótulo visível, unidade ou erro textual próximo e estado de erro do Material; erros gerais e de período também são textuais e não dependem somente de cor.
 - **OK** — Entradas decimais continuam aceitando vírgula e ponto e são convertidas diretamente para `BigDecimal`.
+- **OK** — Ao receber foco pelo IME Next, o campo posiciona a seleção no fim; durante a edição, a seleção manual não é sobrescrita.
 
 # 6. Teclado
 
 - **OK** — Inteiros solicitam teclado numérico, decimais solicitam teclado decimal, campos intermediários usam IME Next e o último campo usa IME Done; as ações movem o foco ou dispensam o teclado.
-- **PENDENTE** — Teclado real, sequência de foco e alcance das ações por rolagem com o teclado aberto.
+- **PENDENTE** — Confirmar no teclado real a correção da posição inicial do cursor e o alcance das ações por rolagem.
 
 # 7. Semântica
 
 - **OK** — O indicador visual da Home foi excluído da árvore semântica; switches agrupam rótulo e estado; seletores de tipo de feriado expõem o estado selecionado.
 - **OK** — Cards informam textualmente “Produção estimada”, “Conclusão estimada”, “Meta atendida” ou “Meta não atendida”, sem cálculo duplicado na semântica.
+- **OK** — A ação de cópia usa `IconButton`, alvo Material e descrição “Copiar resultado”; o resultado de viabilidade permanece identificado por texto além da cor.
 
 # 8. Light mode
 
@@ -42,7 +44,7 @@
 
 # 9. Dark mode
 
-- **OK** — A revisão estática confirmou tokens Material para cards normais, resultado, erro, texto secundário e divisores.
+- **OK** — Cards neutros e de viabilidade usam pares de container/content do Material; labels derivam da cor de conteúdo do card e preservam contraste semântico.
 - **PENDENTE** — Aparência e contraste visual no tema escuro em aparelho.
 
 # 10. Font scale
@@ -57,10 +59,10 @@
 
 # 12. Validações automatizadas
 
-- **PENDENTE** — A suíte JVM e a montagem do APK desta alteração não foram executadas no Cloud por limitações do wrapper, proxy e Android SDK registradas em `docs/process/VALIDATIONS.md`; permanece necessária nova execução local.
-- **NÃO APLICÁVEL** — Não foi adicionada lógica nova de domínio que justificasse novos testes unitários.
+- **PENDENTE** — Consultar em `docs/process/VALIDATIONS.md` os resultados Cloud desta alteração e repetir a validação local antes da rodada física final.
+- **OK** — A geração do texto copiado e as classificações produtivas de calendário possuem testes JVM puros, sem teste Android desnecessário do Clipboard.
 
 # 13. Validações físicas pendentes
 
-- **PENDENTE** — R6.5 e R6.6A em aparelho; teclado real; rolagem com teclado; fonte ampliada; tema claro; tema escuro; contraste visual; Back; touch targets; feriados; viabilidade; e descarte dos feriados após encerramento do processo.
-- **PENDENTE** — R6.8 e R8.5 permanecem abertos até a execução no Samsung disponível para a validação final.
+- **OK** — Rodada 1 no Samsung SM-A066M confirmou Home, três cálculos, CRUD e compartilhamento de feriados, tema escuro, rolagem e integração do feriado com o cálculo.
+- **PENDENTE** — R6.8 e R8.5 permanecem abertos até nova rodada no Samsung para validar cursor, cópia, cores semânticas, resumos de calendário e remoção da contagem nos formulários.

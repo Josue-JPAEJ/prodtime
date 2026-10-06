@@ -287,3 +287,19 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Dispositivo:** Samsung temporariamente indisponível nesta etapa.
 - **Itens:** R6.5 e R6.6A em aparelho; teclado real; rolagem com teclado; fonte ampliada; tema claro; tema escuro; contraste visual; Back; touch targets; feriados; viabilidade; e descarte após encerramento do processo.
 - **Conclusão:** nenhuma validação física nova é alegada; R6 e R8 permanecem em andamento, e R9 não foi iniciado.
+
+## R6.8/R8.5 — validação física, rodada 1
+
+- **Data:** 2026-10-06.
+- **Dispositivo:** Samsung SM-A066M.
+- **Home:** três fluxos principais funcionais; acesso à configuração de feriados funcional; layout e rolagem confirmados no tema escuro.
+- **Modo A:** 01/10/2026 a 27/10/2026, 25 cm/min, 3 fitas, 16 h/dia, 3% de desperdício, sem sábado/domingo — 13.270 m líquidos, 19 dias produtivos, 13.680 m brutos e 410,4 m de desperdício; resultado correto.
+- **Modo B:** meta de 10.000 m, início em 05/10/2026, 25 cm/min, 3 fitas, 16 h/dia e 3% de desperdício — conclusão em 23/10/2026, 15 dias produtivos, produção de 10.476 m e saldo de +476 m; resultado correto. O rótulo “Produção” corrigiu a quebra visual anterior.
+- **Viabilidade atendida:** produção de 13.270 m, meta de 10.000 m, excedente de +3.270 m, mínimo de 3 fitas e 0 fitas adicionais; resultado correto.
+- **Viabilidade não atendida:** com 2 fitas, produção de 8.846 m, meta de 10.000 m, déficit de 1.154 m, mínimo de 3 fitas e 1 fita adicional; resultado correto.
+- **Feriados:** CRUD em memória funcional para Natal anual (25/12) e data específica; coleção compartilhada corretamente entre os fluxos.
+- **Integração real do calendário:** 01/12/2026 a 31/12/2026, 28 cm/min, 1 fita, 16 h/dia e 3% de desperdício. Com feriado não trabalhado: 22 dias produtivos, 5.737 m líquidos, 5.914 m brutos e 177,42 m de desperdício. Com feriado trabalhado: 23 dias produtivos, 5.997 m líquidos e 6.182 m brutos. A política alterou efetivamente o cálculo.
+- **Achados:** cursor do próximo campo iniciava antes do texto; necessidade de diferenciar visualmente meta atendida/não atendida; ação para copiar resultado; resumo de sábados, domingos e feriados efetivamente incluídos; remoção da contagem de feriados cadastrados das telas de cálculo.
+- **Resultado:** validação física parcialmente aprovada; o gate final permanece aberto até nova rodada após os refinamentos.
+- **Rollout:** R6 em andamento; R6.8 com rodada 1 validada e rodada final pendente; R7 concluído; R8 em andamento; R8.5 com rodada 1 validada e rodada final pendente; R9 não iniciado.
+- **Validação Cloud dos refinamentos:** `./gradlew testDebugUnitTest` não iniciou porque o wrapper não possui permissão de execução; `bash ./gradlew testDebugUnitTest` não obteve o Gradle 8.13 porque o proxy retornou `HTTP/1.1 403 Forbidden`; `gradle testDebugUnitTest assembleDebug`, com Gradle 8.14.4 disponível, falhou na configuração pela ausência de Android SDK (`ANDROID_HOME` ou `sdk.dir`). A suíte e o APK permanecem pendentes de confirmação local antes da rodada física final.

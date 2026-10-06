@@ -90,8 +90,6 @@ fun ProductionViabilityScreen(holidayDefinitions: List<HolidayDefinition>, onBac
             PolicySwitch("Trabalhar aos sábados", includeSaturdays) { includeSaturdays = it }
             PolicySwitch("Trabalhar aos domingos", includeSundays) { includeSundays = it }
             PolicySwitch("Trabalhar em feriados", workOnHolidays) { workOnHolidays = it }
-            Text("Feriados cadastrados: ${holidayDefinitions.size}", color = MaterialTheme.colorScheme.onSurfaceVariant)
-
             SectionTitle("PRODUÇÃO")
             NumericField(speed, { speed = it }, "Velocidade", "cm/min", errors.speed)
             NumericField(tapes, { tapes = it }, "Quantidade atual de fitas", "fitas", errors.tapes, integer = true)
@@ -147,16 +145,31 @@ fun ProductionViabilityScreen(holidayDefinitions: List<HolidayDefinition>, onBac
 private fun ViabilityResultCard(result: ProductionViabilityResult) {
     val noProductiveDays = result.currentEstimate.calendar.productiveDays == 0
     val difference = presentDifference(result.differenceMeters)
+    val headline = if (result.meetsTarget) "Meta atendida" else "Meta não atendida"
+    val production = formatMeters(result.currentEstimate.netProductionMeters)
+    val message = if (noProductiveDays) "Não há dias produtivos no período informado." else null
+    val calendarRows = calendarIncludedDays(
+        result.currentEstimate.calendar,
+        result.currentEstimate.resolvedHolidays,
+    )
+    val rows = buildList {
+        add("Dias produtivos" to result.currentEstimate.calendar.productiveDays.toString())
+        calendarRows.forEach { add(it.label to it.count.toString()) }
+        add("Meta" to formatMeters(result.targetMeters))
+        add(difference.label to formatMeters(difference.meters).let { if (difference.label == "Excedente") "+$it" else it })
+        add("Mínimo necessário" to (result.minimumTapeCount?.let { "$it fitas" } ?: "Não aplicável"))
+        add("Fitas adicionais" to (result.additionalTapesNeeded?.toString() ?: "Não aplicável"))
+    }
     ResultCard(
-        headline = if (result.meetsTarget) "Meta atendida" else "Meta não atendida",
-        primaryValue = formatMeters(result.currentEstimate.netProductionMeters),
+        headline = headline,
+        primaryValue = production,
         primaryLabel = "Produção",
-        message = if (noProductiveDays) "Não há dias produtivos no período informado." else null,
+        message = message,
+        containerColor = if (result.meetsTarget) MaterialTheme.colorScheme.tertiaryContainer else MaterialTheme.colorScheme.errorContainer,
+        contentColor = if (result.meetsTarget) MaterialTheme.colorScheme.onTertiaryContainer else MaterialTheme.colorScheme.onErrorContainer,
+        copyText = resultCopyText(headline, production, rows, primaryLabel = "Produção", message = message),
     ) {
-        SummaryRow("Meta", formatMeters(result.targetMeters))
-        SummaryRow(difference.label, formatMeters(difference.meters).let { if (difference.label == "Excedente") "+$it" else it })
-        SummaryRow("Mínimo necessário", result.minimumTapeCount?.let { "$it fitas" } ?: "Não aplicável")
-        SummaryRow("Fitas adicionais", result.additionalTapesNeeded?.toString() ?: "Não aplicável")
+        rows.forEach { (label, value) -> SummaryRow(label, value) }
     }
 }
 
