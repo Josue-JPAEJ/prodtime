@@ -321,3 +321,17 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Clipboard:** a BOM Compose declarada é `2024.09.00`; a migração para `LocalClipboard` introduziria uma chamada suspensa e não pôde ser compilada neste ambiente sem Android SDK. Para evitar risco no fluxo fisicamente aprovado, `LocalClipboardManager` foi mantido e seu warning de depreciação continua não bloqueador, sem `suppress`.
 - **Cloud:** `./gradlew testDebugUnitTest` e `./gradlew assembleDebug` não iniciaram porque o wrapper não possui permissão de execução; as variantes com `bash ./gradlew` tentaram baixar o Gradle 8.13, mas o proxy retornou `HTTP/1.1 403 Forbidden`. A tentativa equivalente `gradle testDebugUnitTest assembleDebug` com o Gradle instalado falhou antes das tarefas porque não há Android SDK (`ANDROID_HOME`/`sdk.dir`).
 - **Validação local/física:** pendente; R6 e R8 permanecem em andamento e R9 não foi iniciado.
+
+
+## R6.8/R8.6 — validação local e física final
+
+- **Ambiente local:** Windows; Gradle 8.13; Kotlin 2.0.21.
+- **Dispositivo:** Samsung SM-A066M.
+- **Testes:** `.\gradlew.bat testDebugUnitTest` — `BUILD SUCCESSFUL in 21s`; `22 actionable tasks: 6 executed, 16 up-to-date`.
+- **Build Android:** `.\gradlew.bat assembleDebug` — `BUILD SUCCESSFUL in 6s`; `34 actionable tasks: 4 executed, 30 up-to-date`.
+- **Git no início da validação:** `develop` sincronizada com `origin/develop`; working tree clean.
+- **Validação física:** cursor via Next aprovado; cards de viabilidade atendida/não atendida aprovados; cópia aprovada; calendário no resultado aprovado; contagem “Feriados cadastrados” ausente dos formulários; três fluxos funcionais.
+- **Limites aprovados:** velocidade `999,99` válida e `1000` inválida; meta `999.999.999` válida e `1.000.000.000` inválida; fitas `999.999` válida e `1.000.000` inválida; horas `24` válida e `24,01` inválida; desperdício `0` e `99,99` válidos e `100` inválido.
+- **Robustez aprovada:** whitespace e caracteres invisíveis são sanitizados; texto inválido permanece rejeitado; a edição limpa somente o erro do campo corrigido; o cálculo volta a funcionar sem sair da tela e sem regressão perceptível de edição ou cursor.
+- **Observação:** o warning de depreciação de `LocalClipboardManager` permanece não bloqueador; a cópia foi validada fisicamente e a migração foi evitada neste gate para não introduzir risco.
+- **Conclusão:** R6 encerrado. R8 encerrado.

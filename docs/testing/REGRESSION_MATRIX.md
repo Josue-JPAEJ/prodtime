@@ -88,12 +88,6 @@ Consolidar a rastreabilidade entre referências históricas, contratos vigentes 
 | UI-DIF | déficit, excedente e zero | rótulo e módulo coerentes | `PresentationFormattersTest.apresenta deficit sem sinal negativo`; `...apresenta excedente e diferenca zero` |
 | UI-SALDO+ | saldo positivo de prazo | prefixo `+` | coberto no domínio por D1; apresentação visual ainda manual |
 
-# 10. Cobertura ainda manual
+# 10. Validação manual complementar
 
-- Navegação por toque, botão Back do Android e preservação da coleção durante a sessão.
-- Layout em larguras, densidades e tamanhos de fonte distintos; teclado/IME; rolagem e alvos de toque.
-- Contraste e aparência nos temas claro e escuro.
-- Texto, alinhamento e leitura dos resultados completos de R6.5/R6.6A em aparelho físico.
-- Encerramento do processo e descarte observável dos feriados.
-
-Esses itens pertencem à validação física final R6.8. Não existe alegação de validação visual de R6.5/R6.6A nesta matriz.
+A validação física final registrada em `docs/process/VALIDATIONS.md` aprovou navegação dos três fluxos, teclado/IME e cursor, rolagem e responsividade, cards e mensagens textuais, temas conforme as evidências existentes, feriados em memória, cópia, limites operacionais e sanitização. O descarte dos feriados ao encerrar o processo permanece uma limitação arquitetural documentada, não uma alegação de persistência.

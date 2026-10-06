@@ -56,9 +56,9 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 
 - **Objetivo:** consolidar uma experiência simples, específica e rápida.
 - **Escopo:** fluxo guiado, hierarquia, feedback, responsividade e prevenção de erros.
-- **Critério de conclusão:** jornada principal validada manualmente em dispositivo apropriado.
-- **Etapas:** R6.1 e R6.2 — implementados e validados localmente. R6.3 — implementado e validado no aparelho físico. R6.4 — implementado e validado funcionalmente no aparelho; rótulo “Produção” e responsividade refinados. R6.5 — UI de viabilidade implementada e confirmada na rodada física 1. R6.6A — estado compartilhado e gestão de feriados em memória implementados e confirmados na rodada física 1. R6.6B — encerrado por decisão de escopo: persistência é evolução futura, fora do MVP acadêmico. R6.7 — revisão de integração e UX concluída, sem refatoração ampla; gate automatizado registrado em `VALIDATIONS.md`. R6.8 — cursor, cores, cópia, resumo de calendário e remoção da contagem foram aprovados fisicamente; permanece em andamento somente até validar a robustez final de inputs do R8.6.
-- **Status:** em andamento.
+- **Critério de conclusão:** atendido pelas três jornadas funcionais, navegação, calendário, feriados, viabilidade, feedback de resultados, cópia, responsividade, tratamento de erros e validações locais e físicas no Samsung SM-A066M.
+- **Etapas:** R6.1–R6.7 concluídas. R6.8 — integração final e jornada principal aprovadas no dispositivo físico.
+- **Status:** concluído.
 
 ## R7 — Testes/regressão VBA
 
@@ -72,16 +72,17 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 
 - **Objetivo:** preparar qualidade de uso do MVP.
 - **Escopo:** semântica, contraste, fonte ampliada, teclado, modos claro/escuro e revisão visual.
-- **Critério de conclusão:** checklist de acessibilidade e validação manual registrados.
-- **Etapas:** R8.1 — auditoria estática de acessibilidade implementada. R8.2 — responsividade e tipografia revisadas. R8.3 — teclado, campos e foco revisados. R8.4 — temas claro/escuro e semântica revisados. R8.5 — refinamentos anteriores aprovados fisicamente. R8.6 — robustez de inputs e limites operacionais implementada; validação local e física pendente.
-- **Status:** em andamento.
+- **Critério de conclusão:** atendido pelo checklist de acessibilidade, semântica, responsividade, teclado/foco/cursor, evidências de light/dark, cards semanticamente diferenciados, touch targets, mensagens textuais, sanitização de input, limites operacionais e validações local e física.
+- **Etapas:** R8.1 — concluído. R8.2 — concluído. R8.3 — concluído. R8.4 — concluído. R8.5 — concluído. R8.6 — concluído.
+- **Status:** concluído.
 
 ## R9 — Artigo SBC
 
 - **Objetivo:** documentar problema, método, solução e resultados no contexto acadêmico.
 - **Escopo:** texto e referências no formato acadêmico requerido.
 - **Critério de conclusão:** artigo revisado e aderente ao modelo aplicável.
-- **Status:** não iniciado.
+- **Etapas:** R9.0 — base de evidências e plano do artigo concluídos. R9.1 — validação bibliográfica e requisitos de entrega pendente. R9.2 — redação da primeira versão pendente. R9.3 — revisão técnica/acadêmica pendente. R9.4 — formatação final e PDF pendente.
+- **Status:** em andamento.
 
 ## R10 — Vídeo/README/portfólio
 

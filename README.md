@@ -13,7 +13,7 @@ A ideia evolui de uma calculadora criada pelo autor e integrada a um ERP legado 
 
 ## Status atual
 
-O projeto está no **R0 — Bootstrap e baseline**. Existe um aplicativo Android padrão executável com “Hello Android!” e está sendo estabelecida sua fundação documental. Os cálculos, fluxos do produto e recomendações ainda não estão implementados.
+O MVP funcional está implementado. As etapas R0–R8 foram concluídas, incluindo os três fluxos, calendário produtivo, feriados em memória, validações automatizadas e validação física. O R9, dedicado à documentação acadêmica, está em andamento.
 
 ## Stack atual
 
@@ -25,9 +25,10 @@ O projeto está no **R0 — Bootstrap e baseline**. Existe um aplicativo Android
 
 ## Escopo resumido do MVP
 
-- estimar produção em um período a partir de velocidade, fitas, jornada, desperdício e calendário;
-- estimar a data de conclusão de uma quantidade alvo;
-- apresentar posteriormente recomendações determinísticas simples e explicáveis;
+- **Quanto consigo produzir?** — estima a produção em um período a partir de velocidade, fitas, jornada, desperdício e calendário produtivo;
+- **Quando vou terminar?** — estima a data de conclusão de uma quantidade alvo;
+- **Verificar uma meta** — avalia a viabilidade e recomenda, de forma determinística e explicável, o mínimo e o adicional de fitas;
+- configurar feriados anuais ou de data específica, mantidos em memória durante a sessão;
 - operar localmente, sem backend.
 
 Autenticação, backend, ERP/PCP, múltiplas fábricas, IoT, capacidade dinâmica baseada em máquinas, IA e previsão por histórico estão fora do MVP acadêmico atual.
@@ -48,7 +49,7 @@ O rollout avança do motor matemático e calendário para os dois modos de cálc
 - [Referências acadêmicas](docs/academic/REFERENCES.md)
 - [Instruções para agentes](AGENTS.md)
 
-## Executar o baseline Android
+## Executar o aplicativo
 
 Pré-requisitos: JDK compatível, Android SDK configurado e um emulador ou aparelho com depuração USB disponível.
 
@@ -57,6 +58,6 @@ Pré-requisitos: JDK compatível, Android SDK configurado e um emulador ou apare
 ./gradlew installDebug
 ```
 
-Após a instalação, abra o ProdTime no dispositivo. No estágio atual, a tela exibida é o conteúdo padrão “Hello Android!”. Em Windows, use `gradlew.bat` nos mesmos comandos.
+Após a instalação, abra o ProdTime no dispositivo. O aplicativo é Android nativo, desenvolvido em Kotlin com Jetpack Compose e Material 3, funciona localmente e não depende de backend. Em Windows, use `gradlew.bat` nos mesmos comandos.
 
 > O ProdTime está em desenvolvimento. A documentação separa explicitamente o que já existe, o escopo planejado do MVP e a visão futura.
