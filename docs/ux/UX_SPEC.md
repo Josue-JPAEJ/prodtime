@@ -47,7 +47,9 @@ Todos os campos numéricos exibem sua unidade: `cm/min`, fitas, `h/dia`, `%` e `
 
 ## 10. Validação e mensagens
 
-Campos vazios, decimais inválidos, inteiros não positivos, período invertido, desperdício negativo ou igual/superior a 100% recebem mensagens próximas ao campo. Entradas decimais aceitam vírgula ou ponto e são convertidas diretamente para `BigDecimal`, sem `Double` ou `Float`. Erros contratuais do domínio são apresentados em um card; o horizonte técnico do prazo recebe mensagem amigável sem expor detalhes internos.
+Campos vazios, decimais inválidos, inteiros não positivos, período invertido, limites operacionais excedidos e desperdício negativo ou igual/superior a 100% recebem mensagens próximas ao campo. Entradas decimais aceitam vírgula ou ponto e são convertidas diretamente para `BigDecimal`, sem `Double` ou `Float`. Espaços Unicode e caracteres invisíveis de formatação são removidos no campo e antes do parsing; letras e outros textos arbitrários são preservados e continuam inválidos. Depois que um erro é exibido, editar somente aquele campo remove imediatamente sua mensagem, sem apagar erros dos demais campos; a validação completa ocorre na próxima ação. Erros contratuais do domínio são apresentados em um card; o horizonte técnico do prazo recebe mensagem amigável sem expor detalhes internos.
+
+Os limites de entrada são: velocidade maior que zero e menor que 1.000 cm/min; fitas inteiras entre 1 e 999.999; horas maiores que zero e no máximo 24; desperdício de 0% a menos de 100%; e meta inteira entre 1 m e 999.999.999 m nos fluxos aplicáveis.
 
 ## 11. Resultados
 
@@ -76,5 +78,10 @@ O indicador de avanço dos cards da Home é somente decorativo e não participa 
 - R6.6B: persistência encerrada como evolução futura, fora do MVP acadêmico.
 - R6.7: integração, textos, validações e estados de resultado revisados; concluído por testes/build, com revisão física final reservada ao R6.8.
 - R6.8: rodada física 1 executada; refinamentos de foco, feedback dos cards, cópia e calendário implementados; nova rodada física pendente.
+- R8.6: sanitização de entradas, limites operacionais e limpeza individual de erros implementados; o gate físico final foi reduzido a esses comportamentos.
+
+## 16. Identidade e acabamento
+
+O nome público permanece **ProdTime** e os recursos atuais de launcher ainda são os do template Android. Não será criada uma tela “Sobre” nem um logo arbitrário nesta etapa. Ícone personalizado, versão, descrição curta e finalidade acadêmica ficam planejados para o acabamento de identidade no R10.
 
 Peso, tara e massa linear continuam adiados porque o recurso secundário não integra a jornada principal atual.

@@ -77,7 +77,10 @@ fun ProductionViabilityScreen(holidayDefinitions: List<HolidayDefinition>, onBac
             )
 
             SectionTitle("META")
-            NumericField(target, { target = it }, "Quantidade desejada", "m", errors.target, integer = true)
+            NumericField(target, { updated ->
+                    target = updated
+                    errors = errors.copy(target = null)
+                }, "Quantidade desejada", "m", errors.target, integer = true)
 
             SectionTitle("PERÍODO")
             DateField("Data inicial", startDate) { startEpochDay = it.toEpochDay() }
@@ -91,10 +94,22 @@ fun ProductionViabilityScreen(holidayDefinitions: List<HolidayDefinition>, onBac
             PolicySwitch("Trabalhar aos domingos", includeSundays) { includeSundays = it }
             PolicySwitch("Trabalhar em feriados", workOnHolidays) { workOnHolidays = it }
             SectionTitle("PRODUÇÃO")
-            NumericField(speed, { speed = it }, "Velocidade", "cm/min", errors.speed)
-            NumericField(tapes, { tapes = it }, "Quantidade atual de fitas", "fitas", errors.tapes, integer = true)
-            NumericField(hours, { hours = it }, "Horas produtivas por dia", "h/dia", errors.hours)
-            NumericField(waste, { waste = it }, "Desperdício", "%", errors.waste, imeAction = ImeAction.Done)
+            NumericField(speed, { updated ->
+                    speed = updated
+                    errors = errors.copy(speed = null)
+                }, "Velocidade", "cm/min", errors.speed)
+            NumericField(tapes, { updated ->
+                    tapes = updated
+                    errors = errors.copy(tapes = null)
+                }, "Quantidade atual de fitas", "fitas", errors.tapes, integer = true)
+            NumericField(hours, { updated ->
+                    hours = updated
+                    errors = errors.copy(hours = null)
+                }, "Horas produtivas por dia", "h/dia", errors.hours)
+            NumericField(waste, { updated ->
+                    waste = updated
+                    errors = errors.copy(waste = null)
+                }, "Desperdício", "%", errors.waste, imeAction = ImeAction.Done)
 
             generalError?.let { GeneralError(it) }
             Button(
@@ -105,12 +120,12 @@ fun ProductionViabilityScreen(holidayDefinitions: List<HolidayDefinition>, onBac
                     val parsedHours = parseDecimalInput(hours)
                     val parsedWaste = parseDecimalInput(waste)
                     errors = ViabilityErrors(
-                        target = viabilityTargetError(parsedTarget),
+                        target = targetInputError(parsedTarget),
                         period = if (endDate < startDate) "A data final não pode ser anterior à inicial." else null,
-                        speed = viabilityPositiveError(parsedSpeed, "Informe uma velocidade maior que zero."),
-                        tapes = if (parsedTapes == null) "Informe uma quantidade inteira maior que zero." else null,
-                        hours = viabilityPositiveError(parsedHours, "Informe horas maiores que zero."),
-                        waste = viabilityWasteError(parsedWaste),
+                        speed = speedInputError(parsedSpeed),
+                        tapes = tapeCountInputError(parsedTapes),
+                        hours = productiveHoursInputError(parsedHours),
+                        waste = wasteInputError(parsedWaste),
                     )
                     result = null
                     generalError = null
@@ -171,21 +186,4 @@ private fun ViabilityResultCard(result: ProductionViabilityResult) {
     ) {
         rows.forEach { (label, value) -> SummaryRow(label, value) }
     }
-}
-
-private fun viabilityTargetError(value: BigDecimal?): String? = when {
-    value == null -> "Informe uma quantidade válida."
-    value <= BigDecimal.ZERO -> "A quantidade deve ser maior que zero."
-    value.stripTrailingZeros().scale() > 0 -> "A quantidade deve ser informada em metros inteiros."
-    else -> null
-}
-
-private fun viabilityPositiveError(value: BigDecimal?, message: String) =
-    if (value == null || value <= BigDecimal.ZERO) message else null
-
-private fun viabilityWasteError(value: BigDecimal?): String? = when {
-    value == null -> "Informe um percentual válido."
-    value < BigDecimal.ZERO -> "O desperdício não pode ser negativo."
-    value >= BigDecimal.valueOf(100) -> "O desperdício deve ser menor que 100%."
-    else -> null
 }

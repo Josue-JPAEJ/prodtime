@@ -18,6 +18,37 @@ class PresentationFormattersTest {
     }
 
     @Test
+    fun `remove espacos comuns tabs e quebras de linha`() {
+        assertEquals("25", sanitizeNumericInput(" \t2\n5\r "))
+        assertEquals(BigDecimal("25"), parseDecimalInput(" \t2\n5\r "))
+    }
+
+    @Test
+    fun `remove espacos unicode e caracteres invisiveis`() {
+        assertEquals("25", sanitizeNumericInput("\u00A02\u202F5\u200B\u200C\u200D\u2060\uFEFF"))
+        assertEquals(BigDecimal("25"), parseDecimalInput("25\u200B\uFEFF"))
+    }
+
+    @Test
+    fun `aceita decimal com virgula cercado por espacos`() {
+        assertEquals(BigDecimal("7.5"), parseDecimalInput(" 7,5 "))
+    }
+
+    @Test
+    fun `nao remove texto alfabetico`() {
+        assertEquals("abc", sanitizeNumericInput(" abc "))
+        assertNull(parseDecimalInput("abc"))
+        assertNull(parsePositiveIntInput("abc"))
+    }
+
+    @Test
+    fun `nao converte silenciosamente texto misturado com numero`() {
+        assertEquals("abc25", sanitizeNumericInput(" abc 25 "))
+        assertNull(parseDecimalInput("abc25"))
+        assertNull(parsePositiveIntInput("abc25"))
+    }
+
+    @Test
     fun `aceita inteiro positivo`() {
         assertEquals(3, parsePositiveIntInput("3"))
     }

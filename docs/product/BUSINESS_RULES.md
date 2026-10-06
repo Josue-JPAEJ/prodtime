@@ -35,6 +35,12 @@ O sistema compara a produção líquida estimada no período com uma meta e info
 - Velocidade, quantidade de fitas, horas produtivas e dias produtivos devem ser maiores que zero; o desperdício deve ser maior ou igual a zero e menor que 100%.
 - A meta em metros é opcional e, quando informada, deve ser inteira e não negativa; o saldo também é opcional e só existe quando há meta.
 
+## Limites operacionais de entrada
+
+Na apresentação dos três fluxos, velocidade deve ser maior que zero e menor que 1.000 cm/min, quantidade de fitas deve ser inteira, maior que zero e menor que 1.000.000, e horas produtivas por dia devem ser maiores que zero e no máximo 24. O desperdício permanece entre 0% (inclusivo) e 100% (exclusivo). Nos fluxos de prazo e viabilidade, a meta deve ser inteira, maior que zero e menor que 1.000.000.000 m.
+
+Esses limites são guardas operacionais do produto na camada de entrada. Eles não alteram fórmulas, precisão, `HALF_EVEN` nem os contratos históricos dos motores matemáticos.
+
 ## Calendário produtivo
 
 - O calendário usa `startDate` e `endDate` explícitos e exige `startDate <= endDate`; intervalo invertido é inválido e uma única data é um intervalo válido.
@@ -50,7 +56,7 @@ O sistema compara a produção líquida estimada no período com uma meta e info
 ## Decisões ainda não validadas
 
 - Confirmar contratos de peso (`kg/caixa`) e massa linear (`g/m`) antes da UI.
-- Definir limites operacionais máximos, caso sejam necessários, e a regra de apresentação na UI.
+- Definir limites operacionais para peso e massa linear quando o recurso secundário for retomado; os limites dos três fluxos atuais foram decididos no R8.6.
 - Os valores 28 cm/min, 1 fita, 16 h/dia e 3% adotados no R6 são somente conveniência editável da UI e não são defaults do domínio.
 
 Hipóteses não podem ser convertidas em comportamento sem validação explícita.

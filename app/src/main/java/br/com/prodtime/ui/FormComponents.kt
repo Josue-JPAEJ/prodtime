@@ -94,8 +94,18 @@ internal fun NumericField(
     OutlinedTextField(
         value = fieldValue,
         onValueChange = {
-            fieldValue = it
-            onValueChange(it.text)
+            val sanitizedText = sanitizeNumericInput(it.text)
+            val sanitizedSelectionStart = sanitizeNumericInput(it.text.substring(0, it.selection.start)).length
+            val sanitizedSelectionEnd = sanitizeNumericInput(it.text.substring(0, it.selection.end)).length
+            fieldValue = if (sanitizedText == it.text) {
+                it
+            } else {
+                TextFieldValue(
+                    text = sanitizedText,
+                    selection = TextRange(sanitizedSelectionStart, sanitizedSelectionEnd),
+                )
+            }
+            onValueChange(sanitizedText)
         },
         label = { Text(label) },
         supportingText = { Text(error ?: unit) },

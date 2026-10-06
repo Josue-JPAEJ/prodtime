@@ -9,14 +9,18 @@ import java.util.Locale
 private val brazilianLocale = Locale.forLanguageTag("pt-BR")
 private val brazilianDateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", brazilianLocale)
 
-fun parseDecimalInput(value: String): BigDecimal? = value
-    .trim()
+private val removableNumericCharacters = setOf('\u200B', '\u200C', '\u200D', '\u2060', '\uFEFF')
+
+fun sanitizeNumericInput(value: String): String = value.filterNot { character ->
+    character.isWhitespace() || character.isSpaceChar() || character in removableNumericCharacters
+}
+
+fun parseDecimalInput(value: String): BigDecimal? = sanitizeNumericInput(value)
     .replace(',', '.')
     .takeIf(String::isNotEmpty)
     ?.let { normalized -> runCatching { BigDecimal(normalized) }.getOrNull() }
 
-fun parsePositiveIntInput(value: String): Int? = value
-    .trim()
+fun parsePositiveIntInput(value: String): Int? = sanitizeNumericInput(value)
     .takeIf { it.isNotEmpty() && it.all(Char::isDigit) }
     ?.toIntOrNull()
     ?.takeIf { it > 0 }

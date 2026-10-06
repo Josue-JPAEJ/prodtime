@@ -57,7 +57,7 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** consolidar uma experiência simples, específica e rápida.
 - **Escopo:** fluxo guiado, hierarquia, feedback, responsividade e prevenção de erros.
 - **Critério de conclusão:** jornada principal validada manualmente em dispositivo apropriado.
-- **Etapas:** R6.1 e R6.2 — implementados e validados localmente. R6.3 — implementado e validado no aparelho físico. R6.4 — implementado e validado funcionalmente no aparelho; rótulo “Produção” e responsividade refinados. R6.5 — UI de viabilidade implementada e confirmada na rodada física 1. R6.6A — estado compartilhado e gestão de feriados em memória implementados e confirmados na rodada física 1. R6.6B — encerrado por decisão de escopo: persistência é evolução futura, fora do MVP acadêmico. R6.7 — revisão de integração e UX concluída, sem refatoração ampla; gate automatizado registrado em `VALIDATIONS.md`. R6.8 — validação física rodada 1 executada, refinamentos encontrados e implementados; nova validação física pendente.
+- **Etapas:** R6.1 e R6.2 — implementados e validados localmente. R6.3 — implementado e validado no aparelho físico. R6.4 — implementado e validado funcionalmente no aparelho; rótulo “Produção” e responsividade refinados. R6.5 — UI de viabilidade implementada e confirmada na rodada física 1. R6.6A — estado compartilhado e gestão de feriados em memória implementados e confirmados na rodada física 1. R6.6B — encerrado por decisão de escopo: persistência é evolução futura, fora do MVP acadêmico. R6.7 — revisão de integração e UX concluída, sem refatoração ampla; gate automatizado registrado em `VALIDATIONS.md`. R6.8 — cursor, cores, cópia, resumo de calendário e remoção da contagem foram aprovados fisicamente; permanece em andamento somente até validar a robustez final de inputs do R8.6.
 - **Status:** em andamento.
 
 ## R7 — Testes/regressão VBA
@@ -73,7 +73,7 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** preparar qualidade de uso do MVP.
 - **Escopo:** semântica, contraste, fonte ampliada, teclado, modos claro/escuro e revisão visual.
 - **Critério de conclusão:** checklist de acessibilidade e validação manual registrados.
-- **Etapas:** R8.1 — auditoria estática de acessibilidade implementada. R8.2 — responsividade e tipografia revisadas. R8.3 — teclado, campos e foco revisados. R8.4 — temas claro/escuro e semântica revisados. R8.5 — validação física rodada 1 executada, refinamentos encontrados e implementados; nova validação física pendente junto com o R6.8.
+- **Etapas:** R8.1 — auditoria estática de acessibilidade implementada. R8.2 — responsividade e tipografia revisadas. R8.3 — teclado, campos e foco revisados. R8.4 — temas claro/escuro e semântica revisados. R8.5 — refinamentos anteriores aprovados fisicamente. R8.6 — robustez de inputs e limites operacionais implementada; validação local e física pendente.
 - **Status:** em andamento.
 
 ## R9 — Artigo SBC
@@ -86,7 +86,7 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 ## R10 — Vídeo/README/portfólio
 
 - **Objetivo:** apresentar o projeto com honestidade e clareza.
-- **Escopo:** demonstração, documentação de uso e material de portfólio.
+- **Escopo:** demonstração, documentação de uso, material de portfólio e acabamento de identidade (ícone personalizado, nome/versão, descrição curta, finalidade acadêmica e eventual seção “Sobre”).
 - **Critério de conclusão:** materiais coerentes com funcionalidades realmente entregues.
 - **Status:** não iniciado.
 
