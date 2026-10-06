@@ -115,3 +115,9 @@ A nomenclatura ou divisão poderá ser adaptada em R9.4 se o template específic
 - a pendência do número de páginas admite uma primeira versão concisa e ajustável.
 
 R9.2 permanece pendente e não foi iniciada nesta etapa.
+
+## 10. Atualização para preparação final R9.4
+
+As seções anteriores documentam a verificação histórica em R9.1. A redação e a revisão R9.2/R9.3 estão concluídas; R9.3 foi integrado pelo PR #25. O autor forneceu os dados finais: Josué Paulo Alexandrina; Gran Faculdade; Análise e Desenvolvimento de Sistemas (ADS); josue_jpaej@hotmail.com. Eles foram aplicados à fonte consolidada `ARTICLE_FINAL.md`.
+
+R9.4 está em andamento. O PDF SBC de até 5 MB continua obrigatório; número de páginas e modelo institucional exato não foram confirmados. Capturas reais não estão acessíveis nesta sessão, portanto integração das quatro figuras e saída final permanecem pendentes. Ferramentas de conversão/LaTeX existem, mas não foi gerado PDF/Word sem esses insumos. Estado e checklist atuais em `ARTICLE_SUBMISSION.md`. R10/R11 não iniciados.

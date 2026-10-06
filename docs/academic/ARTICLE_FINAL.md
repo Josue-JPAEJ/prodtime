@@ -60,9 +60,11 @@ O aplicativo é Android nativo, desenvolvido em Kotlin, com interface em Jetpack
 
 O `ProductionCapacityCalculator` calcula capacidade, desperdício, produção líquida e saldo. O `ProductiveCalendarCalculator` classifica as datas do intervalo. O `HolidayResolver` converte definições de feriados em datas concretas. O `ProductionEstimateCalculator` integra esses componentes para estimar um período; o `ProductionDeadlineCalculator` encontra a primeira data suficiente para a meta; e o `ProductionViabilityAdvisor` compara a estimativa com a meta e determina o mínimo e o adicional de fitas. Essa composição reutiliza as regras comuns nas três jornadas.
 
-[FIGURA 1 — Tela inicial do ProdTime]
+A Figura 1 apresenta o acesso às três jornadas do aplicativo.
 
-Figura 1. Tela inicial com acesso às três jornadas e configuração de feriados.
+[FIGURA 1 — Inserção da captura real da tela inicial pendente]
+
+Figura 1. Tela inicial do ProdTime com acesso às três jornadas.
 
 ### 4.2 Motor de capacidade
 
@@ -110,13 +112,21 @@ Os feriados cadastrados têm nome e são anuais, por dia e mês, ou de data espe
 
 A jornada “Quanto consigo produzir?” recebe período, velocidade, fitas, horas produtivas por dia, desperdício e políticas de calendário. O sistema resolve os feriados, identifica os dias produtivos e calcula a capacidade do período. A saída principal é a produção líquida estimada, acompanhada de produção bruta, desperdício e detalhes do calendário. Esse fluxo não utiliza uma meta nem procura uma data de conclusão.
 
-[FIGURA 2 — Resultado da estimativa de produção]
+A Figura 2 corresponde ao cenário de três fitas apresentado na validação das regressões.
 
-Figura 2. Exemplo do resultado do fluxo de estimativa de produção.
+[FIGURA 2 — Inserção da captura real da estimativa de produção pendente]
+
+Figura 2. Estimativa de 13.270 m líquidos em 19 dias produtivos, de 01/10/2026 a 27/10/2026.
 
 ### 4.5 Estimativa de prazo
 
 A jornada “Quando vou terminar?” tem como entradas meta positiva em metros inteiros, data inicial, condições produtivas e políticas de calendário; a data final não é informada pelo usuário. O `ProductionDeadlineCalculator` percorre progressivamente as datas e, a cada novo dia produtivo, aplica o mesmo motor de capacidade ao total acumulado de dias. A busca termina na primeira data cuja produção líquida atinge ou supera a meta, respeitando calendário e feriados. A data de conclusão é um resultado e delimita o calendário apresentado. Um horizonte técnico finito impede busca indefinida; a resposta inclui dias produtivos, produção na conclusão e saldo.
+
+A Figura 3 corresponde ao cenário de conclusão da meta de 10.000 m descrito na validação do prazo.
+
+[FIGURA 3 — Inserção da captura real da estimativa de prazo pendente]
+
+Figura 3. Conclusão estimada em 23/10/2026, com 10.476 m em 15 dias produtivos e saldo de +476 m.
 
 ### 4.6 Viabilidade da meta
 
@@ -124,9 +134,11 @@ A jornada de verificação de meta compara a produção líquida estimada no per
 
 A análise é determinística e condicionada às entradas. Não considera disponibilidade real de máquinas nem executa otimização de PCP; não utiliza IA. A indicação de fitas adicionais expressa uma condição calculada, cuja disponibilidade precisa ser avaliada pelo usuário.
 
-[FIGURA 3 — Resultado da análise de viabilidade]
+A Figura 4 corresponde à análise da meta de 10.000 m com duas fitas.
 
-Figura 3. Resultado de viabilidade com déficit ou excedente e indicação do mínimo e do adicional de fitas.
+[FIGURA 4 — Inserção da captura real da análise de viabilidade pendente]
+
+Figura 4. Déficit de 1.154 m com duas fitas: mínimo necessário de três fitas e uma fita adicional.
 
 ### 4.7 Interface móvel e robustez das entradas
 
