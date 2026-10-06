@@ -2,6 +2,8 @@
 
 Este documento organiza fatos rastreáveis do projeto; não constitui o artigo final.
 
+Os requisitos acadêmicos, o estado da verificação bibliográfica e os limites de uso das referências estão consolidados em `docs/academic/ACADEMIC_REQUIREMENTS.md`.
+
 ## 1. Problema real
 
 As estimativas de capacidade e prazo na produção de fitas têxteis eram manuais, dependiam de profissionais experientes, demoravam a produzir respostas operacionais e comerciais e concentravam conhecimento. Não há métrica validada de tempo economizado.
@@ -94,3 +96,5 @@ Integração com ERP Web e PCP; disponibilidade de máquinas; capacidade variáv
 ## 18. Evidências visuais necessárias
 
 Screenshots reais a produzir na etapa apropriada: Home; “Quanto consigo produzir?”; resultado do Modo A; “Quando vou terminar?”; resultado do prazo; “Verificar uma meta” atendida; “Verificar uma meta” não atendida; feriados; resultado com resumo de calendário. Nenhuma imagem foi criada nesta etapa.
+
+Para a primeira versão do artigo, a seleção mínima recomendada de figuras está definida em `docs/academic/ARTICLE_PLAN.md`; os screenshots adicionais permanecem disponíveis para README e vídeo.
