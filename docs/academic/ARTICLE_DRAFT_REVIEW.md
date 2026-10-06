@@ -101,3 +101,12 @@ Essas pendências não bloqueiam a revisão da primeira versão e não autorizam
 - **Pendências restantes:** dados institucionais, figuras reais, número de páginas, aplicação do template SBC, formatação e PDF pertencem a R9.4. R9.4 não foi iniciada.
 
 **Gate de conteúdo:** pronto para R9.4. **R9.3 concluída; R9 em andamento; R9.4 pendente; R10 e R11 não iniciados.** Esse gate não confirma criação de PR ou merge, que dependem de evidência própria.
+
+## Consolidação documental R9.4
+
+- Dados reais fornecidos pelo autor aplicados em `ARTICLE_DRAFT.md` e `ARTICLE_FINAL.md`: Josué Paulo Alexandrina; Gran Faculdade; Análise e Desenvolvimento de Sistemas (ADS); josue_jpaej@hotmail.com. Os checklists anteriores permanecem como histórico.
+- Fonte destinada à versão final consolidada em `ARTICLE_FINAL.md`, preservando título, Resumo/Abstract, estrutura, resultados, fórmulas, limites e quatro referências. Rascunho preservado.
+- Seleção temática atual: tela inicial, estimativa de 13.270 m, prazo de 23/10/2026 e viabilidade com déficit de 1.154 m. Chamadas, posições e legendas preparadas; **nenhuma imagem integrada**, pois os arquivos não estão acessíveis nesta sessão. A seleção substitui, na fonte final, o conjunto de três marcadores de R9.3.
+- Instruções, critérios de conferência das capturas e checklist de submissão em `ARTICLE_SUBMISSION.md`.
+- Pandoc e LaTeX disponíveis, mas sem template SBC localizado/fornecido nem capturas reais. PDF/Word não gerados; número de páginas continua sem confirmação institucional.
+- **Gate R9.4: NÃO.** Autoria e texto consolidados; integração visual, aplicação do template e revisão do PDF pendentes. R9.4 e R9 em andamento; R10/R11 não iniciados.

@@ -70,3 +70,11 @@ Nenhuma dessas pendências autoriza inventar informação. PDF, DOCX, screenshot
 **SIM — conteúdo acadêmico pronto para formatação final.** R9.3 concluída, R9.4 pendente e não iniciada; R9 em andamento. Os gates documentais incluem conferência técnica/quantitativa, equivalência Resumo/Abstract, integridade das referências, buscas solicitadas e diff restrito aos cinco arquivos acadêmicos/de processo.
 
 O gate avalia conteúdo. PR, ausência de conflitos no GitHub e merge só podem ser declarados mediante confirmação própria; bloqueio de API não é tratado como sucesso de integração.
+
+## Atualização documental R9.4
+
+O registro R9.3 acima permanece histórico. Na base `develop` em `74ddfbda862c429877d8e641f301193046780786` (PR #25), a autoria fornecida pelo usuário foi aplicada ao rascunho e à nova fonte `ARTICLE_FINAL.md`. Título, Resumo/Abstract, fórmulas, resultados e quatro referências foram preservados; somente autoria, chamadas, marcadores e legendas das figuras distinguem a fonte consolidada do corpo revisado.
+
+A seleção temática passa a quatro figuras: tela inicial, produção de 13.270 m, prazo de 23/10/2026 e viabilidade com déficit de 1.154 m. Não há imagens reais acessíveis para integração ou inspeção; as legendas descrevem cenários documentados, sem certificar capturas ausentes. Dados institucionais deixaram de ser pendência; imagens reais, template, paginação e PDF continuam pendentes.
+
+`ARTICLE_SUBMISSION.md` registra insumos, critérios e checklist. A disponibilidade de Pandoc/LaTeX não equivale a PDF validado. **Gate final R9.4: NÃO; base textual preparada.** Sem código alterado, nova execução Gradle, métricas, experimentos ou referências.

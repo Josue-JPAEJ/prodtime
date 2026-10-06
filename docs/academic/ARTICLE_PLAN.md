@@ -151,3 +151,11 @@ Requisitos conhecidos:
 O modelo SBC existe e é disponibilizado em LaTeX e, em diversas chamadas, MS Word; a submissão normalmente ocorre em PDF. O limite de páginas não é inerente ao template e depende do evento ou da instituição.
 
 **PENDENTE DE CONFIRMAÇÃO INSTITUCIONAL:** número de páginas específico desta entrega. A pendência não bloqueia R9.2; a primeira versão deve ser concisa para permitir ajuste posterior ao limite confirmado.
+
+## Consolidação executada em R9.4
+
+O plano anterior é mantido como histórico. A fonte textual consolidada está em `ARTICLE_FINAL.md`, com o título principal preservado e dados reais do autor aplicados. O rascunho continua disponível em `ARTICLE_DRAFT.md`.
+
+A seleção temática atual tem quatro figuras: (1) tela inicial; (2) estimativa de 13.270 m em 19 dias; (3) prazo em 23/10/2026; (4) viabilidade com duas fitas e déficit de 1.154 m. Chamadas e legendas foram preparadas; nenhuma imagem foi integrada por ausência dos arquivos reais nesta sessão. Feriados e VBA continuam opcionais.
+
+O checklist e os critérios de conferência constam de `ARTICLE_SUBMISSION.md`. R9.4 permanece em andamento, com template, limite de páginas, integração visual e PDF final pendentes; não houve expansão experimental nem início de R10/R11.
