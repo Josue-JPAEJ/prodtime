@@ -69,3 +69,16 @@
 - **OK** — Rodada 1 no Samsung SM-A066M confirmou Home, três cálculos, CRUD e compartilhamento de feriados, tema escuro, rolagem e integração do feriado com o cálculo.
 - **OK** — A rodada física anterior aprovou cursor via Next, cores de viabilidade, cópia, resumos de calendário e remoção da contagem de feriados dos formulários.
 - **OK** — Limites, colagem inválida, sanitização de espaços/invisíveis e limpeza individual das mensagens de erro foram aprovados no gate R8.6.
+
+# 14. Identidade R10.1 — validação separada
+
+As aprovações R6/R8 acima são históricas e não substituem validação da nova Home/Sobre.
+
+- **OK ESTÁTICO/BUILD** — “Sobre o ProdTime” tem rótulo claro e acesso abaixo de feriados; nova rota utiliza o Back existente e oferece “Voltar”.
+- **OK ESTÁTICO/BUILD** — Título da tela com semântica de heading; demais textos e grupos com rótulos; contato selecionável; conteúdo rolável e sem altura fixa.
+- **OK ESTÁTICO/BUILD** — Tipografia e pares de cores Material em light/dark/dinâmico, TextButton com alvo Material; nome/descrição/autoria e aviso estimativo em recursos de string.
+- **OK PRÉVIA GRÁFICA** — Ícone circular, quadrado arredondado e monocromático conferidos na prévia vetorial, sem recorte do símbolo central; isso não é execução em launcher Android.
+- **COMPILADO, NÃO EXECUTADO** — `ProdTimeIdentityTest` cobre acesso, conteúdo essencial, rolagem, retorno por “Voltar” e Back. APK de teste instrumentado gerado; sem aparelho/emulador nesta sessão.
+- **PENDENTE LOCAL/FÍSICO** — Instalar o APK, conferir launcher real e ícones temáticos; Home e três acessos preservados; abrir Sobre; tema claro/escuro; fonte ampliada; tela pequena/rolagem; TalkBack e foco; ambas as ações de retorno.
+
+Não é alegada nova validação física nem renderização executada dos previews Compose.
