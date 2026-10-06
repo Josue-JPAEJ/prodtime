@@ -347,3 +347,18 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Estrutura:** estrutura acadêmica e planos de introdução, fundamentação, metodologia, resultados, figuras e tabelas aprovados para orientar R9.2.
 - **Execução:** nenhuma tarefa Gradle foi necessária, pois a alteração é exclusivamente documental e acadêmica.
 - **Conclusão:** R9.1 concluído; R9 permanece em andamento; R9.2, R9.3 e R9.4 permanecem pendentes.
+
+## R9.2 — primeira versão completa do artigo
+
+- **Data:** 2026-10-06.
+- **Base:** `develop` no commit `4bc2bd30d0eb02fec8225330f90279e0b1b93986`; branch interna `work`. O checkout inicial estava no bootstrap `cac1966`; após confirmação de árvore limpa e ancestralidade, foi alinhado à base solicitada por fast-forward, sem troca de branch nem commit de merge.
+- **Fontes:** leitura integral das fontes acadêmicas, de produto, domínio, arquitetura, regressões, rollout, validações, decisões e README solicitadas para a tarefa.
+- **Entrega:** primeira versão integral em `docs/academic/ARTICLE_DRAFT.md`, com título, autoria por placeholders, Resumo, Palavras-chave, Abstract, Keywords, sete seções acadêmicas, duas tabelas, três marcadores de figuras e referências. Checklist da releitura inicial em `ARTICLE_DRAFT_REVIEW.md`.
+- **Bibliografia:** somente as quatro referências verificadas em R9.1; usos centrais e complementares dentro dos limites dos metadados e resumos editoriais. Sem alegação de leitura integral, citação direta ou validação do ProdTime pela literatura.
+- **Resultados:** regressões, prazo, viabilidade e feriados conferidos contra `ARTICLE_EVIDENCE.md` e matriz de regressão. Nenhuma nova métrica criada; não há alegação de tempo economizado, redução de desperdício ou cobertura percentual.
+- **Testes:** contagem estática de 118 métodos anotados com `@Test` em `app/src/test`, separada dos resultados históricos `BUILD SUCCESSFUL` de `testDebugUnitTest` e `assembleDebug` registrados em R6.8/R8.6. Não houve nova execução Gradle nem nova validação física nesta tarefa documental.
+- **Releitura:** verificados estrutura, coerência técnica, equivalência Resumo/Abstract, termos sensíveis, alegações futuras e atribuição das referências. Essa releitura de redação não inicia nem substitui R9.3.
+- **Verificações documentais:** `git diff --check`, `git diff --stat`, `git diff --name-only`, `git status` e buscas solicitadas no artigo; apenas quatro arquivos documentais compõem a alteração em relação à base `develop`.
+- **Pendências:** placeholders institucionais preservados; figuras reais ainda pendentes; número de páginas ainda pendente de confirmação institucional; revisão R9.3 necessária antes da versão final e formatação R9.4 posterior.
+- **Proteção de escopo:** nenhum código Android, teste, domínio, Gradle ou README alterado pelo commit; sem PDF, DOCX, logo, vídeo ou release.
+- **Conclusão:** R9.2 concluído e primeira versão pronta para revisão. R0–R8 concluídos; R9 em andamento; R9.0 e R9.1 concluídos; R9.3 e R9.4 pendentes; R10 e R11 não iniciados.
