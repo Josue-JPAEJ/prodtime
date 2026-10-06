@@ -89,8 +89,6 @@ fun ProductionEstimateScreen(holidayDefinitions: List<HolidayDefinition>, onBack
             PolicySwitch("Trabalhar aos sábados", includeSaturdays) { includeSaturdays = it }
             PolicySwitch("Trabalhar aos domingos", includeSundays) { includeSundays = it }
             PolicySwitch("Trabalhar em feriados", workOnHolidays) { workOnHolidays = it }
-            Text("Feriados cadastrados: ${holidayDefinitions.size}", color = MaterialTheme.colorScheme.onSurfaceVariant)
-
             SectionTitle("PRODUÇÃO")
             NumericField(speed, { speed = it }, "Velocidade", "cm/min", errors.speed)
             NumericField(tapes, { tapes = it }, "Quantidade de fitas", "fitas", errors.tapes, integer = true)
@@ -159,17 +157,24 @@ fun ProductionEstimateScreen(holidayDefinitions: List<HolidayDefinition>, onBack
 @Composable
 private fun EstimateResultCard(result: ProductionEstimateResult, startDate: LocalDate, endDate: LocalDate) {
     val noProductiveDays = result.calendar.productiveDays == 0
+    val message = if (noProductiveDays) "Não há dias produtivos no período informado." else null
+    val calendarRows = calendarIncludedDays(result.calendar, result.resolvedHolidays)
+    val rows = buildList {
+        add("Dias produtivos" to result.calendar.productiveDays.toString())
+        calendarRows.forEach { add(it.label to it.count.toString()) }
+        result.capacity?.let { capacity ->
+            add("Produção bruta" to formatMeters(capacity.grossProductionMeters))
+            add("Desperdício" to formatMeters(capacity.wasteMeters))
+        }
+        add("Período" to "${formatDate(startDate)} a ${formatDate(endDate)}")
+    }
     ResultCard(
         headline = "Produção estimada",
         primaryValue = formatMeters(result.netProductionMeters),
-        message = if (noProductiveDays) "Não há dias produtivos no período informado." else null,
+        message = message,
+        copyText = resultCopyText("Produção estimada", formatMeters(result.netProductionMeters), rows, message = message),
     ) {
-        SummaryRow("Dias produtivos", result.calendar.productiveDays.toString())
-        result.capacity?.let { capacity ->
-            SummaryRow("Produção bruta", formatMeters(capacity.grossProductionMeters))
-            SummaryRow("Desperdício", formatMeters(capacity.wasteMeters))
-        }
-        SummaryRow("Período", "${formatDate(startDate)} a ${formatDate(endDate)}")
+        rows.forEach { (label, value) -> SummaryRow(label, value) }
     }
 }
 

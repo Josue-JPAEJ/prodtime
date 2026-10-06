@@ -2,6 +2,7 @@
 
 package br.com.prodtime.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,8 @@ import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -24,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,15 +35,25 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContentColor
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneOffset
+import br.com.prodtime.R
 
 @Composable
 internal fun SectionTitle(text: String) {
@@ -63,9 +77,26 @@ internal fun NumericField(
     imeAction: ImeAction = ImeAction.Next,
 ) {
     val focusManager = LocalFocusManager.current
+    var fieldValue by remember { mutableStateOf(TextFieldValue(value, TextRange(value.length))) }
+    var wasFocused by remember { mutableStateOf(false) }
+
+    LaunchedEffect(value) {
+        if (value != fieldValue.text) {
+            fieldValue = fieldValue.copy(
+                text = value,
+                selection = TextRange(
+                    fieldValue.selection.start.coerceAtMost(value.length),
+                    fieldValue.selection.end.coerceAtMost(value.length),
+                ),
+            )
+        }
+    }
     OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
+        value = fieldValue,
+        onValueChange = {
+            fieldValue = it
+            onValueChange(it.text)
+        },
         label = { Text(label) },
         supportingText = { Text(error ?: unit) },
         isError = error != null,
@@ -78,7 +109,14 @@ internal fun NumericField(
             onNext = { focusManager.moveFocus(FocusDirection.Next) },
             onDone = { focusManager.clearFocus() },
         ),
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .onFocusChanged { focusState ->
+                if (focusState.isFocused && !wasFocused) {
+                    fieldValue = fieldValue.copy(selection = TextRange(fieldValue.text.length))
+                }
+                wasFocused = focusState.isFocused
+            },
     )
 }
 
@@ -136,6 +174,7 @@ internal fun DateField(
 
 @Composable
 internal fun SummaryRow(label: String, value: String) {
+    val contentColor = LocalContentColor.current
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.Top,
@@ -143,7 +182,7 @@ internal fun SummaryRow(label: String, value: String) {
         Text(
             label,
             modifier = Modifier.weight(1f),
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = contentColor.copy(alpha = 0.75f),
         )
         Spacer(Modifier.width(16.dp))
         Text(
@@ -161,19 +200,37 @@ internal fun ResultCard(
     primaryValue: String,
     primaryLabel: String? = null,
     message: String? = null,
+    containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
+    contentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
+    copyText: String? = null,
     content: @Composable () -> Unit,
 ) {
+    val clipboardManager = LocalClipboardManager.current
+    val context = LocalContext.current
     Card(
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+        colors = CardDefaults.cardColors(containerColor = containerColor, contentColor = contentColor),
     ) {
         Column(
             modifier = Modifier.padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Text(headline, style = MaterialTheme.typography.titleMedium)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(headline, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                copyText?.let { text ->
+                    IconButton(onClick = {
+                        clipboardManager.setText(AnnotatedString(text))
+                        Toast.makeText(context, "Resultado copiado.", Toast.LENGTH_SHORT).show()
+                    }) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_content_copy),
+                            contentDescription = "Copiar resultado",
+                        )
+                    }
+                }
+            }
             primaryLabel?.let {
-                Text(it, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(it, color = LocalContentColor.current.copy(alpha = 0.75f))
             }
             Text(primaryValue, style = MaterialTheme.typography.headlineMedium)
             message?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
