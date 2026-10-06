@@ -335,3 +335,15 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Robustez aprovada:** whitespace e caracteres invisíveis são sanitizados; texto inválido permanece rejeitado; a edição limpa somente o erro do campo corrigido; o cálculo volta a funcionar sem sair da tela e sem regressão perceptível de edição ou cursor.
 - **Observação:** o warning de depreciação de `LocalClipboardManager` permanece não bloqueador; a cópia foi validada fisicamente e a migração foi evitada neste gate para não introduzir risco.
 - **Conclusão:** R6 encerrado. R8 encerrado.
+
+## R9.1 — validação bibliográfica e requisitos acadêmicos
+
+- **Data:** 2026-10-06.
+- **Referências:** metadados bibliográficos das quatro referências foram verificados externamente em páginas editoriais e considerados utilizáveis.
+- **Limite bibliográfico:** o escopo temático está restrito aos metadados e resumos editoriais consultados; não se alega leitura integral nem validação direta do ProdTime pelos trabalhos.
+- **Formato:** a existência do formato/modelo SBC foi confirmada; o template, por si só, não determina limite de páginas.
+- **Pendência:** o número de páginas específico da entrega continua pendente de confirmação institucional e não bloqueia a redação inicial concisa.
+- **Requisitos conhecidos:** artigo em PDF no padrão/modelo SBC, arquivo de até 5 MB, vídeo no YouTube com aproximadamente 5 minutos e prazo geral em 24/10/2026.
+- **Estrutura:** estrutura acadêmica e planos de introdução, fundamentação, metodologia, resultados, figuras e tabelas aprovados para orientar R9.2.
+- **Execução:** nenhuma tarefa Gradle foi necessária, pois a alteração é exclusivamente documental e acadêmica.
+- **Conclusão:** R9.1 concluído; R9 permanece em andamento; R9.2, R9.3 e R9.4 permanecem pendentes.
