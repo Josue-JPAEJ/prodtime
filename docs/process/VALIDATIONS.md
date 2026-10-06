@@ -362,3 +362,21 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Pendências:** placeholders institucionais preservados; figuras reais ainda pendentes; número de páginas ainda pendente de confirmação institucional; revisão R9.3 necessária antes da versão final e formatação R9.4 posterior.
 - **Proteção de escopo:** nenhum código Android, teste, domínio, Gradle ou README alterado pelo commit; sem PDF, DOCX, logo, vídeo ou release.
 - **Conclusão:** R9.2 concluído e primeira versão pronta para revisão. R0–R8 concluídos; R9 em andamento; R9.0 e R9.1 concluídos; R9.3 e R9.4 pendentes; R10 e R11 não iniciados.
+
+## R9.3 — revisão técnica/acadêmica integral
+
+- **Data:** 2026-10-06.
+- **Base confirmada:** `develop`, commit `0618d76b432e77808edd9f609a0ae08ffb5f6a23`, merge do PR #24 de R9.2. Branch interna `work` limpa no início, alinhada por fast-forward sem troca de branch.
+- **Validação local informada pelo usuário após R9.2:** `.\gradlew.bat testDebugUnitTest` — `BUILD SUCCESSFUL in 44s`, `22 actionable tasks: 22 up-to-date`; `.\gradlew.bat assembleDebug` — `BUILD SUCCESSFUL in 5s`, `34 actionable tasks: 34 up-to-date`; `develop` sincronizada e working tree clean. Esses resultados não foram produzidos em R9.3 e não demonstram reexecução de todos os métodos.
+- **Revisão:** leitura integral das fontes solicitadas e do artigo; consultas pontuais ao código para prazo, capacidade, viabilidade e limites de entrada.
+- **Correção técnica:** removida a ambiguidade “A data final participa do cálculo”. O prazo não recebe data final; recebe meta/início/condições/calendário, busca progressivamente a primeira data suficiente e retorna a conclusão. Fórmulas, arredondamento e comportamento preservados.
+- **Meta-linguagem:** nota interna, códigos Rn, rollout, gate e nomes de arquivos de evidência removidos do artigo, mantendo a rastreabilidade nos documentos de revisão/processo.
+- **Resultados:** valores confrontados com as evidências; aritmética decimal e dias conferidos como auditoria documental; contagem estática de 118 métodos `@Test` separada das execuções históricas. Nenhuma métrica criada.
+- **Bibliografia:** quatro referências e citações conferidas; entradas ordenadas alfabeticamente com metadados preservados; usos limitados aos resumos e metadados editoriais, sem validação direta do aplicativo.
+- **Texto:** introdução e contribuição delimitadas; fundamentação sintetizada; metodologia sem narrativa interna; repetição com Tabela 2 reduzida; modelo do aparelho mencionado uma vez; Resumo/Abstract harmonizados e palavras-chave revistas.
+- **Auditoria:** `docs/academic/ARTICLE_CONTENT_AUDIT.md` criada; revisão R9.3 registrada em `ARTICLE_DRAFT_REVIEW.md`. Divergência contextual de limite de fitas entre `OPEN_QUESTIONS.md` e código registrada na auditoria, sem reproduzi-la no artigo nem alterar domínio.
+- **Validação documental:** `git diff --check`, `git diff --stat`, `git diff --name-only`, `git status`, buscas solicitadas, integridade de referências, estrutura/figuras/placeholders e escopo dos cinco arquivos conferidos.
+- **Execução:** nenhuma nova execução Gradle nem nova rodada física nesta tarefa; nenhum Kotlin, teste, UI, recurso Android, Gradle, dependência ou regra de domínio alterado.
+- **Pendências:** dados institucionais, imagens reais, número de páginas, template SBC, formatação e PDF em R9.4; essa etapa é necessária antes da entrega e não foi iniciada.
+- **Integração:** a API do GitHub retornou HTTP 403; essa limitação é distinta do gate de conteúdo e não confirma criação de PR, ausência de conflitos no GitHub ou merge. Não será feita integração direta em `develop` para substituir o fluxo solicitado.
+- **Conclusão:** revisão de conteúdo R9.3 concluída; conteúdo pronto para R9.4. R0–R8 e R9.0–R9.2 concluídos; R9 em andamento; R9.4 pendente; R10 e R11 não iniciados.

@@ -6,53 +6,51 @@
 
 [E-MAIL]
 
-> Primeira versão completa — R9.2. Texto de trabalho, sujeito à revisão técnica/acadêmica em R9.3 e à formatação em R9.4. Dados institucionais, figuras e número de páginas ainda pendentes.
-
 ## Resumo
 
-Estimativas de capacidade e prazo na produção de fitas têxteis envolvem velocidade, quantidade de fitas simultâneas, horas produtivas, desperdício e calendário de trabalho. No contexto que originou este projeto, tais estimativas dependiam de cálculos manuais e do conhecimento de profissionais experientes, posteriormente incorporados a uma calculadora em VBA. Este trabalho apresenta o desenvolvimento do ProdTime, aplicativo Android para estimar a produção em um período, a data de conclusão de uma quantidade e a viabilidade de uma meta. O desenvolvimento aplicado de software compreendeu análise do legado, engenharia reversa das regras, especificação matemática e de calendário, implementação incremental e validação automatizada e física. A solução utiliza Kotlin e Jetpack Compose, com domínio determinístico independente da interface e cálculos decimais explícitos. As evidências documentadas incluem reprodução dos resultados históricos de 8.846 m e 13.270 m, casos de prazo e viabilidade, efeito da política de feriados, execução bem-sucedida das tarefas de testes e compilação e validação no Samsung SM-A066M. O aplicativo opera localmente, depende dos parâmetros informados e não recebe dados de máquinas em tempo real. Sua contribuição consiste na explicitação de regras produtivas rastreáveis e em sua disponibilização em três jornadas móveis, sem demonstrar ganhos operacionais quantitativos.
+Estimativas de capacidade e prazo na produção de fitas têxteis dependem de parâmetros produtivos e do calendário de trabalho. No contexto deste projeto, os cálculos eram manuais e concentravam conhecimento em profissionais experientes, antes de sua incorporação a uma calculadora em VBA. Este trabalho apresenta o ProdTime, aplicativo Android para estimar produção, data de conclusão e viabilidade de metas. O desenvolvimento aplicado compreendeu análise do legado, engenharia reversa, especificação matemática e de calendário, implementação incremental e validação automatizada e em dispositivo físico. A solução utiliza Kotlin e Jetpack Compose, com domínio determinístico separado da interface. Os resultados reproduzem as regressões históricas de 8.846 m e 13.270 m e incluem casos de prazo, viabilidade e alteração da política de feriados. A execução da suíte JVM e a montagem do aplicativo foram concluídas com sucesso. A contribuição é a formalização de regras rastreáveis e sua disponibilização em três jornadas móveis. A operação é local, depende das entradas do usuário e não recebe dados de máquinas em tempo real; não foram mensurados ganhos operacionais.
 
-**Palavras-chave:** produção têxtil; aplicativo móvel; estimativa de capacidade; prazo de produção; Kotlin.
+**Palavras-chave:** produção têxtil; planejamento da produção; aplicativo móvel; estimativa de capacidade; estimativa de prazo.
 
 ## Abstract
 
-Capacity and completion-date estimates in textile tape production involve speed, the number of simultaneous tapes, productive hours, waste, and the working calendar. In the context that motivated this project, these estimates relied on manual calculations and the knowledge of experienced professionals, later incorporated into a VBA calculator. This paper presents the development of ProdTime, an Android application for estimating production over a period, the completion date for a quantity, and the feasibility of a target. The applied software development process comprised legacy analysis, reverse engineering of rules, mathematical and calendar specification, incremental implementation, and automated and physical-device validation. The solution uses Kotlin and Jetpack Compose, with a deterministic domain independent of the interface and explicit decimal calculations. Documented evidence includes reproduction of historical results of 8,846 m and 13,270 m, completion-date and feasibility cases, the effect of the holiday policy, successful execution of test and build tasks, and validation on a Samsung SM-A066M. The application operates locally, depends on user-supplied parameters, and does not receive real-time machine data. Its contribution consists of making production rules explicit and traceable and providing them through three mobile workflows, without demonstrating quantitative operational gains.
+Capacity and completion-date estimates in textile tape production depend on production parameters and the working calendar. In the context of this project, calculations were manual and concentrated knowledge among experienced professionals before being incorporated into a VBA calculator. This paper presents ProdTime, an Android application for estimating production, completion dates, and target feasibility. The applied development process comprised legacy analysis, reverse engineering, mathematical and calendar specification, incremental implementation, and automated and physical-device validation. The solution uses Kotlin and Jetpack Compose, with a deterministic domain separated from the interface. Results reproduce the historical regression cases of 8,846 m and 13,270 m and include completion-date, feasibility, and holiday-policy change cases. The JVM test suite and the application build completed successfully. The contribution is the formalization of traceable rules and their provision through three mobile workflows. The application operates locally, depends on user inputs, and does not receive real-time machine data; operational gains were not measured.
 
-**Keywords:** textile production; mobile application; capacity estimation; production completion date; Kotlin.
+**Keywords:** textile production; production planning; mobile application; capacity estimation; completion-date estimation.
 
 ## 1. Introdução
 
-O planejamento da produção têxtil envolve decisões sobre quantidades, recursos e prazos. Uma estimativa de metragem depende de variáveis como velocidade de produção, quantidade de fitas simultâneas, horas disponíveis, desperdício e dias efetivamente trabalhados. A combinação dessas variáveis exige explicitar as premissas usadas para responder a demandas da produção e de vendas.
+O planejamento da produção têxtil envolve decisões sobre quantidades, recursos e prazos. Uma estimativa de metragem depende de velocidade de produção, quantidade de fitas simultâneas, horas disponíveis, desperdício e dias efetivamente trabalhados. A combinação dessas variáveis exige explicitar as premissas usadas nas respostas à produção e às vendas.
 
-A literatura descreve problemas mais amplos de planejamento e controle em processos têxteis multifásicos, com múltiplas unidades e requisitos produtivos (KARACAPILIDIS; PAPPIS, 1996), e problemas formais de programação da produção com máquinas ou teares paralelos (SERAFINI; SPERANZA, 1992). Esse contexto mostra a complexidade do setor e ajuda a delimitar o problema abordado neste trabalho: estimar capacidade e prazo sob condições produtivas informadas, sem realizar o sequenciamento industrial completo.
+A literatura descreve problemas de planejamento e controle em processos têxteis multifásicos, com múltiplas unidades e requisitos produtivos (KARACAPILIDIS; PAPPIS, 1996), e problemas formais de programação da produção com máquinas ou teares paralelos (SERAFINI; SPERANZA, 1992). Esses trabalhos abordam decisões industriais mais amplas que o recorte deste projeto: estimativas determinísticas de capacidade, prazo e viabilidade para condições produtivas informadas.
 
-No contexto real que originou o ProdTime, as estimativas eram feitas manualmente por profissionais experientes. A dependência desse conhecimento concentrava a análise e podia atrasar respostas operacionais e comerciais. Posteriormente, o autor desenvolveu uma calculadora integrada a um ERP legado em VBA, tornando as regras acessíveis a outros usuários. A substituição desse ERP por um ERP Web motivou a separação da necessidade de cálculo em uma aplicação móvel. A trajetória foi, portanto, processo manual → calculadora VBA → ERP Web → ProdTime mobile; a integração do aplicativo com o ERP Web permanece futura.
+No contexto que originou o ProdTime, as estimativas eram realizadas manualmente por profissionais experientes, concentrando conhecimento e podendo atrasar respostas da produção e de vendas. O autor posteriormente desenvolveu uma calculadora integrada a um ERP legado em VBA. Com a substituição desse ERP por um ERP Web, a necessidade específica de cálculo foi isolada no ProdTime, aplicativo móvel cuja integração com o novo ERP permanece futura.
 
-O problema de desenvolvimento é como disponibilizar, em uma interface móvel, estimativas reproduzíveis de produção, prazo e viabilidade, preservando as relações matemáticas conhecidas e especificando de forma explícita o calendário e o arredondamento. O objetivo é desenvolver um aplicativo que responda quanto é possível produzir em determinado período, quando uma quantidade poderá ser concluída e se uma meta é atendida, indicando o mínimo e o adicional de fitas necessários sob as mesmas premissas.
+O problema de desenvolvimento consiste em disponibilizar estimativas reproduzíveis em uma interface móvel, preservando as relações matemáticas conhecidas e explicitando calendário e arredondamento. O objetivo é responder quanto pode ser produzido em um período, quando uma quantidade pode ser concluída e se uma meta é atendida, indicando o mínimo e o adicional de fitas necessários sob as mesmas premissas.
 
-O escopo é um MVP Android local, com parâmetros constantes por estimativa e feriados configuráveis em memória. O ProdTime não é um ERP, um sistema de planejamento e controle da produção (PCP), um sistema completo de scheduling industrial, uma solução de inteligência artificial ou um sistema preditivo. A contribuição está na formalização rastreável das regras provenientes do legado, na separação entre domínio e apresentação e na implementação de três jornadas móveis verificadas por casos documentados. Não são atribuídos ao aplicativo ganhos de tempo ou redução de desperdício que não tenham sido medidos.
+O escopo é um MVP Android local, com parâmetros constantes por estimativa e feriados em memória. Sua contribuição consiste em transformar regras antes acopladas ao legado em um domínio testável e rastreável, acessível por três jornadas móveis. O aplicativo não realiza scheduling geral nem substitui ERP ou planejamento e controle da produção (PCP). A avaliação concentra-se na concordância com casos conhecidos e no funcionamento das jornadas; ganhos operacionais não foram mensurados.
 
 ## 2. Fundamentação e Trabalhos Relacionados
 
-Karacapilidis e Pappis (1996) tratam do planejamento e controle da produção têxtil em um estudo que considera processos multifásicos, múltiplas unidades, horizontes e requisitos produtivos. O trabalho oferece a fundamentação central para situar a necessidade de informação estruturada em ambientes produtivos complexos. Seu escopo não corresponde a uma aplicação móvel equivalente ao ProdTime nem valida as regras deste aplicativo.
+Karacapilidis e Pappis (1996) abordam planejamento e controle da produção têxtil em processos multifásicos, com múltiplas unidades, horizontes e requisitos produtivos. Esse contexto situa a complexidade das decisões e a necessidade de organizar informações produtivas.
 
-Serafini e Speranza (1992) estudam problemas de scheduling na indústria têxtil, incluindo máquinas ou teares paralelos, algoritmos, limites e heurísticas. A referência sustenta a existência de problemas formais de programação produtiva. O ProdTime, por sua vez, calcula estimativas determinísticas a partir de parâmetros fornecidos e não implementa os algoritmos discutidos nesse trabalho.
+Serafini e Speranza (1992) estudam problemas de scheduling na indústria têxtil, envolvendo máquinas ou teares paralelos, algoritmos, limites e heurísticas. A referência evidencia problemas formais de alocação e programação da produção que ultrapassam o cálculo de capacidade sob parâmetros fixos.
 
-Como exemplo complementar, Laoboonlur, Hodgson e Thoney (2006) abordam scheduling em tingimento e acabamento de malha, com ambiente flexible job shop, setups dependentes da sequência e family scheduling. A referência evidencia particularidades de outro processo têxtil; tingimento e acabamento não são equiparados à produção de fitas, e sua abordagem não foi incorporada ao aplicativo.
+Laoboonlur, Hodgson e Thoney (2006) apresentam um exemplo complementar em tingimento e acabamento de malha, com ambiente flexible job shop, setups dependentes da sequência e family scheduling. Trata-se de outro processo têxtil, cujas características não são equiparadas à produção de fitas.
 
-Hodge et al. (2011) discutem a adaptação de princípios lean à indústria têxtil, com atenção a desperdícios e atividades sem valor. Essa discussão fornece contexto para a melhoria sistemática no setor. No ProdTime, o desperdício é um percentual informado para o cálculo da produção líquida, não uma perda medida pelo sistema. O trabalho apresentado não demonstra implementação integral de lean nem redução de desperdício causada pelo aplicativo.
+Hodge et al. (2011) discutem a adaptação de princípios lean à indústria têxtil, com atenção a desperdícios e atividades sem valor, contextualizando a melhoria sistemática de processos. No ProdTime, desperdício designa o percentual informado para estimar produção líquida; não representa uma perda medida pelo aplicativo.
 
-As quatro referências foram verificadas em R9.1 quanto a metadados e escopo dos resumos editoriais. Seu uso nesta primeira versão permanece restrito a esse material, sem alegação de leitura integral, citações diretas ou validação do ProdTime pelos autores citados. Os trabalhos contextualizam o setor; a evidência sobre o aplicativo provém de suas especificações, regressões e registros de validação.
+As referências foram selecionadas para contextualizar planejamento, programação e melhoria de processos no setor. A consulta alcançou metadados e resumos editoriais, sem leitura integral. Elas não validam diretamente o ProdTime: os algoritmos de scheduling citados não foram implementados, e o aplicativo não demonstra adoção integral de lean ou redução mensurada de desperdícios. A avaliação da solução fundamenta-se nos casos de regressão e nas validações descritas a seguir.
 
 ## 3. Metodologia
 
 O trabalho foi conduzido como desenvolvimento aplicado de software baseado em um problema real e na análise de uma solução legada. A identificação da necessidade e o levantamento do processo manual estabeleceram as perguntas de produção e prazo e a dependência do conhecimento de profissionais experientes. A análise da calculadora VBA permitiu reconstruir as relações entre velocidade, fitas, horas, dias, desperdício e saldo.
 
-A engenharia reversa separou o comportamento histórico da regra desejada para o novo produto. As relações matemáticas foram preservadas com política decimal explícita; coerções implícitas, dependência da interface e subtrações repetidas no calendário foram tratadas como limitações do legado, sem transferência automática para o novo domínio. Em seguida, foram especificados unidades, contratos, duas fronteiras de arredondamento, classificação das datas e resolução de feriados.
+A engenharia reversa separou o comportamento histórico da regra desejada para o novo produto. As relações matemáticas foram preservadas com política decimal explícita; coerções implícitas, dependência da interface e subtrações repetidas no calendário foram tratadas como limitações do legado. Em seguida, foram especificados unidades, contratos, duas fronteiras de arredondamento, classificação das datas e resolução de feriados.
 
-A implementação foi incremental, organizada no rollout R0–R8: fundação do projeto, motor matemático, calendário, jornadas de estimativa e prazo, viabilidade, interface, regressões e robustez das entradas. Os testes automatizados acompanharam os contratos, incluindo exemplos históricos e casos de borda. A matriz de regressão relaciona os comportamentos esperados aos testes reais.
+A implementação foi conduzida incrementalmente, passando pelo motor matemático, calendário, estimativa de produção, prazo, viabilidade e interface móvel. Testes automatizados verificaram os contratos, regressões históricas e casos de borda; verificações locais avaliaram a execução da suíte JVM e a montagem do aplicativo.
 
-A validação reuniu verificações locais de testes e compilação e rodadas físicas no Samsung SM-A066M. Os registros distinguem falhas ambientais anteriores, resultados locais bem-sucedidos, achados visuais e validação dos refinamentos. Esta redação utiliza essas evidências já registradas; não constitui nova execução de testes nem nova avaliação com usuários. Não foi adotado um rótulo metodológico formal além do desenvolvimento aplicado descrito.
+A validação em dispositivo físico verificou as três jornadas, calendário, feriados e interação com os formulários. Achados de cursor, apresentação de viabilidade, cópia e entradas motivaram refinamentos posteriormente verificados. Esse procedimento complementou os testes de cálculo, sem constituir estudo com usuários ou avaliação ampla de compatibilidade.
 
 ## 4. Desenvolvimento do ProdTime
 
@@ -74,7 +72,7 @@ Considere velocidade `v` em cm/min, quantidade de fitas simultâneas `F`, horas 
 velocidade em m/h = (v × 60) / 100
 ```
 
-O cálculo preserva a sequência aprovada na especificação:
+O cálculo segue a sequência:
 
 ```text
 produção bruta decimal = velocidade convertida × F × H × D
@@ -82,9 +80,10 @@ produção bruta = arredondamento integral HALF_EVEN da produção bruta decimal
 desperdício = produção bruta × p / 100
 produção líquida decimal = produção bruta − desperdício
 produção líquida = arredondamento integral HALF_EVEN da produção líquida decimal
+saldo = produção líquida − meta (quando informada)
 ```
 
-O desperdício incide sobre a produção bruta já arredondada e permanece decimal. Quando há meta, o saldo é a produção líquida integral menos a meta. O total de horas produtivas é `H × D`.
+O desperdício incide sobre a produção bruta já arredondada e permanece decimal. O saldo existe somente quando há meta. O total de horas produtivas é `H × D`.
 
 O uso de `BigDecimal`, construído a partir de texto ou constantes exatas, evita conversões intermediárias por `Double` ou `Float`. A política `HALF_EVEN` arredonda para o inteiro mais próximo e, em empate, escolhe o inteiro par. Ela é aplicada somente às fronteiras bruta e líquida descritas, preservando os resultados históricos conhecidos sem truncamento arbitrário. Horas fracionárias são aceitas, e o domínio não incorpora valores padrão da interface.
 
@@ -117,7 +116,7 @@ Figura 2. Exemplo do resultado do fluxo de estimativa de produção.
 
 ### 4.5 Estimativa de prazo
 
-A jornada “Quando vou terminar?” recebe uma meta positiva em metros inteiros, a data inicial e as condições produtivas. O `ProductionDeadlineCalculator` encontra a primeira data cuja produção líquida acumulada, calculada pelas mesmas regras de capacidade e calendário, atinge ou supera a meta. A data final participa do cálculo. A resposta apresenta conclusão estimada, dias produtivos, produção na conclusão e saldo. A existência de um horizonte técnico de busca impede iteração indefinida; não representa garantia operacional de entrega.
+A jornada “Quando vou terminar?” tem como entradas meta positiva em metros inteiros, data inicial, condições produtivas e políticas de calendário; a data final não é informada pelo usuário. O `ProductionDeadlineCalculator` percorre progressivamente as datas e, a cada novo dia produtivo, aplica o mesmo motor de capacidade ao total acumulado de dias. A busca termina na primeira data cuja produção líquida atinge ou supera a meta, respeitando calendário e feriados. A data de conclusão é um resultado e delimita o calendário apresentado. Um horizonte técnico finito impede busca indefinida; a resposta inclui dias produtivos, produção na conclusão e saldo.
 
 ### 4.6 Viabilidade da meta
 
@@ -125,37 +124,35 @@ A jornada de verificação de meta compara a produção líquida estimada no per
 
 A análise é determinística e condicionada às entradas. Não considera disponibilidade real de máquinas nem executa otimização de PCP; não utiliza IA. A indicação de fitas adicionais expressa uma condição calculada, cuja disponibilidade precisa ser avaliada pelo usuário.
 
-[FIGURA 3 — Resultado de prazo ou viabilidade]
+[FIGURA 3 — Resultado da análise de viabilidade]
 
-Figura 3. Exemplo de resultado de prazo/viabilidade.
+Figura 3. Resultado de viabilidade com déficit ou excedente e indicação do mínimo e do adicional de fitas.
 
 ### 4.7 Interface móvel e robustez das entradas
 
-A Home oferece acesso às três jornadas e à configuração de feriados. Os formulários Compose organizam unidades, opções e mensagens de erro; ações de teclado conduzem o foco e o cursor. A apresentação utiliza temas claro e escuro, semântica de acessibilidade, layouts roláveis e feedback textual para resultados e viabilidade. Os resultados podem ser copiados.
+A tela inicial oferece acesso às três jornadas e à configuração de feriados. Os formulários Compose organizam unidades, opções e mensagens de erro; ações de teclado conduzem o foco e o cursor. A apresentação utiliza temas claro e escuro, semântica de acessibilidade, layouts roláveis e feedback textual para resultados e viabilidade. Os resultados podem ser copiados.
 
-A entrada numérica aceita separador decimal por vírgula ou ponto. A sanitização remove whitespace e caracteres invisíveis previstos antes do parsing, preservando a rejeição de texto inválido. Limites operacionais de velocidade, fitas, horas, desperdício e meta são verificados na apresentação, sem modificar as fórmulas do domínio. A edição limpa o erro do campo corrigido, permitindo retomar o cálculo sem sair da tela. Essas medidas foram objeto de testes e registros físicos, sem constituir uma avaliação abrangente de usabilidade ou acessibilidade.
+A entrada numérica aceita separador decimal por vírgula ou ponto. A sanitização remove espaços em branco e caracteres invisíveis previstos antes da conversão numérica, preservando a rejeição de texto inválido. Limites operacionais de velocidade, fitas, horas, desperdício e meta são verificados na apresentação, sem modificar as fórmulas do domínio. A edição limpa o erro do campo corrigido, permitindo retomar o cálculo sem sair da tela.
 
 ## 5. Resultados e Validação
 
-Os resultados abaixo são casos documentados, sob parâmetros definidos. As fontes internas de rastreabilidade são `ARTICLE_EVIDENCE.md`, `REGRESSION_MATRIX.md` e `VALIDATIONS.md`. A concordância entre casos conhecidos e resultados não estabelece uma taxa de acerto para produção real.
+Foram comparados resultados calculados com referências históricas e verificados cenários de prazo, viabilidade e feriados. A Tabela 2 sintetiza os casos; as subseções explicam suas condições e interpretação. A concordância observada nesses exemplos não estabelece uma taxa de acerto para produção real.
 
 ### 5.1 Regressões históricas
 
-Com 25 cm/min, 16 h/dia, 19 dias produtivos e 3% de desperdício, a configuração de duas fitas produz 9.120 m brutos, 273,6 m de desperdício e 8.846 m líquidos. Para três fitas, os resultados são 13.680 m brutos, 410,4 m de desperdício e 13.270 m líquidos.
-
-Antes do arredondamento líquido, os valores são 8.846,4 m e 13.269,6 m, respectivamente. A política integral resulta nos valores históricos conhecidos da calculadora VBA. Os testes de regressão verificam esses exemplos e a matriz os relaciona aos contratos matemáticos; não se deduz deles um percentual de precisão.
+As regressões utilizam 25 cm/min, 16 h/dia, 19 dias produtivos e 3% de desperdício, com duas e três fitas. Os resultados brutos, o desperdício e a produção líquida constam da Tabela 2. Antes do arredondamento líquido, os valores são 8.846,4 m e 13.269,6 m, respectivamente. A política integral produz 8.846 m e 13.270 m, reproduzindo os resultados conhecidos da calculadora VBA. Os testes de regressão verificam esses exemplos sob as condições indicadas.
 
 ### 5.2 Validação do prazo
 
-Para a meta de 10.000 m, início em 05/10/2026, velocidade de 25 cm/min, três fitas, 16 h/dia, desperdício de 3% e calendário sem sábados, domingos ou feriados, o resultado registrado é 23/10/2026. São 15 dias produtivos, produção líquida de 10.476 m e saldo de +476 m. A matriz também registra o teste de minimalidade: 14 dias são insuficientes e 15 são suficientes nesse cenário. A data é uma estimativa sob essas condições, não um compromisso de entrega.
+Para a meta de 10.000 m, início em 05/10/2026, velocidade de 25 cm/min, três fitas, 16 h/dia e desperdício de 3%, foi utilizado calendário sem sábados, domingos ou feriados. A conclusão calculada foi 23/10/2026, após 15 dias produtivos, com produção de 10.476 m e saldo de +476 m. O teste de minimalidade verifica que 14 dias são insuficientes e 15 são suficientes nesse cenário.
 
 ### 5.3 Validação da viabilidade
 
-No período de 01/10/2026 a 27/10/2026, com 19 dias produtivos e as condições das regressões, a meta de 10.000 m é atendida com três fitas: produção de 13.270 m, excedente de +3.270 m, mínimo de três fitas e adicional zero. Com duas fitas, a produção é 8.846 m, a meta não é atendida e o déficit é 1.154 m. O mínimo permanece três fitas, com uma fita adicional. Esses resultados demonstram a resposta determinística nos casos documentados, sem avaliar disponibilidade operacional de recursos.
+A verificação de meta utiliza 01/10/2026 a 27/10/2026, com 19 dias produtivos, meta de 10.000 m e as demais condições das regressões. Três fitas atendem à meta, enquanto duas são insuficientes. Em ambos os casos, o mínimo calculado é três, com adicionais zero e um, respectivamente. A Tabela 2 reúne os valores de excedente e déficit; a indicação não pressupõe disponibilidade operacional das fitas adicionais.
 
 ### 5.4 Validação do calendário e dos feriados
 
-A validação física registra o período de 01/12/2026 a 31/12/2026, velocidade de 28 cm/min, uma fita, 16 h/dia e desperdício de 3%. Com feriado não trabalhado, foram obtidos 22 dias produtivos e 5.737 m líquidos. Com feriado trabalhado, foram obtidos 23 dias produtivos e 5.997 m líquidos. A alteração da política impactou o resultado conforme esperado. A comparação se limita a esse cenário registrado, sem extrapolação para outros calendários.
+No cenário de 01/12/2026 a 31/12/2026, com 28 cm/min, uma fita, 16 h/dia e 3% de desperdício, a política de trabalho em feriado alterou a contagem produtiva de 22 para 23 dias. A produção líquida passou de 5.737 m para 5.997 m, conforme a validação física. O efeito observado limita-se às condições desse cenário.
 
 **Tabela 2. Síntese dos casos documentados de validação.**
 
@@ -171,11 +168,11 @@ A validação física registra o período de 01/12/2026 a 31/12/2026, velocidade
 
 ### 5.5 Testes e validação física
 
-Na versão analisada das fontes, foram identificados 118 métodos anotados com @Test em app/src/test. Essa contagem descreve as fontes e não o total executado por uma tarefa. A matriz cobre capacidade e `HALF_EVEN`, calendário e pontas, recorrência e deduplicação de feriados, estimativa, prazo, viabilidade, parsing, sanitização, limites e apresentação.
+Na versão avaliada, a suíte JVM continha 118 métodos anotados com `@Test`. Essa contagem descreve as fontes, não o total executado em uma tarefa. Os testes abrangem capacidade e `HALF_EVEN`, calendário e pontas, recorrência e deduplicação de feriados, estimativa, prazo, viabilidade, conversão numérica, sanitização, limites e apresentação.
 
-Separadamente, o gate local final de R6.8/R8.6 registra `testDebugUnitTest` com `BUILD SUCCESSFUL` e `assembleDebug` com `BUILD SUCCESSFUL`. Esses são resultados históricos documentados de execução e compilação; não foram repetidos nesta tarefa documental, e não se infere cobertura percentual a partir deles.
+Na validação local final, `testDebugUnitTest` e `assembleDebug` foram concluídas com `BUILD SUCCESSFUL`. Os registros incluem tarefas reportadas como atualizadas, de modo que a conclusão bem-sucedida não implica reexecução de todos os métodos. Também não permite determinar cobertura percentual.
 
-A validação física no Samsung SM-A066M reuniu as três jornadas, calendário, feriados, prazo e viabilidade. As rodadas registraram achados e posterior aprovação de cursor, cópia, limites de entrada, sanitização e feedback. A evidência é de funcionamento nos cenários verificados em um dispositivo; não demonstra compatibilidade com todos os aparelhos, satisfação de usuários ou ganhos produtivos mensurados.
+A validação física foi realizada em um Samsung SM-A066M, verificando as três jornadas, calendário, feriados e interação. Foram registrados e posteriormente aprovados refinamentos de cursor, cópia, limites, sanitização e feedback. Trata-se de funcionamento nos cenários verificados em um aparelho real, sem avaliação ampla de compatibilidade ou estudo com usuários.
 
 ## 6. Limitações e Trabalhos Futuros
 
@@ -183,7 +180,7 @@ A validação física no Samsung SM-A066M reuniu as três jornadas, calendário,
 
 O aplicativo opera localmente, sem backend, e os feriados cadastrados não persistem após o encerramento do processo. Velocidade, horas, fitas, desperdício e calendário dependem das informações fornecidas pelo usuário. O sistema não recebe dados de máquinas em tempo real e assume condições constantes na estimativa, sem modelar ocupações, liberações ou capacidade variável por intervalo.
 
-Os resultados representam estimativas condicionais, não promessas operacionais. O MVP não utiliza inteligência artificial nem oferece PCP. A validação disponível reúne regressões, testes e observações físicas documentadas; não inclui avaliação quantitativa de economia de tempo, redução de desperdício, desempenho industrial ou estudo abrangente de usabilidade. O alcance bibliográfico desta versão é limitado aos metadados e resumos editoriais verificados.
+Os resultados representam estimativas condicionais, não promessas operacionais. O MVP não utiliza inteligência artificial nem oferece PCP. A validação disponível reúne regressões, testes e observações físicas documentadas; não inclui avaliação quantitativa de economia de tempo, redução de desperdício, desempenho industrial ou estudo abrangente de usabilidade.
 
 ### 6.2 Trabalhos futuros
 
@@ -193,14 +190,14 @@ As possibilidades de evolução incluem integração com ERP Web e PCP, consulta
 
 O ProdTime implementa estimativa de produção em um período, estimativa da primeira data de atendimento de uma quantidade e avaliação determinística de viabilidade, com indicação do mínimo e do adicional de fitas. A separação entre interface móvel e domínio permite aplicar as mesmas regras de capacidade, calendário e feriados às três jornadas. Os casos documentados reproduzem os resultados históricos de duas e três fitas e apresentam respostas coerentes para prazo, viabilidade e política de feriados.
 
-Os registros de testes e compilação bem-sucedidos, complementados pela validação física no Samsung SM-A066M, sustentam o funcionamento nos cenários analisados. A contribuição se limita à explicitação das regras e à implementação móvel rastreável. A operação local, a ausência de persistência de feriados e de dados em tempo real e a dependência das entradas restringem seu uso a estimativas sob premissas informadas. Não se demonstra ganho operacional quantitativo; integrações e recursos de planejamento ampliado permanecem trabalhos futuros.
+Os registros de testes e montagem do aplicativo, complementados pela validação em dispositivo físico, sustentam o funcionamento nos cenários analisados. A contribuição se limita à explicitação das regras e à implementação móvel rastreável. A operação local, a ausência de persistência de feriados e de dados em tempo real e a dependência das entradas restringem seu uso a estimativas sob premissas informadas. Não se demonstra ganho operacional quantitativo; integrações e recursos de planejamento ampliado permanecem trabalhos futuros.
 
 ## Referências
 
-KARACAPILIDIS, Nikos I.; PAPPIS, Costas P. Production planning and control in textile industry: a case study. *Computers in Industry*, v. 30, n. 2, p. 127–144, 1996. DOI: [10.1016/0166-3615(96)00038-3](https://doi.org/10.1016/0166-3615(96)00038-3).
+HODGE, George L.; GOFORTH ROSS, Kelly; JOINES, Jeff A.; THONEY, Kristin. Adapting lean manufacturing principles to the textile industry. *Production Planning & Control*, v. 22, n. 3, p. 237–247, 2011. DOI: [10.1080/09537287.2010.498577](https://doi.org/10.1080/09537287.2010.498577).
 
-SERAFINI, Paolo; SPERANZA, M. Grazia. Production scheduling problems in a textile industry. *European Journal of Operational Research*, v. 58, n. 2, p. 173–190, 1992. DOI: [10.1016/0377-2217(92)90205-N](https://doi.org/10.1016/0377-2217(92)90205-N).
+KARACAPILIDIS, Nikos I.; PAPPIS, Costas P. Production planning and control in textile industry: a case study. *Computers in Industry*, v. 30, n. 2, p. 127–144, 1996. DOI: [10.1016/0166-3615(96)00038-3](https://doi.org/10.1016/0166-3615(96)00038-3).
 
 LAOBOONLUR, P.; HODGSON, T. J.; THONEY, K. A. Production scheduling in a knitted fabric dyeing and finishing process. *The Journal of The Textile Institute*, v. 97, n. 5, p. 391–399, 2006. DOI: [10.1533/joti.2006.0145](https://doi.org/10.1533/joti.2006.0145).
 
-HODGE, George L.; GOFORTH ROSS, Kelly; JOINES, Jeff A.; THONEY, Kristin. Adapting lean manufacturing principles to the textile industry. *Production Planning & Control*, v. 22, n. 3, p. 237–247, 2011. DOI: [10.1080/09537287.2010.498577](https://doi.org/10.1080/09537287.2010.498577).
+SERAFINI, Paolo; SPERANZA, M. Grazia. Production scheduling problems in a textile industry. *European Journal of Operational Research*, v. 58, n. 2, p. 173–190, 1992. DOI: [10.1016/0377-2217(92)90205-N](https://doi.org/10.1016/0377-2217(92)90205-N).
