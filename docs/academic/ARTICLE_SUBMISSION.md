@@ -1,6 +1,6 @@
 # Preparação para submissão do artigo
 
-**Estado atual R9.4B:** quatro capturas reais integradas e primeira diagramação SBC compilada. [Abrir preview](submission/prodtime_sbc_preview.pdf): **11 páginas, 357.298 bytes**, abaixo de 5 MB. Pronto para revisão humana; R9.4 permanece em andamento. O registro inicial abaixo foi preservado como histórico; as pendências atuais estão na atualização ao final.
+**Estado atual R9.4C:** revisão humana de R9.4B aprovada pelo autor; unidade de desperdício corrigida no LaTeX e Resumo/Abstract condensados para dez linhas cada. [Abrir PDF atualizado](submission/prodtime_sbc_preview.pdf): **11 páginas, 355.967 bytes**, abaixo de 5 MB. R9.4 concluído editorialmente e R9 concluído quanto ao conteúdo/artigo produzido. Eventual ajuste ao limite institucional ainda não informado poderá ser necessário. Os registros anteriores foram preservados como histórico.
 
 ## Registro inicial R9.4A — histórico
 
@@ -53,10 +53,21 @@ Não foi gerado PDF ou Word: faltam as imagens reais e o template aplicável par
 - Log final sem `Overfull`, glifos ausentes ou referências indefinidas. Permanecem nove avisos `Underfull hbox` de justificação e um `Underfull vbox` (badness 1237); conferidos visualmente, sem perda de conteúdo ou defeito que impeça revisão. Margens, fontes e espaçamentos não foram deformados para eliminá-los.
 - **Atenção editorial:** a orientação de até dez linhas por Resumo/Abstract no exemplo tradicional SBC é excedida neste preview; ambos estão completos na primeira página. Não foi reduzido o texto nesta etapa. A adequação deverá ser decidida na revisão humana. Conferir também legibilidade em impressão.
 
-### Pendências atuais
+### Pendências registradas em R9.4B — histórico
 
 - Revisão humana do PDF, incluindo extensão, Resumo/Abstract, legibilidade e posicionamento de figuras/tabelas.
 - Confirmação do limite de páginas e eventuais particularidades do modelo exigido pela Gran; não há limite arbitrário adotado.
 - Ajustes aprovados após essa avaliação e geração da versão institucional definitiva.
 
 **Gate do preview R9.4B: SIM — pronto para revisão humana.** Isso não encerra R9.4 nem R9. R10/R11 continuam não iniciados; nenhuma nova execução Gradle, teste do aplicativo ou validação física foi realizada.
+
+## Atualização R9.4C — fechamento editorial
+
+- Base `develop` em `e1c19edf2e0bfb8aff84cab371617a931f16ffb0`, com R9.4B integrado pelo PR #27. O autor informou revisão humana página por página: estrutura, figuras/posicionamento, Tabela 2, fórmulas, referências, autoria e resultados aprovados. Essa aprovação é atribuída à revisão informada pelo autor.
+- Tabela 1: `%` já estava correto em `ARTICLE_FINAL.md`; na fonte LaTeX a célula estava vazia. Aplicado `\%` em `main.tex`, preservando o restante da tabela; PDF agora exibe `%` ao lado de Desperdício.
+- Resumo final com 97 palavras e Abstract equivalente com 94; dez linhas cada no modelo, completos na primeira página, sem métricas ou afirmações novas. Mantidos problema/contexto manual/VBA, aplicativo Android/Kotlin/Compose, três objetivos, desenvolvimento aplicado, validações, regressões, contribuição e dependência das entradas/ausência de dados em tempo real. Palavras-chave e Keywords preservadas.
+- Recompilação com `sh docs/academic/submission/build.sh`, duas passagens pdfLaTeX: **11 → 11 páginas A4**, **355.967 bytes / 355,967 KB / 0,355967 MB** decimais; abaixo de 5 MB. Última passagem sem `Overfull`, glifos ausentes, referências indefinidas ou warning de recompilação; oito avisos `Underfull hbox` de justificação, sem `Underfull vbox`, inspecionados sem perda de conteúdo.
+- Página 1 e página 5 (Tabela 1) conferidas visualmente na saída final; restante do PDF também conferido. Não há páginas vazias, corte ou sobreposição. A redução dos resumos produz redistribuição natural: a Introdução começa na página 1 e a Figura 1 ocupa uma página de float (página 4), mantendo proporção/legenda e sem alteração dos parâmetros de posicionamento. A quantidade total permanece igual; não se forçou paginação.
+- Comparação confirmou que, fora dos resumos e da célula `%`, o conteúdo Markdown/LaTeX é idêntico à base. Figuras, legendas, fontes, margens, espaçamentos, estilo, fórmulas, referências e demais seções intactos.
+
+**Gate editorial: SIM. R9.4 concluído editorialmente; R9 concluído quanto ao conteúdo e artigo produzido.** O limite institucional de páginas da Gran continua não confirmado; eventual adequação futura será feita somente quando a regra for fornecida. Integração desta alteração depende de confirmação própria de PR/merge. R10/R11 não iniciados.
