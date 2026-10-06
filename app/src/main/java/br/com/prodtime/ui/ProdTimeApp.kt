@@ -16,6 +16,7 @@ private enum class Destination {
     ProductionDeadline,
     ProductionViability,
     Holidays,
+    About,
 }
 
 @Composable
@@ -34,6 +35,7 @@ fun ProdTimeApp() {
             onProductionDeadline = { destinationName = Destination.ProductionDeadline.name },
             onProductionViability = { destinationName = Destination.ProductionViability.name },
             onHolidays = { destinationName = Destination.Holidays.name },
+            onAbout = { destinationName = Destination.About.name },
         )
 
         Destination.ProductionEstimate -> ProductionEstimateScreen(
@@ -48,6 +50,10 @@ fun ProdTimeApp() {
 
         Destination.ProductionViability -> ProductionViabilityScreen(
             holidayDefinitions = holidayDefinitions,
+            onBack = { destinationName = Destination.Home.name },
+        )
+
+        Destination.About -> AboutScreen(
             onBack = { destinationName = Destination.Home.name },
         )
 

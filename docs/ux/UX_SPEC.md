@@ -13,11 +13,11 @@ Entregar uma experiência mobile simples e guiada para estimar produção, prazo
 
 ## 3. Jornada principal
 
-A aplicação inicia na Home. Cada ação abre um fluxo independente; a ação visual e o botão Back do Android retornam à Home. A navegação usa estado interno, sem biblioteca adicional, para os três fluxos e a gestão de feriados.
+A aplicação inicia na Home. Cada ação abre um fluxo independente; a ação visual e o botão Back do Android retornam à Home. A navegação usa estado interno, sem biblioteca adicional, para os três fluxos, a gestão de feriados e a seção Sobre.
 
 ## 4. Home
 
-A Home apresenta “Quanto consigo produzir?”, “Quando vou terminar?” e “Verificar uma meta”. O acesso secundário “Configurar feriados” não compete visualmente com os três fluxos principais.
+A Home apresenta “Quanto consigo produzir?”, “Quando vou terminar?” e “Verificar uma meta”. Os acessos secundários “Configurar feriados” e, logo abaixo, “Sobre o ProdTime” não competem visualmente com os três fluxos principais. Nome e descrição curta são reutilizados de recursos de string.
 
 ## 5. Quanto consigo produzir?
 
@@ -82,6 +82,10 @@ O indicador de avanço dos cards da Home é somente decorativo e não participa 
 
 ## 16. Identidade e acabamento
 
-O nome público permanece **ProdTime** e os recursos atuais de launcher ainda são os do template Android. Não será criada uma tela “Sobre” nem um logo arbitrário nesta etapa. Ícone personalizado, versão, descrição curta e finalidade acadêmica ficam planejados para o acabamento de identidade no R10.
+R10.1 mantém o nome **ProdTime** e adota a descrição “Planejamento rápido de capacidade e prazo para produção de fitas têxteis.”. O launcher usa símbolo original de relógio/fita com contraste branco sobre o violeta da paleta existente, variantes adaptativas e monocromáticas e rasters por densidade. O tema e os fluxos produtivos não foram alterados. `versionName = "1.0"` e `versionCode = 1` permanecem; versão 1.0.0 reservada ao R11.
+
+“Sobre o ProdTime” usa o mesmo estado de navegação, sem biblioteca adicional. A ação visual “Voltar” e o Back do Android retornam à Home. A tela exibe nome, descrição, autoria de Josué Paulo Alexandrina, curso ADS/Gran Faculdade, e-mail e aviso de que estimativas dependem dos parâmetros informados e não representam promessa operacional. O e-mail permite seleção textual; não é criado envio de mensagem ou integração externa.
+
+Layout em coluna rolável, sem alturas fixas para texto; título com semântica de heading, ações TextButton Material e cores/tipografia de `MaterialTheme`. Previews declarados para light, dark e tela pequena com fonte 1,5×. A compilação confirma a integração; a renderização real da Home/Sobre, TalkBack, rolagem e temas ainda exige validação local/física. Detalhes em `docs/branding/BRAND_IDENTITY.md`.
 
 Peso, tara e massa linear continuam adiados porque o recurso secundário não integra a jornada principal atual.

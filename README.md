@@ -1,6 +1,6 @@
 # ProdTime
 
-Aplicativo Android em desenvolvimento para estimar capacidade e prazo na produção de fitas têxteis.
+Planejamento rápido de capacidade e prazo para produção de fitas têxteis.
 
 ## Propósito e problema
 
@@ -13,7 +13,13 @@ A ideia evolui de uma calculadora criada pelo autor e integrada a um ERP legado 
 
 ## Status atual
 
-O MVP funcional está implementado. As etapas R0–R8 foram concluídas, incluindo os três fluxos, calendário produtivo, feriados em memória, validações automatizadas e validação física. O R9, dedicado à documentação acadêmica, está em andamento.
+O MVP funcional está implementado. As etapas R0–R8 foram concluídas, incluindo os três fluxos, calendário produtivo, feriados em memória, validações automatizadas e validação física. O R9 foi concluído editorialmente e o artigo foi integrado. R10.1 adiciona a identidade do aplicativo e a seção Sobre; a validação física dessa alteração permanece pendente. R10 continua em andamento, sem iniciar README final, vídeo, portfólio ou release.
+
+## Identidade do aplicativo
+
+Nome oficial **ProdTime**, com ícone original de fita/relógio e acesso **Sobre o ProdTime** abaixo de “Configurar feriados”. A seção identifica Josué Paulo Alexandrina, o curso Análise e Desenvolvimento de Sistemas (ADS), a Gran Faculdade e o contato `josue_jpaej@hotmail.com`, além de explicar que os resultados são estimativas, sem promessa operacional.
+
+A versão atual continua `1.0` (`versionCode = 1`); **versão 1.0.0 reservada ao R11**. Conceito, recursos e checklist de validação em [Identidade visual](docs/branding/BRAND_IDENTITY.md).
 
 ## Stack atual
 

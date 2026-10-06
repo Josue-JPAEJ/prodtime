@@ -20,9 +20,11 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.prodtime.R
 import br.com.prodtime.ui.theme.ProdTimeTheme
 
 @Composable
@@ -31,6 +33,7 @@ fun HomeScreen(
     onProductionDeadline: () -> Unit,
     onProductionViability: () -> Unit,
     onHolidays: () -> Unit,
+    onAbout: () -> Unit,
 ) {
     Scaffold { padding ->
         Column(
@@ -41,10 +44,10 @@ fun HomeScreen(
                 .padding(horizontal = 24.dp, vertical = 32.dp),
             verticalArrangement = Arrangement.Center,
         ) {
-            Text("ProdTime", style = MaterialTheme.typography.displaySmall)
+            Text(stringResource(R.string.app_name), style = MaterialTheme.typography.displaySmall)
             Spacer(Modifier.height(8.dp))
             Text(
-                "Planeje capacidade e prazo de produção.",
+                stringResource(R.string.app_short_description),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -68,6 +71,7 @@ fun HomeScreen(
             )
             Spacer(Modifier.height(24.dp))
             TextButton(onClick = onHolidays) { Text("Configurar feriados") }
+            TextButton(onClick = onAbout) { Text(stringResource(R.string.about_title)) }
         }
     }
 }
@@ -111,6 +115,7 @@ private fun HomeScreenPreview() {
             onProductionDeadline = {},
             onProductionViability = {},
             onHolidays = {},
+            onAbout = {},
         )
     }
 }
