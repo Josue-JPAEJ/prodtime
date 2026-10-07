@@ -98,6 +98,6 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 - **Objetivo:** consolidar a primeira versão acadêmica estável.
 - **Escopo:** revisão final, evidências, versionamento e artefato de entrega.
 - **Critério de conclusão:** gates técnicos e auditoria de publicação aprovados, revisão humana e release reproduzível.
-- **Etapas:** R11.1 — concluído: versão 1.0.0/código 1, testes/builds aprovados e APK debug assinado preparado localmente; proprietário avaliou e aceitou a exposição do e-mail adicional e VBA histórico em R11.1B, dispensando explicitamente sanitização/reescrita histórica. R11.2 — main/tag/release não iniciado. R11.3 — publicação do repositório não iniciada. R11.4 — verificação pública final não iniciada.
-- **Status:** em andamento.
-- **Gate de preparação R11.1:** SIM, conforme decisão explícita do proprietário; ver `docs/release/PUBLIC_REPOSITORY_AUDIT.md`. Nenhuma alteração de visibilidade, merge em main, tag, release ou reescrita de histórico realizada.
+- **Etapas:** R11.1 — concluído: versão 1.0.0/código 1, testes/builds aprovados e APK debug assinado preparado localmente; proprietário avaliou e aceitou a exposição do e-mail adicional e VBA histórico em R11.1B, dispensando explicitamente sanitização/reescrita histórica. R11.2 — concluído: main promovida pelo PR #35, tag v1.0.0 e GitHub Release publicada com APK acadêmico e checksum. R11.3 — concluído: repositório público. R11.4 — concluído: verificação pública confirmada pelo autor e fechamento documental preparado.
+- **Status:** concluído.
+- **Gate de preparação R11.1:** SIM, conforme decisão explícita do proprietário; ver `docs/release/PUBLIC_REPOSITORY_AUDIT.md`. Publicação e verificação pública confirmadas pelo autor em R11.4; histórico preservado. A API permanece inacessível neste ambiente; integração deste fechamento documental depende dos PRs.

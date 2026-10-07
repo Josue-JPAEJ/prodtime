@@ -70,7 +70,7 @@ Operação local, sem backend ou dados de máquinas em tempo real. Feriados não
 
 ## Próximos passos
 
-O vídeo foi gravado/revisado/publicado pelo autor em modo não listado. A versão 1.0.0 está em preparação como candidate local; tag e release formal ainda pendentes. Persistência, histórico, integração com ERP Web/PCP, disponibilidade de máquinas, capacidade variável, IA e IoT são possibilidades futuras, fora da versão atual e sujeitas a requisitos e validação próprios.
+O vídeo foi gravado/revisado/publicado pelo autor em modo não listado. A versão 1.0.0 está publicada na [GitHub Release v1.0.0](https://github.com/Josue-JPAEJ/prodtime/releases/tag/v1.0.0), com APK acadêmico demonstrativo assinado com certificado Android Debug e checksum. Persistência, histórico, integração com ERP Web/PCP, disponibilidade de máquinas, capacidade variável, IA e IoT são possibilidades futuras, fora da versão atual e sujeitas a requisitos e validação próprios.
 
 ## Contexto acadêmico
 
@@ -78,4 +78,4 @@ Projeto Integrador de **Josué Paulo Alexandrina**, no curso **Análise e Desenv
 
 O [artigo produzido no formato SBC](../academic/submission/prodtime_sbc_preview.pdf) contém 11 páginas e está abaixo de 5 MB. Eventual adequação ao limite institucional depende de regra ainda não informada. A [fonte final](../academic/ARTICLE_FINAL.md) reúne o texto e as referências, consultadas nos limites dos metadados/resumos editoriais, sem alegação de leitura integral da literatura.
 
-Este texto está preparado para reutilização; nenhuma página pública de portfólio foi publicada nesta etapa. O vídeo oficial é https://youtu.be/UrrcNwLq76w, não listado, conforme relato do autor. O repositório permanece privado conforme informação do autor em R11.1; não se promete acesso público a seus arquivos.
+Este texto está preparado para reutilização; nenhuma página pública de portfólio foi publicada nesta etapa. O vídeo oficial é https://youtu.be/UrrcNwLq76w, não listado, conforme relato do autor. O repositório é público, conforme estado confirmado pelo autor em R11.4; os materiais de apresentação estão concluídos.

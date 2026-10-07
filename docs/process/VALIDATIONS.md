@@ -522,3 +522,13 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Documentação:** auditoria atualizada com decisão do proprietário, gate aprovado e ausência de garantia universal; release/branding/ficha/rollout coerentes. Registro R11.1 anterior preservado como histórico da decisão pendente naquele momento.
 - **Verificações:** git diff --check/stat/name-only/status/log; hashes/assinatura/XML/metadados/links e ignore conferidos. Escopo permanece nos 11 arquivos legítimos de R11.1, sem alteração de Kotlin/testes/artigo/imagens/legado.
 - **Conclusão:** R11.1 concluído e pronto para R11.2. R11 em andamento; R11.2–R11.4 não iniciados. Sem main/tag/GitHub Release/visibilidade pública/LinkedIn/remoção de branches. Commit e PR de consolidação têm confirmação própria.
+
+## R11.4 — fechamento documental pós-publicação
+
+- **Evidência confirmada pelo autor:** PR #35 develop → main mergeado; main contém ProdTime 1.0.0; tag v1.0.0 existente; GitHub Release “ProdTime 1.0.0” publicada com ProdTime-1.0.0-debug.apk e SHA256SUMS.txt; repositório público e verificação pública concluída. Release: https://github.com/Josue-JPAEJ/prodtime/releases/tag/v1.0.0. Vídeo: https://youtu.be/UrrcNwLq76w, não listado.
+- **Conferência Git:** origin/develop em 89e71b7ec34ae0b9f711ed55487dc39429bf3c01; origin/main em bc32639 (merge PR #35). Fechamento preparado sobre develop com árvore inicialmente limpa.
+- **SHA-256 público informado pelo autor:** 1162ac6b8f99430cb818460537eb406963fb07b43d5a609bd81a89f675fdeeb5. Difere do APK local histórico d183aae4afd633f42694c844cdc65805f70a679870fe7be9608d994e20731fa8; nenhum APK foi substituído, reconstruído ou alterado. Não atribuir os metadados inspecionados do build local ao binário público sem nova inspeção.
+- **Limite de verificação independente:** consulta gh à release retornou Forbidden. Publicação, assets, visibilidade e verificação pública registrados como evidência do autor; download ou inspeção independente do APK público não realizados nesta tarefa.
+- **Documentação:** README, release, rollout, validações e dois documentos de portfólio atualizados. Históricos temporais preservados; código, Gradle, testes, APKs, artigo e imagens intactos. Nenhum Gradle ou teste físico executado.
+- **Validação documental:** revisão do diff, git diff --check, git diff --stat, git diff --name-only e git status; escopo limitado aos seis documentos solicitados.
+- **Conclusão documental:** R11.1–R11.4 e R11 concluídos conforme estado publicado confirmado pelo autor. PRs e merges deste fechamento possuem confirmação própria; não presumir integração diante de bloqueio da API.
