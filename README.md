@@ -12,7 +12,7 @@ O ProdTime ajuda profissionais de produção e vendas a estimar capacidade e pra
 
 O aplicativo Android reúne três jornadas: estimar produção em um período, encontrar a primeira data suficiente para uma meta e verificar sua viabilidade. Os cálculos são locais e determinísticos: as mesmas entradas e políticas produzem os mesmos resultados.
 
-O MVP funcional e o artigo acadêmico estão concluídos. A identidade do aplicativo está aprovada; os materiais de apresentação seguem em preparação. Consulte o [escopo](docs/product/PROJECT_SCOPE.md) e o [rollout](docs/process/ROLLOUT.md).
+O MVP funcional e o artigo acadêmico estão concluídos. A identidade e os materiais de apresentação estão concluídos; o vídeo foi publicado. A versão 1.0.0 está publicada e o repositório é público. Consulte o [escopo](docs/product/PROJECT_SCOPE.md) e o [rollout](docs/process/ROLLOUT.md).
 
 ## Funcionalidades
 
@@ -141,7 +141,13 @@ adb devices
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Package/applicationId: `br.com.prodtime`. Versão atual: `1.0.0`, código `1`. É um release candidate local; tag e GitHub Release ainda não foram criadas. Consulte a [preparação da versão](docs/release/RELEASE_1_0_0.md) e a [auditoria de publicação](docs/release/PUBLIC_REPOSITORY_AUDIT.md).
+Package/applicationId: `br.com.prodtime`. Versão atual: `1.0.0`, código `1`. A versão 1.0.0 está publicada com a tag `v1.0.0` e GitHub Release. Consulte a [preparação da versão](docs/release/RELEASE_1_0_0.md) e a [auditoria de publicação](docs/release/PUBLIC_REPOSITORY_AUDIT.md).
+
+## Download
+
+O APK acadêmico demonstrativo está disponível na [GitHub Release v1.0.0](https://github.com/Josue-JPAEJ/prodtime/releases/tag/v1.0.0), junto de `SHA256SUMS.txt`. O arquivo `ProdTime-1.0.0-debug.apk` é assinado com certificado Android Debug; não é uma distribuição comercial nem um release assinado de produção.
+
+Vídeo de apresentação: https://youtu.be/UrrcNwLq76w (não listado).
 
 ## Estrutura do projeto
 
