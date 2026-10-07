@@ -1,6 +1,16 @@
 # ProdTime 1.0.0
 
-Release candidate local preparado em 07/10/2026 (America/Sao_Paulo), a partir de develop `620b70febf6c64c02610e4e24ec5713b9eb21e77` (R10 integrado pelo PR #33). Versão 1.0.0, código 1; applicationId `br.com.prodtime`, API mínima 26 e target/compile 36. Nenhuma tag, GitHub Release ou alteração de visibilidade criada. Achados da auditoria aceitos explicitamente pelo proprietário em R11.1B: [relatório](PUBLIC_REPOSITORY_AUDIT.md). R11.1 concluído; R11.2 não iniciado.
+Versão 1.0.0 publicada com tag `v1.0.0` e [GitHub Release](https://github.com/Josue-JPAEJ/prodtime/releases/tag/v1.0.0). Main promovida pelo PR #35; repositório público. APK acadêmico `ProdTime-1.0.0-debug.apk` e `SHA256SUMS.txt` anexados, conforme estado confirmado pelo autor em R11.4. Package `br.com.prodtime`, código 1, API mínima 26 e target/compile 36.
+
+SHA-256 público informado pelo autor:
+
+```text
+1162ac6b8f99430cb818460537eb406963fb07b43d5a609bd81a89f675fdeeb5  ProdTime-1.0.0-debug.apk
+```
+
+O hash publicado difere do artefato local histórico de R11.1 abaixo. Os registros anteriores foram preservados; o APK público não foi baixado nem novamente inspecionado nesta tarefa. A consulta independente à API retornou `Forbidden`.
+
+Achados de auditoria aceitos pelo proprietário em R11.1B: [relatório](PUBLIC_REPOSITORY_AUDIT.md).
 
 ## Funcionalidades
 
@@ -26,7 +36,7 @@ Comandos: `bash ./gradlew clean testDebugUnitTest assembleDebug assembleDebugAnd
 
 Warning existente de depreciação de LocalClipboardManager em FormComponents.kt:218 permaneceu nos dois builds, sem bloquear. Não houve instalação em dispositivo ou novo teste físico de 1.0.0; as aprovações físicas anteriores continuam históricas.
 
-## APK
+## APK — preparação histórica R11.1
 
 Artefatos realmente gerados, em diretórios locais ignorados:
 
@@ -42,7 +52,7 @@ Metadados inspecionados com aapt dump badging e assinatura com apksigner verify 
 
 Não foi criada chave/keystore de produção nem configuradas credenciais. Nenhum APK, certificado privado ou artefato de dist será versionado. Metadados locais em `dist/APK_METADATA.json`.
 
-## Checksums
+## Checksums — artefatos locais históricos R11.1
 
 SHA-256 dos APKs gerados:
 
@@ -52,11 +62,11 @@ e819d3f878eb67595c2d8d0033717dfc1f3ea46f2842580af422c0e45383b8c8  app/build/outp
 6f5967e3def4bf78ca6f2eb0d77b2ac8baf34f375ee4a769ee3c70cddf8d0ae8  app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 ```
 
-O APK de distribuição conserva o hash do debug. Conferência local, dentro de dist: `sha256sum -c SHA256SUMS.txt`.
+O APK local preparado em R11.1 conserva o hash do debug daquela execução. Conferência local, dentro de dist: `sha256sum -c SHA256SUMS.txt`.
 
 ## Limitações
 
-Estimativas condicionadas às entradas, sem dados reais de máquinas, backend, IA ou PCP. Feriados não persistem após encerrar o processo. Candidate sem release público, sem assinatura de produção e sem validação física nova. Gate de preparação R11.1 aprovado conforme decisão do proprietário; não há URL de download publicada.
+Estimativas condicionadas às entradas, sem dados reais de máquinas, backend, IA ou PCP. Feriados não persistem após encerrar o processo. Distribuição acadêmica publicada com certificado Android Debug, sem assinatura de produção ou nova validação física nesta tarefa.
 
 ## Vídeo
 
@@ -75,7 +85,7 @@ adb devices
 adb install -r dist/ProdTime-1.0.0-debug.apk
 ```
 
-A instalação não foi executada nesta tarefa. Atualização de uma instalação existente exige certificado compatível; não remover automaticamente a instalação anterior. GitHub Release e disponibilização pública ficam para etapas posteriores, após revisão humana do candidate nas etapas posteriores.
+A instalação não foi executada nesta tarefa. Atualização de uma instalação existente exige certificado compatível; não remover automaticamente a instalação anterior. O download acadêmico publicado está na [GitHub Release v1.0.0](https://github.com/Josue-JPAEJ/prodtime/releases/tag/v1.0.0); o caminho local acima corresponde à preparação histórica.
 
 ## Consolidação R11.1B
 

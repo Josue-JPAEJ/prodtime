@@ -1,6 +1,6 @@
 # Ficha factual do ProdTime
 
-Referência para reutilizar números, stack e estado sem ampliar as alegações. Atualizada em **07/10/2026 (America/Sao_Paulo)** na preparação R11.1, com R10 integrado.
+Referência para reutilizar números, stack e estado sem ampliar as alegações. Atualizada em **07/10/2026 (America/Sao_Paulo)** no fechamento documental R11.4.
 
 | Campo | Fato registrado |
 |---|---|
@@ -29,9 +29,10 @@ Referência para reutilizar números, stack e estado sem ampliar as alegações.
 | Estado do produto | MVP funcional concluído |
 | Estado de apresentação | R10 concluído; vídeo publicado conforme relato do autor |
 | Vídeo | https://youtu.be/UrrcNwLq76w; não listado; aproximadamente 5min48s; gravado/revisado/publicado conforme relato do autor |
-| Release formal | Candidate local 1.0.0; R11 em andamento, sem tag ou GitHub Release; R11.1 concluído com achados de auditoria aceitos pelo proprietário |
+| Release formal | 1.0.0 publicada; tag v1.0.0; [GitHub Release](https://github.com/Josue-JPAEJ/prodtime/releases/tag/v1.0.0) com APK acadêmico e checksum, conforme confirmação do autor em R11.4 |
+| SHA-256 público do APK | 1162ac6b8f99430cb818460537eb406963fb07b43d5a609bd81a89f675fdeeb5; informado pelo autor, distinto do build local histórico |
 | Publicação dos materiais | Textos preparados; nenhum post LinkedIn ou página de portfólio publicado nesta tarefa |
-| Acesso ao repositório | Privado conforme informação do autor em R11.1; visibilidade não alterada |
+| Acesso ao repositório | Público; publicação e verificação pública confirmadas pelo autor em R11.4 |
 
 ## Casos demonstráveis
 
