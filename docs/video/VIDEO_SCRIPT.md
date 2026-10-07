@@ -2,11 +2,11 @@
 
 ## Duração total
 
-Alvo de edição: **5min00s**, aceitável entre **4min30s e 5min30s**. Dez blocos totalizam 300 segundos. A fala está integralmente em [NARRATION.md](NARRATION.md); use [SHOT_LIST.md](SHOT_LIST.md) para captura e [RECORDING_CHECKLIST.md](RECORDING_CHECKLIST.md) para ensaio/gravação.
+Planejamento original de R10.3: alvo de edição de **5min00s**, com faixa planejada de **4min30s a 5min30s**. Essa faixa era uma orientação do roteiro, não um limite institucional. Dez blocos totalizam 300 segundos. A fala está integralmente em [NARRATION.md](NARRATION.md); use [SHOT_LIST.md](SHOT_LIST.md) para captura e [RECORDING_CHECKLIST.md](RECORDING_CHECKLIST.md) para ensaio/gravação.
 
 A narração contém aproximadamente **655 palavras**, contadas por separação de espaços, sem o título. A 120–140 palavras/minuto, a fala isolada ocupa cerca de **5min28s–4min41s**; a 135 palavras/minuto, cerca de **4min51s**, com aproximadamente nove segundos livres até cinco minutos. Durações são estimativas, não resultado de ensaio. Números foram escritos por extenso para tornar a estimativa mais próxima da leitura real. Pronúncia de nomes técnicos, pausas e navegação exigem conferência pelo autor.
 
-Gravar os trechos de tela separadamente e sincronizar com a narração. Mostrar parâmetros e resultados reais; encurtar apenas digitação, espera e transições, sem alterar valores ou simular respostas. Não é necessário preencher todos os formulários ao vivo dentro dos cinco minutos. Não há gravação ou vídeo produzido nesta tarefa.
+Gravar os trechos de tela separadamente e sincronizar com a narração. Mostrar parâmetros e resultados reais; encurtar apenas digitação, espera e transições, sem alterar valores ou simular respostas. Não é necessário preencher todos os formulários ao vivo dentro dos cinco minutos. Não houve gravação ou vídeo produzido na preparação documental de R10.3.
 
 ## Preparação dos cenários
 
@@ -184,4 +184,13 @@ Dados: Nome, curso e instituição; sem e-mail.
 - [Matriz de regressão](../testing/REGRESSION_MATRIX.md).
 - [Rollout](../process/ROLLOUT.md) e [validações](../process/VALIDATIONS.md); aprovação física da identidade é relato do autor registrado em R10.2.
 
-Não incluir métricas de economia, cobertura percentual ou recursos futuros como entregues. Gravação, ensaio cronometrado, edição, publicação no YouTube e conferência do link são pendências externas do autor.
+Não incluir métricas de economia, cobertura percentual ou recursos futuros como entregues. Na preparação de R10.3, gravação, ensaio cronometrado, edição, publicação e conferência do link ficaram como atividades externas do autor; o estado atualizado está registrado abaixo.
+
+## Vídeo publicado
+
+- **Status:** Publicado.
+- **Visibilidade:** Não listado.
+- **URL:** https://youtu.be/UrrcNwLq76w
+- **Duração final:** aproximadamente 5min48s.
+
+Evidência fornecida pelo autor em R10.5: vídeo gravado, revisado e publicado. Segundo o relato do autor sobre a plataforma da Gran Faculdade, a solicitação é de vídeo de 5 minutos, postado no YouTube, com publicação em modo não listado explicitamente permitida. A tela descrita não indica um limite máximo de 5 minutos. A duração final difere do planejamento original; não se declara aprovação institucional da duração nem inspeção independente do vídeo nesta tarefa.

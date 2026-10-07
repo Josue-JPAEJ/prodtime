@@ -87,10 +87,11 @@ Os status possíveis são **não iniciado**, **em andamento**, **validado** e **
 ## R10 — Vídeo/README/portfólio
 
 - **Objetivo:** apresentar o projeto com honestidade e clareza.
-- **Escopo:** demonstração, documentação de uso, material de portfólio e acabamento de identidade (ícone personalizado, nome/versão, descrição curta, finalidade acadêmica e eventual seção “Sobre”).
-- **Critério de conclusão:** materiais coerentes com funcionalidades realmente entregues.
-- **Etapas:** R10.1 — concluído e integrado pelo PR #29, com suíte JVM/build debug e aprovação local/física da identidade informada pelo usuário em R10.2; execução do teste instrumentado não registrada. R10.2 — README final concluído e integrado pelo PR #30. R10.3 — concluído quanto à preparação do roteiro: roteiro com tempos planejados, narração, lista de tomadas e checklist em `docs/video/`; ensaio, gravação, edição e publicação no YouTube permanecem pendências externas do autor. R10.4 — concluído quanto à preparação do material de portfólio: post LinkedIn, descrição do projeto, versões para currículo, pitches, destaques técnicos e ficha factual em `docs/portfolio/`; nenhuma publicação externa realizada.
-- **Status:** em andamento.
+- **Escopo:** identidade, documentação de uso, vídeo acadêmico e materiais de portfólio.
+- **Critério de conclusão:** atendido por identidade, README, roteiro, vídeo gravado/revisado/publicado e materiais de portfólio coerentes com funcionalidades entregues.
+- **Etapas:** R10.1 — concluído, identidade integrada pelo PR #29 e aprovação física informada pelo autor. R10.2 — concluído, README integrado pelo PR #30. R10.3 — concluído, roteiro integrado pelo PR #31 e vídeo gravado/revisado/publicado pelo autor, registrado em R10.5. R10.4 — concluído, materiais de portfólio integrados pelo PR #32; preparação documental, sem publicação automática desses materiais. R10.5 — registro do vídeo e encerramento formal concluídos.
+- **Evidência do vídeo:** https://youtu.be/UrrcNwLq76w — não listado, aproximadamente 5min48s, conforme relato do autor. A plataforma solicita vídeo de 5 minutos no YouTube e permite modo não listado; a tela relatada não indica máximo de 5 minutos. Não se presume aprovação institucional da duração.
+- **Status:** concluído.
 
 ## R11 — Release v1.0.0
 

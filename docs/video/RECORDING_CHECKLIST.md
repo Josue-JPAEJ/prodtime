@@ -1,6 +1,6 @@
 # Checklist de gravação do ProdTime
 
-Estado: material documental preparado; ensaio, gravação, edição e publicação ainda não realizados nesta tarefa. Use o [roteiro](VIDEO_SCRIPT.md), a [narração](NARRATION.md) e a [lista de tomadas](SHOT_LIST.md).
+Estado atualizado em R10.5: gravação, revisão e publicação concluídas conforme evidência fornecida pelo autor. Os demais itens não marcados não têm confirmação individual; não representam reprovação do vídeo. Use o [roteiro](VIDEO_SCRIPT.md), a [narração](NARRATION.md) e a [lista de tomadas](SHOT_LIST.md).
 
 ## Antes
 
@@ -36,10 +36,15 @@ Estado: material documental preparado; ensaio, gravação, edição e publicaç�
 - [ ] Confrontar valores com a lista de tomadas, README e artigo; não aprovar o vídeo se houver divergência.
 - [ ] Confirmar que a menção aos 118 métodos descreve as fontes JVM e não promete reexecução permanente ou cobertura total.
 - [ ] Confirmar que IA, PCP, ERP Web e IoT aparecem somente como visão futura e que feriados em memória estão explicitados.
-- [ ] Publicar no YouTube conforme a orientação institucional registrada, após revisão do autor; essa ação não foi executada nesta tarefa.
+- [x] Publicação no YouTube concluída pelo autor, após sua revisão do vídeo.
 - [ ] Abrir o link fora da conta do autor e conferir acesso para o avaliador e eventuais regras institucionais de visibilidade.
 - [ ] Registrar URL, duração real e data de publicação somente quando existirem, para a entrega acadêmica; não preencher com link fictício.
 
-## Pendências externas
+## Conclusão informada pelo autor — R10.5
 
-O autor realizará ensaio cronometrado, captura de tela/áudio, edição, revisão e publicação. O gate desta etapa comprova preparação documental, não existência de vídeo ou link publicado. R10.4 e R11 não são iniciados por este checklist.
+- [x] Gravação concluída.
+- [x] Vídeo revisado pelo autor.
+- [x] Visibilidade não listada informada pelo autor.
+- [x] Link obtido: https://youtu.be/UrrcNwLq76w
+
+Publicação concluída marcada na seção Depois. Duração final informada: aproximadamente 5min48s. A faixa de duração acima pertence ao checklist planejado em R10.3; não é limite institucional. A plataforma solicita vídeo de 5 minutos no YouTube e permite modo não listado, sem indicação de máximo na tela relatada. Não foram confirmadas separadamente verificações de áudio, legibilidade, valores, orientação ou acesso fora da conta. Data exata de publicação não informada. R10 encerrado conforme o relato; R11 não iniciado.
