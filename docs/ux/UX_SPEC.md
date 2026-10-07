@@ -82,7 +82,7 @@ O indicador de avanço dos cards da Home é somente decorativo e não participa 
 
 ## 16. Identidade e acabamento
 
-R10.1 mantém o nome **ProdTime** e adota a descrição “Planejamento rápido de capacidade e prazo para produção de fitas têxteis.”. O launcher usa símbolo original de relógio/fita com contraste branco sobre o violeta da paleta existente, variantes adaptativas e monocromáticas e rasters por densidade. O tema e os fluxos produtivos não foram alterados. `versionName = "1.0"` e `versionCode = 1` permanecem; versão 1.0.0 reservada ao R11.
+R10.1 mantém o nome **ProdTime** e adota a descrição “Planejamento rápido de capacidade e prazo para produção de fitas têxteis.”. O launcher usa símbolo original de relógio/fita com contraste branco sobre o violeta da paleta existente, variantes adaptativas e monocromáticas e rasters por densidade. O tema e os fluxos produtivos não foram alterados. R11.1 atualizou `versionName = "1.0.0"`, mantendo `versionCode = 1`; nenhuma alteração de UX acompanha o versionamento.
 
 “Sobre o ProdTime” usa o mesmo estado de navegação, sem biblioteca adicional. A ação visual “Voltar” e o Back do Android retornam à Home. A tela exibe nome, descrição, autoria de Josué Paulo Alexandrina, curso ADS/Gran Faculdade, e-mail e aviso de que estimativas dependem dos parâmetros informados e não representam promessa operacional. O e-mail permite seleção textual; não é criado envio de mensagem ou integração externa.
 
