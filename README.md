@@ -141,7 +141,7 @@ adb devices
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Package/applicationId: `br.com.prodtime`. Versão atual: `1.0`, código `1`; a release `1.0.0` está reservada ao R11.
+Package/applicationId: `br.com.prodtime`. Versão atual: `1.0.0`, código `1`. É um release candidate local; tag e GitHub Release ainda não foram criadas. Consulte a [preparação da versão](docs/release/RELEASE_1_0_0.md) e a [auditoria de publicação](docs/release/PUBLIC_REPOSITORY_AUDIT.md).
 
 ## Estrutura do projeto
 

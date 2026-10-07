@@ -1,6 +1,6 @@
 # Ficha factual do ProdTime
 
-Referência para reutilizar números, stack e estado sem ampliar as alegações. Conferida em **06/10/2026 (America/Sao_Paulo)**, na base develop com R10.3 integrado.
+Referência para reutilizar números, stack e estado sem ampliar as alegações. Atualizada em **07/10/2026 (America/Sao_Paulo)** na preparação R11.1, com R10 integrado.
 
 | Campo | Fato registrado |
 |---|---|
@@ -14,7 +14,7 @@ Referência para reutilizar números, stack e estado sem ampliar as alegações.
 | Package/applicationId/namespace | br.com.prodtime |
 | Minimum SDK | API 26 |
 | Target SDK / Compile SDK | API 36 / API 36 |
-| Versão atual / código | 1.0 / 1 |
+| Versão atual / código | 1.0.0 / 1 |
 | Stack | Kotlin; Jetpack Compose; Material 3; BigDecimal; java.time; Gradle; JUnit 4 |
 | Funcionalidades | Produção; prazo; viabilidade; calendário/feriados; cópia de resultados; Sobre |
 | Feriados | Anuais ou de data específica; coleção compartilhada em memória na sessão |
@@ -27,11 +27,11 @@ Referência para reutilizar números, stack e estado sem ampliar as alegações.
 | Artigo | Formato SBC; 11 páginas; PDF de 355.967 bytes, abaixo de 5 MB |
 | Requisito institucional pendente | Limite exato de páginas ainda não informado; eventual ajuste do artigo depende dessa regra |
 | Estado do produto | MVP funcional concluído |
-| Estado de apresentação | R10 em andamento; R10.3/R10.4 concluídos quanto à preparação documental |
-| Vídeo | Roteiro pronto; gravação, edição e publicação externas ainda sem registro de conclusão |
-| Release formal | v1.0.0 pendente em R11; R11 não iniciado |
+| Estado de apresentação | R10 concluído; vídeo publicado conforme relato do autor |
+| Vídeo | https://youtu.be/UrrcNwLq76w; não listado; aproximadamente 5min48s; gravado/revisado/publicado conforme relato do autor |
+| Release formal | Candidate local 1.0.0; R11 em andamento, sem tag ou GitHub Release; R11.1 concluído com achados de auditoria aceitos pelo proprietário |
 | Publicação dos materiais | Textos preparados; nenhum post LinkedIn ou página de portfólio publicado nesta tarefa |
-| Acesso ao repositório | Visibilidade não confirmada devido ao bloqueio da API; não presumir acesso público |
+| Acesso ao repositório | Privado conforme informação do autor em R11.1; visibilidade não alterada |
 
 ## Casos demonstráveis
 

@@ -37,6 +37,6 @@ Previews Compose declarados para claro, escuro e fonte ampliada/tela pequena; ai
 
 ## Versão e estado
 
-Versão atual **1.0**, código **1**, confirmados no Gradle e no APK debug; **versão 1.0.0 reservada ao R11**. Não há release, alteração de package ou estratégia de versão paralela.
+Versão atual **1.0.0**, código **1**, confirmados no Gradle e nos APKs debug/release de R11.1. Release candidate local; nenhuma tag ou GitHub Release criada. Package preservado.
 
-R10.1 implementado e pronto para validação local/física. Suíte JVM e builds debug/apk de teste compilados no Cloud; execução instrumentada e inspeção da Home/Sobre em aparelho pendentes. R10 permanece em andamento; R10.2/R10.3/R10.4 e R11 não iniciados. O artigo e as capturas acadêmicas já aprovadas não foram alterados para simular a nova identidade.
+R10 concluído. A aprovação física de ícone/Home/Sobre foi informada pelo autor em R10.2; a execução do teste instrumentado continua sem registro. R11.1 concluído com preparação técnica e achados de auditoria aceitos explicitamente pelo proprietário; R11.2–R11.4 não iniciados. O artigo e as capturas acadêmicas já aprovadas não foram alterados para simular a nova identidade.
