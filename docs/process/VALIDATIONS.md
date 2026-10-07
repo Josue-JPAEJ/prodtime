@@ -484,3 +484,14 @@ Essas evidências registram o baseline; não significam que foram repetidas dura
 - **Verificações:** revisão do diff; `git diff --check`, `git diff --stat`, `git diff --name-only` e `git status`; escopo de oito arquivos exclusivamente documentais. README, artigo, branding, imagens, documentos de vídeo, Kotlin/app/UI/domínio, testes, Gradle e dependências preservados. Nenhum Gradle ou nova validação física executado.
 - **Integração/publicação:** API do GitHub bloqueada na consulta; PR/merge dependem de confirmação própria. Textos apenas preparados, sem publicação automática no LinkedIn, página de portfólio ou YouTube. Publicação de branch por Git é distinta dessas ações.
 - **Conclusão:** gate dos materiais **SIM**, prontos para reutilização. R10.4 concluído quanto à preparação documental. R10 em andamento enquanto a gravação/publicação externa do vídeo não estiver registrada. R11 não iniciado; nenhuma release criada.
+
+## R10.5 — vídeo publicado e encerramento de R10
+
+- **Data do registro:** 2026-10-07 (America/Sao_Paulo).
+- **Base:** develop em `4b4cc508040896a0f9053934528edebde7d8fc58`, merge do PR #32; árvore inicialmente limpa, alinhada por fast-forward na branch interna work.
+- **Evidência fornecida pelo autor:** vídeo gravado, revisado pelo autor e publicado no YouTube; duração aproximada 5min48s; visibilidade Não listado; URL oficial https://youtu.be/UrrcNwLq76w.
+- **Requisito institucional relatado:** plataforma da Gran Faculdade solicita criação de vídeo de 5 minutos, postagem no YouTube e permite explicitamente modo não listado. A tela descrita não apresenta indicação de máximo de 5 minutos. Não se presume aprovação institucional da duração final.
+- **Checklist:** somente gravação, revisão do vídeo, publicação, visibilidade não listada e obtenção do link marcados como concluídos. Demais verificações individuais não foram informadas; data exata de publicação desconhecida. Sem inspeção independente do vídeo ou nova publicação nesta tarefa.
+- **Documentação:** quatro arquivos solicitados atualizados, mantendo tempos originais como planejamento histórico e preservando registros anteriores de validação. README, artigo SBC, branding, imagens, app, Kotlin, testes, Gradle, versão e APK intactos; nenhum Gradle executado.
+- **Verificações documentais:** git diff --check, diff/stat/name-only e status; URL, visibilidade, limites de evidência e encerramento R10/R11 conferidos.
+- **Conclusão:** R10.1–R10.4 concluídos; R10.5 concluído; R10 encerrado com gate SIM conforme evidência do autor. R11 não iniciado. PR e merge dependem de confirmação própria, distinta do gate documental.
