@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">ProdTime</string>
+    <string name="app_short_description">Planejamento rápido de capacidade e prazo para produção de fitas têxteis.</string>
+    <string name="about_title">Sobre o ProdTime</string>
+    <string name="about_back">Voltar</string>
+    <string name="about_developed_by">Desenvolvido por</string>
+    <string name="about_author">Josué Paulo Alexandrina</string>
+    <string name="about_academic_project">Projeto acadêmico</string>
+    <string name="about_course">Análise e Desenvolvimento de Sistemas (ADS)</string>
+    <string name="about_institution">Gran Faculdade</string>
+    <string name="about_email_label">E-mail</string>
+    <string name="about_email">josue_jpaej@hotmail.com</string>
+    <string name="about_estimate_notice">O ProdTime estima capacidade, prazo e viabilidade com base nos parâmetros produtivos informados. Os resultados são estimativas e não representam promessa operacional.</string>
 </resources>

@@ -15,3 +15,10 @@
 local.properties
 
 /.idea/
+
+# Artefatos e material local de release
+/dist/
+*.jks
+*.keystore
+.env
+.env.*

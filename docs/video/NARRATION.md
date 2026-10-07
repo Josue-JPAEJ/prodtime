@@ -1,0 +1,21 @@
+# Narração do vídeo ProdTime
+
+Olá, meu nome é Josué Paulo Alexandrina. Sou aluno de Análise e Desenvolvimento de Sistemas da Gran Faculdade e vou apresentar o ProdTime, meu Projeto Integrador. Na produção de fitas têxteis, responder quanto é possível produzir e quando uma quantidade ficará pronta exige combinar várias informações. Antes, esses cálculos eram manuais e o conhecimento ficava concentrado em profissionais experientes.
+
+Para apoiar essas respostas, desenvolvi uma calculadora em VBA integrada a um ERP legado. Com a evolução para um ERP Web, a necessidade de cálculo foi separada desse sistema. O ProdTime leva essa lógica para um aplicativo móvel independente. Seu objetivo é estimar capacidade, prazo e viabilidade de metas, tornando explícitas as condições utilizadas. Ele funciona localmente e oferece resultados determinísticos para as mesmas entradas.
+
+Na tela inicial estão as três jornadas. Quanto consigo produzir estima a metragem de um período. Quando vou terminar encontra a data necessária para uma quantidade desejada. Verificar uma meta compara a capacidade com essa quantidade e indica o mínimo de fitas necessário. Também há acesso à configuração de feriados e à tela Sobre o ProdTime. As entradas e os resultados são apresentados com suas unidades para orientar a interpretação.
+
+Neste primeiro exemplo, considero o período de primeiro a vinte e sete de outubro de dois mil e vinte e seis. Informo vinte e cinco centímetros por minuto, três fitas, dezesseis horas por dia e três por cento de desperdício. Sem sábados, domingos ou feriados, são dezenove dias produtivos. O aplicativo estima treze mil duzentos e setenta metros líquidos, a partir de treze mil seiscentos e oitenta metros brutos, com quatrocentos e dez vírgula quatro metros de desperdício.
+
+Agora quero produzir dez mil metros, começando em cinco de outubro de dois mil e vinte e seis. Mantenho velocidade, três fitas, jornada e desperdício do exemplo anterior, também sem fins de semana ou feriados. Aqui, informo apenas a data inicial, não uma data final. O ProdTime encontra a primeira data suficiente: vinte e três de outubro. São quinze dias produtivos, com dez mil quatrocentos e setenta e seis metros e saldo positivo de quatrocentos e setenta e seis metros.
+
+Agora, verifico se duas fitas atendem à meta de dez mil metros no período do primeiro exemplo, mantendo as demais condições. A produção estimada é de oito mil oitocentos e quarenta e seis metros. Portanto, faltam mil cento e cinquenta e quatro metros. O mínimo calculado é de três fitas, ou seja, uma fita adicional. Com três, a meta passa a ser atendida nesse cenário. Essa indicação é determinística, não usa inteligência artificial nem faz planejamento e controle da produção. A disponibilidade real da fita adicional precisa ser avaliada pelo usuário.
+
+O calendário permite definir trabalho aos sábados, domingos e feriados. Nesta tela, posso cadastrar um feriado anual, como o Natal, ou uma data específica. Nos formulários de cálculo, a opção Trabalhar em feriados determina seu efeito na produção. Esses cadastros são compartilhados pelas três jornadas durante a sessão. Assim, a estimativa respeita o calendário informado.
+
+O aplicativo é Android nativo, desenvolvido em Kotlin com Jetpack Compose. As regras ficam em um domínio separado da interface. BigDecimal trata os cálculos decimais, e java.time organiza as datas. As fontes atuais da suíte JVM têm cento e dezoito métodos anotados como testes. Há regressões históricas e registros de testes e build concluídos com sucesso. A validação física no Samsung SM-A066M verificou os três fluxos e refinamentos de interação. Essas evidências sustentam os cenários avaliados, sem afirmar cobertura total.
+
+O ProdTime depende dos parâmetros informados e não recebe dados de máquinas em tempo real. Funciona localmente, sem backend, e perde os feriados quando o processo termina. Não substitui ERP ou PCP e não utiliza IA. Integração com ERP Web, persistência, histórico, disponibilidade de máquinas, PCP, IA e IoT são possibilidades futuras, ainda não entregues.
+
+O ProdTime tornou a lógica manual e VBA móvel e testável. Josué Paulo Alexandrina, Análise e Desenvolvimento de Sistemas, Gran Faculdade. Obrigado.
